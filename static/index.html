@@ -506,7 +506,452 @@
       .stats-grid { grid-template-columns: 1fr; }
       .form-grid { grid-template-columns: 1fr; }
       .floating-top, .floating-chat { right: 12px; }
+
+/* =========================================================
+   12. MOBILE POLISH — IANOH_HUBS
+========================================================= */
+
+html {
+  width: 100%;
+  overflow-x: clip;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  width: 100%;
+  min-width: 0;
+  overflow-x: clip;
+}
+
+img,
+video,
+svg,
+canvas {
+  max-width: 100%;
+}
+
+input,
+select,
+textarea,
+button {
+  max-width: 100%;
+  font: inherit;
+}
+
+button,
+.btn,
+.icon-btn {
+  touch-action: manipulation;
+}
+
+.page-section,
+.wrap,
+.shop-layout,
+.shop-main,
+.panel,
+.product-card {
+  min-width: 0;
+  max-width: 100%;
+}
+
+input,
+select,
+textarea {
+  min-width: 0;
+}
+
+/* Tablets and smaller laptops */
+@media (max-width: 760px) {
+  .nav-inner {
+    width: 100%;
+  }
+
+  .nav-links.open {
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .nav-links a,
+  .nav-links button {
+    min-height: 42px;
+  }
+
+  .form-grid,
+  .admin-grid,
+  .shop-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hero-copy,
+  .promo-copy {
+    min-width: 0;
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .btn {
+    min-height: 42px;
+  }
+
+  .field input,
+  .field select,
+  .field textarea,
+  .filter-control {
+    width: 100%;
+    min-height: 44px;
+    box-sizing: border-box;
+  }
+}
+
+/* Small phones */
+@media (max-width: 430px) {
+  .wrap {
+    width: calc(100% - 24px);
+  }
+
+  .nav-inner {
+    gap: 6px;
+  }
+
+  .logo {
+    overflow-wrap: anywhere;
+  }
+
+  .hero h1 {
+    font-size: clamp(2rem, 10vw, 2.8rem);
+    overflow-wrap: anywhere;
+  }
+
+  .filters {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .search-wrap {
+    grid-column: auto;
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 9px;
+  }
+
+  .product-info {
+    padding: 9px;
+  }
+
+  .product-info h3 {
+    overflow-wrap: anywhere;
+  }
+
+  .product-actions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 7px;
+  }
+
+  #vLogin .panel {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  #vLogin input,
+  #vLogin button {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  #vLogin input {
+    min-height: 46px;
+  }
+
+  #vLogin .btn {
+    min-height: 46px;
+  }
+}
     }
+
+/* =========================================================
+   PHONE + TABLET RESPONSIVE FINISH
+========================================================= */
+
+/* Prevent page-level horizontal overflow */
+html,
+body {
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+button,
+input,
+select,
+textarea {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* TABLETS: 761px–1040px */
+@media (min-width: 761px) and (max-width: 1040px) {
+  .wrap {
+    width: calc(100% - 36px);
+  }
+
+  .nav-inner {
+    gap: 12px;
+  }
+
+  .brand-sub {
+    font-size: 0.72rem;
+  }
+
+  .nav-links {
+    gap: 6px;
+  }
+
+  .nav-btn {
+    padding: 9px 10px;
+  }
+
+  .hero {
+    grid-template-columns: 1fr 0.8fr;
+    min-height: 350px;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+  }
+
+  .shop-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .shop-aside {
+    position: static;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .product-card,
+  .panel {
+    min-width: 0;
+  }
+}
+
+/* PHONES + SMALL TABLETS */
+@media (max-width: 760px) {
+  .wrap {
+    width: calc(100% - 28px);
+  }
+
+  .site-header {
+    max-width: calc(100% - 16px);
+  }
+
+  .nav-inner {
+    flex-wrap: wrap;
+    min-width: 0;
+  }
+
+  .nav-links.open {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    order: 5;
+  }
+
+  .nav-links .nav-btn {
+    width: 100%;
+    text-align: left;
+    min-height: 44px;
+  }
+
+  .nav-actions {
+    gap: 6px;
+    min-width: 0;
+  }
+
+  .hero {
+    grid-template-columns: minmax(0, 1fr);
+    min-height: 390px;
+  }
+
+  .hero-copy {
+    padding: 28px 22px;
+    max-width: 100%;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.2rem, 8vw, 3.5rem);
+    overflow-wrap: anywhere;
+  }
+
+  .trust-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .shop-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .shop-aside {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .filters {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .search-wrap {
+    grid-column: 1 / -1;
+    min-width: 0;
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .product-card {
+    min-width: 0;
+  }
+
+  .product-info {
+    padding: 10px;
+    min-width: 0;
+  }
+
+  .product-info h3 {
+    overflow-wrap: anywhere;
+  }
+
+  .product-actions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+  }
+
+  .product-actions .btn {
+    width: 100%;
+    min-height: 42px;
+  }
+
+  .form-grid,
+  .admin-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .promo {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  #vLogin .panel {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  #vLogin input,
+  #vLogin button {
+    width: 100%;
+    min-height: 44px;
+    box-sizing: border-box;
+  }
+}
+
+/* SMALL PHONES */
+@media (max-width: 430px) {
+  .wrap {
+    width: calc(100% - 24px);
+  }
+
+  .brand-icon {
+    width: 34px;
+    height: 34px;
+  }
+
+  .logo {
+    font-size: 1rem;
+    overflow-wrap: anywhere;
+  }
+
+  .brand-sub {
+    font-size: 0.65rem;
+  }
+
+  .nav-btn {
+    padding: 9px;
+    font-size: 0.78rem;
+  }
+
+  .hero {
+    min-height: 370px;
+  }
+
+  .hero-copy {
+    padding: 25px 18px;
+  }
+
+  .hero-copy p {
+    font-size: 0.92rem;
+  }
+
+  .filters {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .search-wrap {
+    grid-column: auto;
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 9px;
+  }
+
+  .product-photo {
+    aspect-ratio: 1;
+  }
+
+  .product-info {
+    padding: 8px;
+  }
+
+  .product-info h3 {
+    font-size: 0.88rem;
+  }
+
+  .price {
+    font-size: 1rem;
+  }
+
+  .product-type,
+  .product-meta {
+    overflow-wrap: anywhere;
+  }
+
+  .trust-item {
+    min-width: 0;
+  }
+
+  .floating-top,
+  .floating-chat {
+    right: 10px;
+  }
+}
+
   </style>
 </head>
 
@@ -562,7 +1007,6 @@
         <p class="error" id="authErr" role="alert" aria-live="polite"></p>
         <button class="btn bronze" id="authGo">Log in</button>
         <button class="btn outline" id="authSwap" type="button">Create account</button>
-        <p class="hint" style="margin:16px 0 0">Admin access is assigned by the site owner; customer registration does not create an admin account.</p>
       </div>
     </section>
 
@@ -951,15 +1395,20 @@
     /* =======================================================
        25. AUTHENTICATION — signup, login and logout
     ======================================================== */
-    function authMode(isSignup) {
-      signup = isSignup;
-      $("#authTitle").textContent = signup ? "Create your account" : "Welcome back";
-      $("#nameF").hidden = !signup;
-      $("#authGo").textContent = signup ? "Create account" : "Log in";
-      $("#authSwap").textContent = signup ? "I already have an account" : "Create account";
-      $("#aPass").autocomplete = signup ? "new-password" : "current-password";
-      $("#authErr").textContent = "";
-    }
+function authMode(isSignup) {
+  signup = isSignup;
+  $("#authTitle").textContent = signup
+    ? "Create your account"
+    : "Log in to Ianoh_hubs";
+
+  $("#nameF").hidden = !signup;
+  $("#authGo").textContent = signup ? "Create account" : "Log in";
+  $("#authSwap").textContent = signup
+    ? "I already have an account"
+    : "Create account";
+
+  $("#aPass").autocomplete = signup ? "new-password" : "current-password";
+}
     $("#authSwap").addEventListener("click", function () { authMode(!signup); });
     $("#authGo").addEventListener("click", function () {
       var payload = signup
@@ -1478,4 +1927,3 @@
   </script>
 </body>
 </html>
-
