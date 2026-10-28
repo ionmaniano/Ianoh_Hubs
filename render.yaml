@@ -1,0 +1,26 @@
+databases:
+  - name: ianoh-db
+    plan: free   # free Postgres expires after 30 days on Render; upgrade before going live
+services:
+  - type: web
+    name: ianoh-hubs
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - {key: DATABASE_URL, fromDatabase: {name: ianoh-db, property: connectionString}}
+      - {key: SECRET_KEY, generateValue: true}
+      - {key: MPESA_CALLBACK_TOKEN, generateValue: true}
+      - {key: MPESA_ENV, value: sandbox}
+      - {key: MPESA_TRANSACTION_TYPE, value: CustomerBuyGoodsOnline}
+      - {key: MPESA_CONSUMER_KEY, sync: false}
+      - {key: MPESA_CONSUMER_SECRET, sync: false}
+      - {key: MPESA_SHORTCODE, sync: false}
+      - {key: MPESA_PASSKEY, sync: false}
+      - {key: MPESA_TILL, sync: false}
+      - {key: MPESA_CALLBACK_URL, sync: false}
+      - {key: APP_URL, sync: false}
+      - {key: WHATSAPP_NUMBER, sync: false}   # e.g. 254712345678
+      - {key: DELIVERY_FEE, value: "300"}
+      - {key: ADMIN_EMAIL, sync: false}
+      - {key: ADMIN_PASSWORD, sync: false}

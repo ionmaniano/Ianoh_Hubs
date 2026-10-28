@@ -1,0 +1,1481 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <!-- Ianoh_hubs | Premium thrift footwear storefront -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#10232E">
+  <meta name="description" content="Shop carefully selected pre-loved shoes at Ianoh_hubs. Pay securely with M-Pesa.">
+  <title>Ianoh_hubs — Second-life shoes</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* =========================================================
+       01. DESIGN TOKENS — sampled from the supplied palette
+       Navy, slate, warm grey, ivory, bronze and near-black.
+    ========================================================= */
+    :root {
+      color-scheme: light;
+      --navy: #10232E;
+      --slate: #3D4D55;
+      --grey: #A79E9C;
+      --ivory: #D3C3B9;
+      --bronze: #B58863;
+      --black: #181818;
+
+      --bg: hwb(20 97% 2%);
+      --surface: rgba(246, 241, 238, .76);
+      --surface-solid: #F6F1EE;
+      --ink: var(--black);
+      --muted: #586168;
+      --brand: var(--navy);
+      --on-brand: var(--ivory);
+      --line: rgba(61, 77, 85, .20);
+      --glass: rgba(246, 241, 238, .58);
+      --glass-strong: rgba(246, 241, 238, .82);
+      --glass-border: rgba(255, 255, 255, .66);
+      --shadow: 0 18px 50px rgba(16, 35, 46, .12);
+      --shadow-hover: 0 25px 60px rgba(16, 35, 46, .19);
+      --radius: 22px;
+      --radius-sm: 13px;
+      --max-width: 1220px;
+      --ease: cubic-bezier(.2, .75, .25, 1);
+    }
+
+    :root[data-theme="dark"] {
+      color-scheme: dark;
+      --bg: #181818;
+      --surface: rgba(16, 35, 46, .77);
+      --surface-solid: #10232E;
+      --ink: #D3C3B9;
+      --muted: #A79E9C;
+      --brand: #3D4D55;
+      --on-brand: #D3C3B9;
+      --line: rgba(211, 195, 185, .18);
+      --glass: rgba(16, 35, 46, .58);
+      --glass-strong: rgba(16, 35, 46, .88);
+      --glass-border: rgba(211, 195, 185, .18);
+      --shadow: 0 18px 50px rgba(0, 0, 0, .23);
+      --shadow-hover: 0 25px 60px rgba(0, 0, 0, .34);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        color-scheme: dark;
+        --bg: #181818;
+        --surface: rgba(16, 35, 46, .77);
+        --surface-solid: #10232E;
+        --ink: #D3C3B9;
+        --muted: #A79E9C;
+        --brand: #3D4D55;
+        --on-brand: #D3C3B9;
+        --line: rgba(211, 195, 185, .18);
+        --glass: rgba(16, 35, 46, .58);
+        --glass-strong: rgba(16, 35, 46, .88);
+        --glass-border: rgba(211, 195, 185, .18);
+        --shadow: 0 18px 50px rgba(0, 0, 0, .23);
+        --shadow-hover: 0 25px 60px rgba(0, 0, 0, .34);
+      }
+    }
+
+    /* =========================================================
+       02. RESET, TYPE AND BACKGROUND
+    ========================================================= */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 100px; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(ellipse at 4% 12%, rgba(181,136,99,.19), transparent 30rem),
+        radial-gradient(ellipse at 94% 42%, rgba(61,77,85,.15), transparent 34rem),
+        var(--bg);
+      color: var(--ink);
+      font: 400 15px/1.55 "DM Sans", system-ui, sans-serif;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+      opacity: .15;
+      background-image: radial-gradient(rgba(16,35,46,.35) .55px, transparent .55px);
+      background-size: 5px 5px;
+      mask-image: linear-gradient(to bottom, black, transparent 75%);
+    }
+    h1, h2, h3, h4, p { margin-top: 0; }
+    h1, h2, h3, h4, .logo, .price {
+      font-family: "Bricolage Grotesque", "DM Sans", sans-serif;
+    }
+    h1, h2, h3 { line-height: 1.08; letter-spacing: -.035em; }
+    button, input, select, textarea { font: inherit; }
+    button, a, select { -webkit-tap-highlight-color: transparent; }
+    button { cursor: pointer; }
+    button:disabled { cursor: not-allowed; opacity: .55; }
+    a { color: inherit; }
+    img { max-width: 100%; }
+    :focus-visible { outline: 3px solid var(--bronze); outline-offset: 3px; }
+    [hidden] { display: none !important; }
+    .wrap { width: min(var(--max-width), calc(100% - 36px)); margin-inline: auto; }
+    .muted { color: var(--muted); }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      color: var(--bronze); text-transform: uppercase; letter-spacing: .16em;
+      font-size: .73rem; font-weight: 700;
+    }
+    .eyebrow::before { content: ""; width: 20px; height: 1px; background: currentColor; }
+    .section-heading {
+      display: flex; align-items: end; justify-content: space-between;
+      gap: 18px; margin-bottom: 22px;
+    }
+    .section-heading h2 { margin: 7px 0 0; font-size: clamp(1.65rem, 3vw, 2.25rem); }
+    .section-heading p { margin: 7px 0 0; color: var(--muted); }
+
+    /* =========================================================
+       03. GLASS NAVIGATION
+    ========================================================= */
+    .site-header {
+      position: sticky; top: 10px; z-index: 100;
+      width: min(var(--max-width), calc(100% - 28px));
+      margin: 10px auto 0;
+      color: var(--on-brand);
+      background: rgba(16,35,46,.83);
+      border: 1px solid rgba(211,195,185,.24);
+      border-radius: 18px;
+      box-shadow: 0 12px 38px rgba(16,35,46,.19);
+      backdrop-filter: blur(22px) saturate(150%);
+      -webkit-backdrop-filter: blur(22px) saturate(150%);
+    }
+    .nav-inner { min-height: 68px; display: flex; align-items: center; gap: 14px; padding: 10px 16px; }
+    .brandmark {
+      display: flex; align-items: center; gap: 11px; margin-right: auto;
+      text-decoration: none; min-width: max-content;
+    }
+    .brand-icon {
+      display: grid; place-items: center; width: 42px; height: 42px;
+      border-radius: 13px; color: var(--navy); background: var(--ivory);
+      font-size: 1.2rem;
+    }
+    .logo { font-size: 1.22rem; font-weight: 800; line-height: 1; letter-spacing: -.04em; }
+    .brand-sub { display: block; margin-top: 5px; font-size: .67rem; letter-spacing: .11em; text-transform: uppercase; opacity: .7; }
+    .nav-links { display: flex; align-items: center; gap: 5px; }
+    .nav-btn {
+      border: 1px solid transparent; border-radius: 11px; padding: 10px 13px;
+      color: inherit; background: transparent; font-size: .87rem; font-weight: 600;
+      transition: background .25s ease, color .25s ease, transform .25s ease;
+    }
+    .nav-btn:hover, .nav-btn.active { background: var(--bronze); color: var(--black); }
+    .nav-actions { display: flex; align-items: center; gap: 8px; }
+    .who { max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: .78rem; opacity: .82; }
+    .icon-btn {
+      display: inline-grid; place-items: center; width: 42px; height: 42px;
+      border: 1px solid rgba(211,195,185,.28); border-radius: 13px;
+      color: inherit; background: rgba(255,255,255,.07);
+      transition: transform .2s ease, background .2s ease;
+    }
+    .icon-btn:hover { transform: translateY(-2px); background: rgba(255,255,255,.15); }
+    .menu-toggle { display: none; }
+
+    /* =========================================================
+       04. BUTTONS AND FORM CONTROLS
+    ========================================================= */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      min-height: 43px; padding: 11px 17px; border: 1px solid transparent;
+      border-radius: 12px; background: var(--navy); color: var(--ivory);
+      text-decoration: none; font-weight: 700; font-size: .87rem;
+      transition: transform .22s var(--ease), box-shadow .22s ease, filter .22s ease;
+    }
+    .btn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(16,35,46,.18); filter: brightness(1.06); }
+    .btn:active:not(:disabled) { transform: scale(.985); }
+    .btn.bronze { background: var(--bronze); color: var(--black); }
+    .btn.outline { background: transparent; color: var(--ink); border-color: var(--line); }
+    .btn.danger { background: #75483D; color: #fff4ed; }
+    .btn.small { min-height: 34px; padding: 7px 10px; border-radius: 9px; font-size: .78rem; }
+    .field { min-width: 0; margin: 12px 0; }
+    .field label { display: block; margin-bottom: 6px; font-size: .83rem; font-weight: 700; }
+    .field input, .field select, .field textarea,
+    .filter-control {
+      width: 100%; min-height: 45px; padding: 11px 13px;
+      border: 1px solid var(--line); border-radius: 12px;
+      color: var(--ink); background: var(--glass-strong);
+      transition: border-color .2s ease, box-shadow .2s ease;
+    }
+    .field textarea { min-height: 88px; resize: vertical; }
+    .field input:focus, .field select:focus, .field textarea:focus, .filter-control:focus {
+      outline: none; border-color: var(--bronze);
+      box-shadow: 0 0 0 4px rgba(181,136,99,.15);
+    }
+    .form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 15px; }
+    .error { min-height: 1.4em; color: #9c4437; font-size: .87rem; }
+    .success { color: #39755b; font-size: .87rem; }
+    .hint { color: var(--muted); font-size: .83rem; }
+
+    /* =========================================================
+       05. HERO — editorial storefront
+    ========================================================= */
+    .hero {
+      position: relative; isolation: isolate; overflow: hidden;
+      display: grid; grid-template-columns: 1.05fr .95fr; align-items: center;
+      min-height: 370px; margin: 22px 0 42px;
+      border: 1px solid rgba(255,255,255,.45); border-radius: 28px;
+      background:
+        linear-gradient(100deg, rgba(16,35,46,.97) 0%, rgba(16,35,46,.91) 45%, rgba(16,35,46,.16) 100%),
+        radial-gradient(circle at 75% 40%, rgba(181,136,99,.38), transparent 38%),
+        linear-gradient(135deg, #3D4D55, #10232E);
+      box-shadow: var(--shadow);
+      color: var(--ivory);
+    }
+    .hero-copy { position: relative; z-index: 2; padding: clamp(28px, 5vw, 62px); }
+    .hero h1 { max-width: 650px; margin: 15px 0 17px; font-size: clamp(2.8rem, 6.5vw, 5.8rem); line-height: .94; font-weight: 800; }
+    .hero h1 em { color: var(--bronze); font-style: normal; }
+    .hero-copy p { max-width: 460px; color: rgba(211,195,185,.82); font-size: 1.02rem; }
+    .hero-ctas { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+    .hero .btn.outline { color: var(--ivory); border-color: rgba(211,195,185,.4); }
+    .hero-art { position: absolute; z-index: 1; inset: 0 0 0 48%; overflow: hidden; }
+    .hero-art::before {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(90deg, var(--navy), transparent 55%), linear-gradient(0deg, rgba(16,35,46,.45), transparent 45%);
+      z-index: 2;
+    }
+    .hero-shoe {
+      position: absolute; right: -4%; top: 9%; width: 92%; height: 82%;
+      border-radius: 48% 0 0 48%;
+      background:
+        radial-gradient(ellipse at 60% 65%, rgba(181,136,99,.36), transparent 35%),
+        linear-gradient(135deg, rgba(211,195,185,.15), rgba(61,77,85,.05));
+      transform: rotate(-7deg);
+    }
+    .hero-shoe svg { width: 100%; height: 100%; filter: drop-shadow(0 25px 18px rgba(0,0,0,.35)); }
+    .hero-note {
+      position: absolute; z-index: 3; right: 7%; bottom: 12%;
+      padding: 15px 18px; border: 1px solid rgba(255,255,255,.3);
+      border-radius: 16px; background: rgba(16,35,46,.5);
+      backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+      font-size: .8rem; letter-spacing: .08em; text-transform: uppercase;
+    }
+    .hero-note strong { display: block; color: var(--bronze); font-size: 1.1rem; letter-spacing: 0; text-transform: none; }
+
+    /* =========================================================
+       06. TRUST STRIP AND SHOP LAYOUT
+    ========================================================= */
+    .trust-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: -17px 0 44px; }
+    .trust-item {
+      display: flex; align-items: center; gap: 11px; padding: 15px;
+      border: 1px solid var(--glass-border); border-radius: 15px;
+      background: var(--glass); box-shadow: 0 8px 24px rgba(16,35,46,.05);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    }
+    .trust-icon { display: grid; place-items: center; flex: 0 0 38px; height: 38px; border-radius: 12px; background: rgba(181,136,99,.19); color: var(--bronze); font-size: 1.1rem; }
+    .trust-item strong { display: block; font-size: .83rem; }
+    .trust-item small { display: block; color: var(--muted); font-size: .72rem; margin-top: 2px; }
+
+    .shop-layout { display: grid; grid-template-columns: minmax(0, 1fr) 260px; gap: 24px; align-items: start; }
+    .shop-main { min-width: 0; }
+    .filters {
+      display: grid; grid-template-columns: minmax(180px, 1.6fr) repeat(3, minmax(110px, 1fr));
+      gap: 9px; padding: 12px; margin-bottom: 20px;
+      border: 1px solid var(--glass-border); border-radius: 17px;
+      background: var(--glass); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    }
+    .search-wrap { position: relative; }
+    .search-wrap span { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); color: var(--muted); }
+    .search-wrap input { padding-left: 38px; }
+    .filter-control { min-width: 0; min-height: 43px; padding: 9px 11px; font-size: .83rem; }
+    .product-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 17px; }
+    .product-card {
+      min-width: 0; position: relative; overflow: hidden;
+      display: flex; flex-direction: column;
+      border: 1px solid var(--glass-border); border-radius: 19px;
+      background: var(--glass); box-shadow: 0 12px 30px rgba(16,35,46,.07);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      transition: transform .35s var(--ease), box-shadow .35s ease, border-color .35s ease;
+    }
+    .product-card:hover { transform: translateY(-7px); box-shadow: var(--shadow-hover); border-color: rgba(181,136,99,.65); }
+    .product-photo {
+      position: relative; display: grid; place-items: center; overflow: hidden;
+      aspect-ratio: 1.22; background: linear-gradient(135deg, rgba(61,77,85,.15), rgba(211,195,185,.38));
+    }
+    .product-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform .65s var(--ease); }
+    .product-card:hover .product-photo img { transform: scale(1.06); }
+    .photo-fallback { display: grid; place-items: center; width: 100%; height: 100%; color: var(--slate); }
+    .photo-fallback svg { width: 68%; max-height: 130px; }
+    .product-badge {
+      position: absolute; top: 12px; right: 12px; z-index: 2;
+      padding: 5px 10px; border-radius: 999px; background: var(--bronze);
+      color: var(--black); font-size: .72rem; font-weight: 800;
+    }
+    .product-badge.sold { left: 12px; right: auto; background: var(--navy); color: var(--ivory); }
+    .product-info { display: flex; flex: 1; flex-direction: column; gap: 7px; padding: 15px; }
+    .product-type { align-self: flex-start; padding: 4px 9px; border-radius: 999px; background: rgba(181,136,99,.2); color: var(--ink); font-size: .7rem; font-weight: 800; }
+    .product-info h3 { margin: 0; font-size: 1.04rem; letter-spacing: -.02em; }
+    .product-meta { color: var(--muted); font-size: .78rem; }
+    .price-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 7px; margin: 3px 0 8px; }
+    .price { font-size: 1.28rem; font-weight: 800; letter-spacing: -.04em; }
+    .old-price { color: var(--muted); font-size: .78rem; text-decoration: line-through; }
+    .product-actions { display: grid; gap: 8px; margin-top: auto; }
+    .product-actions .btn { width: 100%; }
+    .product-actions .btn.outline { font-size: .78rem; min-height: 38px; }
+    .empty-state { grid-column: 1 / -1; padding: 45px 20px; text-align: center; border: 1px dashed var(--line); border-radius: 18px; color: var(--muted); }
+
+    /* Right-hand glass sidebar */
+    .shop-aside { position: sticky; top: 100px; display: grid; gap: 15px; }
+    .glass-panel {
+      padding: 21px; border: 1px solid var(--glass-border); border-radius: 19px;
+      background: var(--glass); box-shadow: var(--shadow);
+      backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+    }
+    .glass-panel h3 { font-size: 1.08rem; margin-bottom: 12px; }
+    .benefit-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+    .benefit-list li { display: flex; align-items: center; gap: 9px; color: var(--muted); font-size: .83rem; }
+    .check { display: grid; place-items: center; flex: 0 0 23px; height: 23px; border-radius: 50%; background: rgba(181,136,99,.22); color: var(--bronze); font-weight: 800; }
+    .help-card { display: flex; align-items: center; gap: 11px; text-decoration: none; }
+    .whatsapp-mark { display: grid; place-items: center; flex: 0 0 43px; height: 43px; border-radius: 50%; background: #1f785b; color: white; font-weight: 800; }
+    .help-card strong { display: block; font-size: .85rem; }
+    .help-card small { display: block; color: var(--muted); font-size: .75rem; }
+
+    /* =========================================================
+       07. CATEGORY RAIL AND PROMO BANNER
+    ========================================================= */
+    .category-rail { display: flex; flex-wrap: wrap; gap: 9px; margin: 24px 0 55px; }
+    .category-chip {
+      display: inline-flex; align-items: center; gap: 9px; padding: 10px 15px;
+      border: 1px solid var(--line); border-radius: 999px; background: var(--glass);
+      color: var(--ink); font-size: .8rem; font-weight: 700;
+      transition: background .2s ease, transform .2s ease, border-color .2s ease;
+    }
+    .category-chip:hover, .category-chip.active { background: var(--navy); color: var(--ivory); border-color: var(--navy); transform: translateY(-2px); }
+    .promo {
+      position: relative; overflow: hidden; display: grid; grid-template-columns: 1fr .8fr;
+      align-items: center; min-height: 235px; margin: 35px 0 55px;
+      border-radius: 23px; background: var(--navy); color: var(--ivory);
+      box-shadow: var(--shadow);
+    }
+    .promo-copy { position: relative; z-index: 2; padding: clamp(24px, 4vw, 42px); }
+    .promo h2 { max-width: 450px; font-size: clamp(1.8rem, 4vw, 3rem); margin: 10px 0; }
+    .promo p { color: rgba(211,195,185,.78); max-width: 400px; }
+    .promo-art { align-self: stretch; min-height: 200px; position: relative; overflow: hidden; background: radial-gradient(ellipse at center, rgba(181,136,99,.35), transparent 60%); }
+    .promo-art svg { position: absolute; width: 115%; height: 100%; right: -5%; filter: drop-shadow(0 22px 15px rgba(0,0,0,.3)); }
+
+    /* =========================================================
+       08. ACCOUNT, ADMIN AND DATA TABLES
+    ========================================================= */
+    .page-section { padding: 25px 0 55px; }
+    .panel {
+      padding: clamp(18px, 3vw, 28px); margin: 0 0 20px;
+      border: 1px solid var(--glass-border); border-radius: 20px;
+      background: var(--glass); box-shadow: var(--shadow);
+      backdrop-filter: blur(17px); -webkit-backdrop-filter: blur(17px);
+    }
+    .panel h2 { margin-bottom: 16px; font-size: clamp(1.5rem, 3vw, 2rem); }
+    .auth-panel { max-width: 490px; margin: 35px auto 70px; }
+    .auth-panel .btn { margin: 5px 5px 0 0; }
+    .table-wrap { overflow-x: auto; width: 100%; border: 1px solid var(--line); border-radius: 12px; }
+    .data-table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+    .data-table th, .data-table td { padding: 12px 13px; border-bottom: 1px solid var(--line); text-align: left; white-space: nowrap; }
+    .data-table th { background: rgba(61,77,85,.08); font-size: .73rem; text-transform: uppercase; letter-spacing: .07em; }
+    .data-table tr:last-child td { border-bottom: 0; }
+    .status { display: inline-flex; padding: 4px 9px; border-radius: 999px; background: rgba(61,77,85,.13); font-size: .73rem; font-weight: 800; }
+    .status.paid { background: rgba(57,117,91,.16); color: #39755b; }
+    .status.pending { background: rgba(181,136,99,.24); color: #805a37; }
+    .status.failed { background: rgba(156,68,55,.13); color: #9c4437; }
+    .admin-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 18px; }
+    .admin-tabs .btn { min-height: 36px; padding: 8px 12px; }
+    .stats-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 12px; margin-bottom: 18px; }
+    .stat-card { padding: 17px; border: 1px solid var(--line); border-radius: 14px; background: var(--glass); }
+    .stat-card small { display: block; color: var(--muted); }
+    .stat-card strong { display: block; margin-top: 4px; font: 800 1.4rem "Bricolage Grotesque", sans-serif; }
+    .admin-grid { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 20px; }
+    .admin-grid .panel { min-width: 0; }
+    .wide { grid-column: 1 / -1; }
+
+    /* =========================================================
+       09. FOOTER, FLOATING ACTIONS AND PAYMENT DIALOG
+    ========================================================= */
+    .site-footer { margin-top: 35px; padding: 25px 0 30px; border-top: 1px solid var(--line); color: var(--muted); }
+    .footer-inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px; align-items: center; font-size: .78rem; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 15px; }
+    .footer-links button { padding: 0; border: 0; background: none; color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+    .floating-top, .floating-chat {
+      position: fixed; z-index: 80; right: 20px; display: grid; place-items: center;
+      width: 47px; height: 47px; border: 1px solid var(--glass-border); border-radius: 50%;
+      color: var(--ivory); background: rgba(16,35,46,.88); box-shadow: var(--shadow);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      text-decoration: none; transition: transform .2s ease;
+    }
+    .floating-top { bottom: 78px; }
+    .floating-chat { bottom: 20px; background: var(--bronze); color: var(--black); }
+    .floating-top:hover, .floating-chat:hover { transform: translateY(-4px); }
+    dialog {
+      width: min(440px, calc(100% - 28px)); max-height: 90vh; overflow-y: auto;
+      padding: 25px; border: 1px solid var(--glass-border); border-radius: 22px;
+      color: var(--ink); background: var(--glass-strong); box-shadow: 0 30px 100px rgba(0,0,0,.3);
+      backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+    }
+    dialog::backdrop { background: rgba(10,18,22,.56); backdrop-filter: blur(5px); }
+    dialog h2 { margin-bottom: 8px; }
+    .dialog-actions { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 16px; }
+    .dialog-actions .btn { flex: 1; }
+    .toast {
+      position: fixed; z-index: 200; left: 50%; bottom: 24px; transform: translate(-50%, 20px);
+      width: max-content; max-width: calc(100% - 32px); padding: 12px 17px;
+      border: 1px solid var(--glass-border); border-radius: 13px;
+      background: var(--navy); color: var(--ivory); box-shadow: var(--shadow);
+      opacity: 0; pointer-events: none; transition: opacity .25s ease, transform .25s ease;
+    }
+    .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+    /* =========================================================
+       10. SCROLL REVEALS AND ACCESSIBILITY
+    ========================================================= */
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s var(--ease); }
+    .reveal.is-visible { opacity: 1; transform: translateY(0); }
+    .product-card.reveal { transform: translateY(20px) scale(.99); }
+    .product-card.reveal.is-visible { transform: translateY(0) scale(1); }
+    @keyframes float-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+
+    /* =========================================================
+       11. RESPONSIVE LAYOUT
+    ========================================================= */
+    @media (max-width: 1040px) {
+      .shop-layout { grid-template-columns: 1fr; }
+      .shop-aside { position: static; grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .product-grid { grid-template-columns: repeat(3, minmax(0,1fr)); }
+      .hero { min-height: 340px; }
+    }
+    @media (max-width: 760px) {
+      .nav-inner { flex-wrap: wrap; }
+      .menu-toggle { display: inline-grid; }
+      .nav-links { display: none; order: 4; width: 100%; flex-wrap: wrap; padding-top: 8px; border-top: 1px solid rgba(211,195,185,.15); }
+      .nav-links.open { display: flex; }
+      .nav-actions { margin-left: auto; }
+      .who { display: none; }
+      .hero { grid-template-columns: 1fr; min-height: 420px; }
+      .hero-copy { align-self: start; padding: 35px 26px; }
+      .hero-art { inset: 25% 0 0 25%; opacity: .7; }
+      .hero h1 { font-size: clamp(2.65rem, 11vw, 4.4rem); }
+      .hero-note { right: 5%; bottom: 7%; }
+      .trust-strip { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .filters { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .search-wrap { grid-column: 1 / -1; }
+      .product-grid { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; }
+      .product-info { padding: 12px; }
+      .product-info h3 { font-size: .96rem; }
+      .price { font-size: 1.13rem; }
+      .shop-aside { grid-template-columns: 1fr; }
+      .promo { grid-template-columns: 1fr; }
+      .promo-art { position: absolute; inset: 25% 0 0 35%; opacity: .45; }
+      .promo-copy { padding: 28px; }
+      .admin-grid { grid-template-columns: 1fr; }
+      .wide { grid-column: auto; }
+    }
+    @media (max-width: 430px) {
+      .wrap { width: min(100% - 24px, var(--max-width)); }
+      .site-header { width: calc(100% - 16px); top: 7px; margin-top: 7px; }
+      .nav-inner { padding: 8px; gap: 7px; }
+      .brand-icon { width: 36px; height: 36px; }
+      .logo { font-size: 1.05rem; }
+      .nav-btn { padding: 9px 10px; font-size: .8rem; }
+      .nav-actions { gap: 5px; }
+      .icon-btn { width: 37px; height: 37px; }
+      .hero { margin-top: 14px; border-radius: 20px; min-height: 400px; }
+      .hero-copy { padding: 29px 21px; }
+      .hero-copy p { font-size: .92rem; }
+      .trust-item { padding: 11px; gap: 8px; }
+      .trust-icon { flex-basis: 32px; height: 32px; }
+      .trust-item strong { font-size: .76rem; }
+      .trust-item small { font-size: .66rem; }
+      .filters { padding: 9px; gap: 7px; }
+      .filter-control { font-size: .76rem; }
+      .product-grid { gap: 9px; }
+      .product-photo { aspect-ratio: 1; }
+      .product-info { padding: 10px; gap: 6px; }
+      .product-type { font-size: .65rem; }
+      .product-meta { font-size: .71rem; }
+      .product-actions .btn { padding: 9px 7px; font-size: .74rem; }
+      .product-actions .btn.outline { font-size: .7rem; }
+      .stats-grid { grid-template-columns: 1fr; }
+      .form-grid { grid-template-columns: 1fr; }
+      .floating-top, .floating-chat { right: 12px; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- =======================================================
+       12. STICKY GLASS HEADER / PRIMARY NAVIGATION
+  ======================================================== -->
+  <header class="site-header">
+    <div class="nav-inner">
+      <a class="brandmark" href="#" id="brandHome" aria-label="Ianoh_hubs home">
+        <span class="brand-icon" aria-hidden="true">⌁</span>
+        <span><span class="logo">Ianoh_hubs</span><span class="brand-sub">Thrift shoes · second lives</span></span>
+      </a>
+
+      <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+        <button class="nav-btn" id="navShop" hidden>Shop</button>
+        <button class="nav-btn" id="navOrders" hidden>My orders</button>
+        <button class="nav-btn" id="navAdmin" hidden>Admin</button>
+        <button class="nav-btn" id="navPolicy">Our policies</button>
+      </nav>
+
+      <div class="nav-actions">
+        <span id="who" class="who"></span>
+        <button class="btn bronze small" id="navAuth">Log in</button>
+        <button class="icon-btn" id="theme" aria-label="Toggle light and dark theme" title="Toggle theme">◐</button>
+        <button class="icon-btn menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- =====================================================
+         13. LOGIN / SIGNUP VIEW
+    ====================================================== -->
+    <section id="vLogin" class="page-section" hidden>
+      <div class="panel auth-panel reveal">
+        <span class="eyebrow">Welcome to Ianoh_hubs</span>
+        <h2 id="authTitle" style="margin-top:12px">Log in</h2>
+        <p class="muted">Sign in to shop, track your orders and keep your checkout details together.</p>
+
+        <div class="field" id="nameF" hidden>
+          <label for="aName">Your name</label>
+          <input id="aName" autocomplete="name" maxlength="100" placeholder="Full name">
+        </div>
+        <div class="field">
+          <label for="aEmail">Email address</label>
+          <input id="aEmail" type="email" autocomplete="email" maxlength="254" placeholder="you@example.com" required>
+        </div>
+        <div class="field">
+          <label for="aPass">Password</label>
+          <input id="aPass" type="password" autocomplete="current-password" minlength="8" placeholder="Your password" required>
+        </div>
+        <p class="error" id="authErr" role="alert" aria-live="polite"></p>
+        <button class="btn bronze" id="authGo">Log in</button>
+        <button class="btn outline" id="authSwap" type="button">Create account</button>
+        <p class="hint" style="margin:16px 0 0">Admin access is assigned by the site owner; customer registration does not create an admin account.</p>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         14. SHOP VIEW / HERO
+    ====================================================== -->
+    <section id="vShop">
+      <section class="hero reveal" aria-labelledby="heroTitle">
+        <div class="hero-copy">
+          <span class="eyebrow">Pre-loved · authentic · fair prices</span>
+          <h1 id="heroTitle">Good shoes.<br><em>Second lives.</em></h1>
+          <p>Thoughtfully selected sneakers, boots and everyday classics. Honest condition notes, fair prices and convenient M-Pesa checkout.</p>
+          <div class="hero-ctas">
+            <button class="btn bronze" id="heroShop">Explore the collection <span aria-hidden="true">↗</span></button>
+            <button class="btn outline" id="heroOrders">Track my order</button>
+          </div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="hero-shoe">
+            <svg viewBox="0 0 600 350" role="presentation">
+              <defs>
+                <linearGradient id="shoeUpper" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#D3C3B9"/>
+                  <stop offset=".45" stop-color="#A79E9C"/>
+                  <stop offset="1" stop-color="#3D4D55"/>
+                </linearGradient>
+                <linearGradient id="shoeSole" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#F6F1EE"/>
+                  <stop offset="1" stop-color="#A79E9C"/>
+                </linearGradient>
+              </defs>
+              <g transform="translate(12 25) rotate(-8 300 175)">
+                <path d="M45 222 Q83 213 120 190 L210 102 Q237 79 263 98 L332 151 Q378 178 451 185 L519 208 Q548 220 544 247 L533 264 L64 264 Q36 259 45 222Z" fill="url(#shoeSole)" stroke="#181818" stroke-width="5"/>
+                <path d="M74 218 Q99 204 132 180 L216 111 Q237 91 259 108 L319 153 L291 205 L204 225 L89 239Z" fill="url(#shoeUpper)" stroke="#10232E" stroke-width="5"/>
+                <path d="M262 111 L318 151 L353 177 L326 209 L291 205 L319 153" fill="#10232E"/>
+                <path d="M126 184 L174 207 L204 225 L216 173 L191 151Z" fill="#3D4D55" stroke="#10232E" stroke-width="4"/>
+                <path d="M210 119 L238 143 L222 169 L195 151Z" fill="#D3C3B9"/>
+                <path d="M241 143 L269 163 L252 188 L224 169Z" fill="#D3C3B9"/>
+                <path d="M273 164 L301 184 L284 205 L254 188Z" fill="#D3C3B9"/>
+                <path d="M145 187 L194 208 M164 169 L214 193 M184 151 L233 178" stroke="#181818" stroke-width="6" stroke-linecap="round"/>
+                <path d="M355 177 Q405 194 451 190 L503 211 L468 226 L378 216Z" fill="#A79E9C" stroke="#10232E" stroke-width="4"/>
+                <path d="M62 249 L530 249" stroke="#181818" stroke-width="4" stroke-linecap="round"/>
+                <path d="M102 260 L120 260 M150 260 L168 260 M198 260 L216 260 M246 260 L264 260 M294 260 L312 260 M342 260 L360 260 M390 260 L408 260 M438 260 L456 260" stroke="#3D4D55" stroke-width="3" stroke-linecap="round"/>
+              </g>
+            </svg>
+          </div>
+          <div class="hero-note">Good finds, better value<strong>Quality. Second lives.</strong></div>
+        </div>
+      </section>
+
+      <!-- Store promises -->
+      <section class="trust-strip reveal" aria-label="Why shop with us">
+        <div class="trust-item"><span class="trust-icon">✓</span><span><strong>Checked condition</strong><small>Clear, honest descriptions</small></span></div>
+        <div class="trust-item"><span class="trust-icon">₭</span><span><strong>Fair prices</strong><small>Prices shown in KSh</small></span></div>
+        <div class="trust-item"><span class="trust-icon">↗</span><span><strong>M-Pesa checkout</strong><small>STK Push payment prompt</small></span></div>
+        <div class="trust-item"><span class="trust-icon">⌂</span><span><strong>Pickup or delivery</strong><small>Choose at checkout</small></span></div>
+      </section>
+
+      <!-- Product listing with search and filters -->
+      <section id="collection" class="reveal">
+        <div class="section-heading">
+          <div><span class="eyebrow">The collection</span><h2>Find your next pair.</h2><p>One-off pairs. When they're gone, they're gone.</p></div>
+          <span class="hint" id="productCount" aria-live="polite"></span>
+        </div>
+
+        <div class="shop-layout">
+          <div class="shop-main">
+            <div class="filters" aria-label="Search and filter products">
+              <div class="search-wrap"><span aria-hidden="true">⌕</span><input class="filter-control" id="q" type="search" placeholder="Search shoes..." aria-label="Search shoes"></div>
+              <select class="filter-control" id="fType" aria-label="Filter by shoe type"><option value="">All types</option></select>
+              <select class="filter-control" id="fSize" aria-label="Filter by size"><option value="">All sizes</option></select>
+              <select class="filter-control" id="fSort" aria-label="Sort products">
+                <option value="new">Newest</option><option value="lo">Price: low to high</option>
+                <option value="hi">Price: high to low</option><option value="off">Biggest offers</option>
+              </select>
+            </div>
+            <div class="product-grid" id="grid" aria-live="polite"></div>
+          </div>
+
+          <aside class="shop-aside">
+            <div class="glass-panel reveal">
+              <span class="eyebrow">The Ianoh standard</span>
+              <h3 style="margin-top:10px">Why shop with us?</h3>
+              <ul class="benefit-list">
+                <li><span class="check">✓</span> Quality and condition checked</li>
+                <li><span class="check">✓</span> Clear prices in Kenyan shillings</li>
+                <li><span class="check">✓</span> M-Pesa checkout</li>
+                <li><span class="check">✓</span> Pickup or delivery options</li>
+                <li><span class="check">✓</span> Support when you need it</li>
+              </ul>
+            </div>
+            <div class="glass-panel reveal">
+              <a class="help-card" id="asideWhatsApp" href="#" target="_blank" rel="noopener" hidden>
+                <span class="whatsapp-mark" aria-hidden="true">WA</span>
+                <span><strong>Need a hand?</strong><small>Chat with us on WhatsApp</small></span>
+                <span aria-hidden="true">↗</span>
+              </a>
+              <div id="noWhatsApp"><h3>Need a hand?</h3><p class="hint">Questions about sizing or a pair? Contact the shop owner for help.</p></div>
+            </div>
+          </aside>
+        </div>
+
+        <!-- Quick category filters are populated from the available categories -->
+        <div class="category-rail" id="categoryRail" aria-label="Browse by category"></div>
+      </section>
+
+      <!-- Promotional strip -->
+      <section class="promo reveal">
+        <div class="promo-copy">
+          <span class="eyebrow">Thoughtful finds · easy checkout</span>
+          <h2>Good style doesn't need a new price tag.</h2>
+          <p>Choose your pair, confirm pickup or delivery, then pay through M-Pesa.</p>
+          <button class="btn bronze" id="promoShop">Shop the collection ↗</button>
+        </div>
+        <div class="promo-art" aria-hidden="true">
+          <svg viewBox="0 0 500 300">
+            <g transform="translate(0 8) rotate(-13 250 150)">
+              <path d="M40 200 L93 174 L165 91 Q186 72 210 94 L271 143 Q312 171 379 176 L443 200 Q465 209 460 231 L452 245 L56 245 Q32 237 40 200Z" fill="#D3C3B9" stroke="#181818" stroke-width="5"/>
+              <path d="M93 174 L165 91 Q186 72 210 94 L271 143 L243 188 L166 209 L62 222Z" fill="#3D4D55" stroke="#10232E" stroke-width="5"/>
+              <path d="M210 94 L271 143 L304 165 L276 190 L243 188 L271 143" fill="#181818"/>
+              <path d="M147 119 L184 143 L167 166 L132 145Z M180 144 L217 167 L200 190 L165 166Z" fill="#B58863" stroke="#10232E" stroke-width="3"/>
+              <path d="M63 229 L450 229" stroke="#181818" stroke-width="4"/>
+            </g>
+          </svg>
+        </div>
+      </section>
+    </section>
+
+    <!-- =====================================================
+         15. CUSTOMER ORDER HISTORY
+    ====================================================== -->
+    <section id="vOrders" class="page-section" hidden>
+      <div class="section-heading"><div><span class="eyebrow">Your account</span><h2>My orders</h2><p>Payment receipts and fulfilment updates in one place.</p></div></div>
+      <div class="panel reveal">
+        <div class="table-wrap"><table class="data-table" id="myOrders"></table></div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         16. ADMIN DASHBOARD
+    ====================================================== -->
+    <section id="vAdmin" class="page-section" hidden>
+      <div class="section-heading"><div><span class="eyebrow">Store management</span><h2>Admin dashboard</h2><p>Manage inventory, orders and payment notifications.</p></div></div>
+      <div class="stats-grid reveal" id="adminStats">
+        <div class="stat-card"><small>Revenue</small><strong id="statRevenue">KSh 0</strong></div>
+        <div class="stat-card"><small>Paid orders</small><strong id="statPaid">0</strong></div>
+        <div class="stat-card"><small>To prepare</small><strong id="statPack">0</strong></div>
+      </div>
+
+      <div class="admin-grid">
+        <div class="panel reveal">
+          <span class="eyebrow">Inventory</span><h2 id="fTitle" style="margin-top:9px">Add a shoe</h2>
+          <form id="shoeForm">
+            <div class="form-grid">
+              <div class="field"><label for="sName">Shoe name</label><input id="sName" maxlength="120" placeholder="Nike Air Force 1" required></div>
+              <div class="field"><label for="sType">Shoe type</label><select id="sType"></select></div>
+              <div class="field"><label for="sNewType">Or add a new type</label><input id="sNewType" maxlength="50" placeholder="e.g. Loafers"></div>
+              <div class="field"><label for="sSize">Size (EU)</label><input id="sSize" type="number" min="15" max="50" step="0.5" required></div>
+              <div class="field"><label for="sCond">Condition</label><select id="sCond"><option>Like new</option><option>Good</option><option>Fair</option></select></div>
+              <div class="field"><label for="sPrice">Original price (KSh)</label><input id="sPrice" type="number" min="1" step="1" required></div>
+              <div class="field"><label for="sOffer">Discount (%)</label><input id="sOffer" type="number" min="0" max="90" value="0" required></div>
+              <div class="field"><label for="sImg">Photo (optional)</label><input id="sImg" type="file" accept="image/*"></div>
+            </div>
+            <p class="hint">Use clear, well-lit product photos. Images are resized before upload.</p>
+            <p id="shoeErr" class="error" role="alert" aria-live="polite"></p>
+            <p id="shoeOk" class="success" role="status"></p>
+            <div class="dialog-actions">
+              <button class="btn bronze" id="shoeSave" type="submit">Add shoe</button>
+              <button class="btn outline" id="shoeCancel" type="button" hidden>Cancel edit</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="panel reveal">
+          <span class="eyebrow">Stock overview</span><h2 style="margin-top:9px">Your inventory</h2>
+          <p class="hint">Edit product details, hide a listing or remove stock.</p>
+          <div class="table-wrap"><table class="data-table" id="stock"></table></div>
+        </div>
+
+        <div class="panel wide reveal">
+          <span class="eyebrow">Checkout activity</span><h2 style="margin-top:9px">M-Pesa orders</h2>
+          <div class="table-wrap"><table class="data-table" id="orders"></table></div>
+        </div>
+
+        <div class="panel wide reveal">
+          <span class="eyebrow">Buy Goods / Till</span><h2 style="margin-top:9px">Till payments received</h2>
+          <p class="hint">Successful C2B notifications are recorded by the backend. Customers should use the order reference requested by your checkout instructions.</p>
+          <div class="table-wrap"><table class="data-table" id="c2b"></table></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         17. TERMS / DELIVERY / RETURNS / PRIVACY
+    ====================================================== -->
+    <section id="vPolicy" class="page-section" hidden>
+      <div class="section-heading"><div><span class="eyebrow">Clear from the start</span><h2>Shop with confidence.</h2><p>Please review our store policies before ordering.</p></div></div>
+      <div class="panel reveal">
+        <h3>Our shoes</h3>
+        <p>Every pair is pre-loved and may be one of a kind. We aim to describe condition and visible wear honestly. Prices are in Kenyan shillings (KSh).</p>
+        <h3>Payment</h3>
+        <p>STK Push payments are confirmed by the server using Safaricom callbacks or transaction verification. Never share your M-Pesa PIN with anyone, including shop staff.</p>
+        <h3>Delivery and pickup</h3>
+        <p>Choose pickup or delivery at checkout. Any configured delivery fee should be displayed before you confirm payment. Orders are prepared after payment confirmation.</p>
+        <h3>Returns and refunds</h3>
+        <p>Contact the shop promptly if an item is incorrect or has damage that was not disclosed. Return eligibility and refund arrangements should be agreed with the shop in line with applicable consumer protection requirements.</p>
+        <h3>Privacy</h3>
+        <p>Your name, email, phone number and delivery details are used to process orders and provide support. Payment PINs should never be collected by this website. Keep access credentials private.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- =======================================================
+       18. FOOTER AND FLOATING SHORTCUTS
+  ======================================================== -->
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <spa class="brandmark" href="#" id="footerHome" style="color:var(--ink)">
+        <span class="brand-icon" aria-hidden="true">⌁</span><span><span class="logo">Ianoh_hubs</span>
+        <span class="brand-sub" bol>Second lives, better finds</span></span>
+        <span class="brand-sub">Reach out, +254 710 706 735</span>
+       <span class="brand-sub">Email: odiwuorian@gmail.com</span>
+      <div class="footer-links"><button id="footerPolicy">Terms, delivery, refunds & privacy</button><a href="#collection" id="footerShop">Shop shoes</a></div>
+      <span>© <span id="year"></span> Ianoh_hubs</span>
+    </div>
+  </footer>
+  <button class="floating-top" id="backTop" aria-label="Scroll to top" title="Scroll to top">↑</button>
+  <a class="floating-chat" id="floatingWhatsApp" href="#" target="_blank" rel="noopener" aria-label="Chat on WhatsApp" hidden>WA</a>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <!-- =======================================================
+       19. M-PESA CHECKOUT DIALOG
+  ======================================================== -->
+  <dialog id="pay">
+    <span class="eyebrow">Secure checkout</span>
+    <h2 style="margin-top:9px">Pay with M-Pesa</h2>
+    <p id="payInfo" class="muted"></p>
+    <div class="field"><label for="payMethod">How would you like to receive your shoes?</label>
+      <select id="payMethod"><option value="pickup">Pickup (free)</option><option value="delivery">Delivery</option></select>
+    </div>
+    <div class="field" id="payAddrF" hidden><label for="payAddr">Delivery address</label><textarea id="payAddr" autocomplete="street-address" maxlength="300" placeholder="Estate, street, town and delivery directions"></textarea></div>
+    <div class="field"><label for="payPhone">Safaricom number</label><input id="payPhone" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" placeholder="0712 345 678"></div>
+    <p class="hint">An M-Pesa prompt will be sent to your phone. Check the amount and enter your PIN only on the official M-Pesa prompt.</p>
+    <p id="payMsg" class="error" role="status" aria-live="polite"></p>
+    <div class="dialog-actions"><button class="btn bronze" id="payGo">Send M-Pesa prompt</button><button class="btn outline" id="payClose" type="button">Close</button></div>
+  </dialog>
+
+  <script>
+  (function () {
+    "use strict";
+
+    /* =======================================================
+       20. SHARED STATE AND SMALL UTILITIES
+    ======================================================== */
+    var $ = function (selector) { return document.querySelector(selector); };
+    var cfg = { whatsapp: "", delivery_fee: 0 };
+    var me = null, shoes = [], types = [], editId = null, poll = null, payShoe = null;
+    var signup = false, revealObserver = null, toastTimer = null;
+    var DEFAULT_TYPES = ["Sneakers", "Boots", "Sandals", "Formal", "Sports", "Heels"];
+    var TYPE_COLORS = {
+      Sneakers: "#10232E", Boots: "#3D4D55", Sandals: "#B58863",
+      Formal: "#181818", Sports: "#A79E9C", Heels: "#D3C3B9"
+    };
+    var ORDER_STAGES = ["new", "packed", "dispatched", "delivered"];
+
+    function esc(value) {
+      return String(value == null ? "" : value).replace(/[&<>"']/g, function (ch) {
+        return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[ch];
+      });
+    }
+    function ksh(value) {
+      var number = Number(value);
+      return "KSh " + (Number.isFinite(number) ? Math.round(number) : 0).toLocaleString("en-KE");
+    }
+    function toast(message) {
+      var node = $("#toast");
+      node.textContent = message;
+      node.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(function () { node.classList.remove("show"); }, 3200);
+    }
+
+    /* =======================================================
+       21. FLASK API HELPER
+       All payment status and admin permissions must be enforced
+       by Flask; front-end visibility is not security.
+    ======================================================== */
+    function api(path, options) {
+      options = options || {};
+      options.credentials = "same-origin";
+      options.headers = Object.assign({}, options.headers || {});
+      if (options.body && typeof options.body !== "string") {
+        options.headers["Content-Type"] = "application/json";
+        options.body = JSON.stringify(options.body);
+      }
+      return fetch(path, options).then(function (response) {
+        return response.json().catch(function () { return {}; }).then(function (data) {
+          if (!response.ok) throw new Error(data.error || data.message || "Something went wrong. Please try again.");
+          return data;
+        });
+      });
+    }
+
+    /* =======================================================
+       22. PRODUCT PLACEHOLDER ILLUSTRATION
+    ======================================================== */
+    function shoeSvg(type) {
+      var color = TYPE_COLORS[type] || "#3D4D55";
+      return '<div class="photo-fallback" aria-label="' + esc(type) + ' shoe illustration">' +
+        '<svg viewBox="0 0 180 110" role="img" aria-hidden="true">' +
+        '<path d="M13 73 L13 55 Q13 47 22 47 L48 47 Q59 64 81 64 L94 49 Q100 43 108 49 L151 66 Q169 71 167 83 L167 91 L13 91Z" fill="' + color + '"/>' +
+        '<path d="M13 82 L167 82 L167 91 L13 91Z" fill="#181818"/>' +
+        '<path d="M54 49 L65 61 M66 51 L77 63 M78 55 L88 65" stroke="#D3C3B9" stroke-width="3" stroke-linecap="round"/>' +
+        '</svg></div>';
+    }
+
+    /* =======================================================
+       23. SCROLL-TO-REVEAL
+       Works for static sections and dynamically generated cards.
+    ======================================================== */
+    function initReveal(root) {
+      root = root || document;
+      var elements = root.querySelectorAll(".reveal:not([data-reveal-ready]), .product-card:not([data-reveal-ready])");
+      if (!("IntersectionObserver" in window) || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        elements.forEach(function (element) {
+          element.classList.add("is-visible");
+          element.dataset.revealReady = "true";
+        });
+        return;
+      }
+      if (!revealObserver) {
+        revealObserver = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.08, rootMargin: "0px 0px -30px 0px" });
+      }
+      elements.forEach(function (element, index) {
+        element.dataset.revealReady = "true";
+        element.classList.add("reveal");
+        if (element.classList.contains("product-card")) {
+          element.style.transitionDelay = (index % 3) * 65 + "ms";
+        }
+        revealObserver.observe(element);
+      });
+    }
+
+    /* =======================================================
+       24. VIEW NAVIGATION AND SESSION-AWARE NAVIGATION
+    ======================================================== */
+    function show(view) {
+      ["vLogin", "vShop", "vAdmin", "vOrders", "vPolicy"].forEach(function (id) {
+        $("#" + id).hidden = id !== view;
+      });
+      $("#navShop").hidden = !me;
+      $("#navOrders").hidden = !me;
+      $("#navAdmin").hidden = !(me && me.role === "admin");
+      $("#navAuth").textContent = me ? "Log out" : "Log in";
+      $("#who").textContent = me ? ("Hi, " + me.name) : "";
+      document.querySelectorAll(".nav-btn").forEach(function (button) { button.classList.remove("active"); });
+      var activeId = { vShop: "navShop", vOrders: "navOrders", vAdmin: "navAdmin", vPolicy: "navPolicy" }[view];
+      if (activeId && $("#" + activeId)) $("#" + activeId).classList.add("active");
+      $("#navLinks").classList.remove("open");
+      $("#menuToggle").setAttribute("aria-expanded", "false");
+    }
+
+    function go(view) {
+      if (view === "vAdmin" && !(me && me.role === "admin")) view = me ? "vShop" : "vLogin";
+      if (view !== "vLogin" && view !== "vPolicy" && !me) view = "vLogin";
+      show(view);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+
+      if (view === "vShop") {
+        loadShoes().then(renderShop).catch(function (error) { toast(error.message); });
+      } else if (view === "vAdmin") {
+        loadShoes().then(renderAdmin).catch(function (error) { toast(error.message); });
+      } else if (view === "vOrders") {
+        loadOrders();
+      }
+      initReveal(document.getElementById(view));
+    }
+
+    /* =======================================================
+       25. AUTHENTICATION — signup, login and logout
+    ======================================================== */
+    function authMode(isSignup) {
+      signup = isSignup;
+      $("#authTitle").textContent = signup ? "Create your account" : "Welcome back";
+      $("#nameF").hidden = !signup;
+      $("#authGo").textContent = signup ? "Create account" : "Log in";
+      $("#authSwap").textContent = signup ? "I already have an account" : "Create account";
+      $("#aPass").autocomplete = signup ? "new-password" : "current-password";
+      $("#authErr").textContent = "";
+    }
+    $("#authSwap").addEventListener("click", function () { authMode(!signup); });
+    $("#authGo").addEventListener("click", function () {
+      var payload = signup
+        ? { name: $("#aName").value.trim(), email: $("#aEmail").value.trim(), password: $("#aPass").value }
+        : { email: $("#aEmail").value.trim(), password: $("#aPass").value };
+      $("#authErr").textContent = "";
+      if (!payload.email || !payload.password || (signup && !payload.name)) {
+        $("#authErr").textContent = "Please complete all required fields.";
+        return;
+      }
+      $("#authGo").disabled = true;
+      api(signup ? "/api/signup" : "/api/login", { method: "POST", body: payload })
+        .then(function (data) {
+          me = data.user;
+          $("#aPass").value = "";
+          authMode(false);
+          go(me && me.role === "admin" ? "vAdmin" : "vShop");
+        })
+        .catch(function (error) { $("#authErr").textContent = error.message; })
+        .finally(function () { $("#authGo").disabled = false; });
+    });
+    ["aEmail", "aPass", "aName"].forEach(function (id) {
+      $("#" + id).addEventListener("keydown", function (event) {
+        if (event.key === "Enter") { event.preventDefault(); $("#authGo").click(); }
+      });
+    });
+    $("#navAuth").addEventListener("click", function () {
+      if (!me) { go("vLogin"); return; }
+      api("/api/logout", { method: "POST" }).then(function () {
+        me = null; authMode(false); go("vLogin"); toast("You have logged out.");
+      }).catch(function (error) { toast(error.message); });
+    });
+
+    /* =======================================================
+       26. NAVIGATION BUTTONS / MOBILE MENU
+    ======================================================== */
+    $("#navShop").addEventListener("click", function () { go("vShop"); });
+    $("#navOrders").addEventListener("click", function () { go("vOrders"); });
+    $("#navAdmin").addEventListener("click", function () { go("vAdmin"); });
+    $("#navPolicy").addEventListener("click", function () { go("vPolicy"); });
+    $("#footerPolicy").addEventListener("click", function () { go("vPolicy"); });
+    $("#brandHome").addEventListener("click", function (event) { event.preventDefault(); go(me ? "vShop" : "vLogin"); });
+    $("#footerHome").addEventListener("click", function (event) { event.preventDefault(); go(me ? "vShop" : "vLogin"); });
+    $("#heroShop").addEventListener("click", function () {
+      document.getElementById("collection").scrollIntoView({ behavior: "smooth" });
+    });
+    $("#promoShop").addEventListener("click", function () {
+      document.getElementById("collection").scrollIntoView({ behavior: "smooth" });
+    });
+    $("#heroOrders").addEventListener("click", function () { go(me ? "vOrders" : "vLogin"); });
+    $("#footerShop").addEventListener("click", function (event) {
+      event.preventDefault();
+      if (me) go("vShop");
+      else { go("vLogin"); toast("Log in to shop and checkout."); }
+    });
+    $("#menuToggle").addEventListener("click", function () {
+      var open = $("#navLinks").classList.toggle("open");
+      $("#menuToggle").setAttribute("aria-expanded", String(open));
+    });
+    $("#backTop").addEventListener("click", function () { window.scrollTo({ top: 0, behavior: "smooth" }); });
+
+    /* =======================================================
+       27. LOAD PRODUCTS / BUILD CATEGORY FILTERS
+    ======================================================== */
+    function loadShoes() {
+      return api("/api/shoes").then(function (data) {
+        shoes = Array.isArray(data) ? data : (data.shoes || []);
+        types = DEFAULT_TYPES.slice();
+        shoes.forEach(function (shoe) {
+          if (shoe.type && types.indexOf(shoe.type) === -1) types.push(shoe.type);
+        });
+        return shoes;
+      });
+    }
+
+    function fillTypes() {
+      var oldType = $("#fType").value;
+      var oldSize = $("#fSize").value;
+      var sizes = [];
+      shoes.forEach(function (shoe) {
+        if (shoe.size != null && sizes.indexOf(String(shoe.size)) === -1) sizes.push(String(shoe.size));
+      });
+      sizes.sort(function (a, b) { return Number(a) - Number(b); });
+      $("#fSize").innerHTML = '<option value="">All sizes</option>' + sizes.map(function (size) {
+        return '<option value="' + esc(size) + '">' + esc(size) + '</option>';
+      }).join("");
+      $("#fSize").value = sizes.indexOf(oldSize) >= 0 ? oldSize : "";
+      $("#fType").innerHTML = '<option value="">All types</option>' + types.map(function (type) {
+        return '<option value="' + esc(type) + '">' + esc(type) + '</option>';
+      }).join("");
+      $("#fType").value = types.indexOf(oldType) >= 0 ? oldType : "";
+      $("#sType").innerHTML = types.map(function (type) { return '<option value="' + esc(type) + '">' + esc(type) + '</option>'; }).join("");
+      renderCategories();
+    }
+
+    function renderCategories() {
+      var current = $("#fType").value;
+      $("#categoryRail").innerHTML = '<button class="category-chip ' + (!current ? "active" : "") + '" data-category="">✦ All shoes</button>' +
+        types.map(function (type) {
+          return '<button class="category-chip ' + (current === type ? "active" : "") + '" data-category="' + esc(type) + '">' +
+            '<span aria-hidden="true">◈</span>' + esc(type) + '</button>';
+        }).join("");
+    }
+    $("#categoryRail").addEventListener("click", function (event) {
+      var button = event.target.closest("[data-category]");
+      if (!button) return;
+      $("#fType").value = button.getAttribute("data-category");
+      renderShop();
+      document.getElementById("collection").scrollIntoView({ behavior: "smooth" });
+    });
+
+    /* =======================================================
+       28. SHOP RENDERING / SEARCH / FILTERS / SORTING
+    ======================================================== */
+    function renderShop() {
+      fillTypes();
+      var query = $("#q").value.trim().toLowerCase();
+      var type = $("#fType").value;
+      var size = $("#fSize").value;
+      var sort = $("#fSort").value;
+      var list = shoes.filter(function (shoe) {
+        return !shoe.hidden &&
+          (!type || shoe.type === type) &&
+          (!size || Number(shoe.size) === Number(size)) &&
+          (!query || (String(shoe.name) + " " + String(shoe.type)).toLowerCase().includes(query));
+      });
+      list.sort(function (a, b) {
+        if (sort === "lo") return Number(a.final) - Number(b.final);
+        if (sort === "hi") return Number(b.final) - Number(a.final);
+        if (sort === "off") return Number(b.offer) - Number(a.offer);
+        return Number(b.id) - Number(a.id);
+      });
+      $("#productCount").textContent = list.length + (list.length === 1 ? " pair" : " pairs");
+
+      if (!list.length) {
+        $("#grid").innerHTML = '<div class="empty-state"><h3>No shoes found</h3><p>Try another search, size or category.</p><button class="btn outline" id="clearFilters">Clear filters</button></div>';
+        initReveal($("#grid"));
+        return;
+      }
+
+      $("#grid").innerHTML = list.map(function (shoe) {
+        var sold = Boolean(shoe.sold);
+        var photo = shoe.img
+          ? '<img loading="lazy" src="' + esc(shoe.img) + '" alt="' + esc(shoe.name) + '">'
+          : shoeSvg(shoe.type);
+        var badge = sold
+          ? '<span class="product-badge sold">Sold</span>'
+          : Number(shoe.offer) > 0 ? '<span class="product-badge">' + esc(shoe.offer) + '% off</span>' : "";
+        var whatsapp = cfg.whatsapp && !sold
+          ? '<a class="btn outline" target="_blank" rel="noopener" href="https://wa.me/' + encodeURIComponent(cfg.whatsapp) +
+            '?text=' + encodeURIComponent("Hi Ianoh_hubs, is the " + shoe.name + " (size " + shoe.size + ") still available?") + '">Ask on WhatsApp ↗</a>'
+          : "";
+        return '<article class="product-card" data-product="' + esc(shoe.id) + '">' +
+          '<div class="product-photo">' + photo + badge + '</div>' +
+          '<div class="product-info"><span class="product-type">' + esc(shoe.type) + '</span>' +
+          '<h3>' + esc(shoe.name) + '</h3>' +
+          '<div class="product-meta">EU ' + esc(shoe.size) + ' · ' + esc(shoe.cond) + '</div>' +
+          '<div class="price-row"><span class="price">' + ksh(shoe.final) + '</span>' +
+          (Number(shoe.offer) > 0 ? '<span class="old-price">' + ksh(shoe.price) + '</span>' : '') + '</div>' +
+          '<div class="product-actions">' +
+          (!sold ? '<button class="btn bronze" data-buy="' + esc(shoe.id) + '">Pay with M-Pesa</button>' + whatsapp : '') +
+          '</div></div></article>';
+      }).join("");
+      initReveal($("#grid"));
+    }
+
+    ["q", "fType", "fSize", "fSort"].forEach(function (id) {
+      $("#" + id).addEventListener(id === "q" ? "input" : "change", renderShop);
+    });
+    $("#grid").addEventListener("click", function (event) {
+      if (event.target.id === "clearFilters") {
+        $("#q").value = ""; $("#fType").value = ""; $("#fSize").value = ""; $("#fSort").value = "new"; renderShop(); return;
+      }
+      var buyId = event.target.closest("[data-buy]");
+      if (!buyId) return;
+      payShoe = shoes.find(function (shoe) { return String(shoe.id) === buyId.getAttribute("data-buy"); });
+      if (!payShoe || payShoe.sold) { toast("This pair is no longer available."); return; }
+      $("#payMethod").value = "pickup";
+      $("#payPhone").value = "";
+      $("#payAddr").value = "";
+      $("#payMsg").textContent = "";
+      $("#payGo").disabled = false;
+      updateTotal();
+      $("#pay").showModal();
+    });
+
+    /* =======================================================
+       29. CHECKOUT TOTALS / DELIVERY OPTIONS
+    ======================================================== */
+    function fee() {
+      return $("#payMethod").value === "delivery" ? Math.max(0, Number(cfg.delivery_fee) || 0) : 0;
+    }
+    function updateTotal() {
+      $("#payAddrF").hidden = $("#payMethod").value !== "delivery";
+      if (!payShoe) { $("#payInfo").textContent = ""; return; }
+      var deliveryFee = fee();
+      $("#payInfo").textContent = payShoe.name + " · " + ksh(payShoe.final) +
+        (deliveryFee ? " + delivery " + ksh(deliveryFee) + " = " + ksh(Number(payShoe.final) + deliveryFee) : " · Pickup is free");
+    }
+    $("#payMethod").addEventListener("change", updateTotal);
+    $("#payClose").addEventListener("click", function () {
+      clearTimeout(poll);
+      $("#pay").close();
+    });
+
+    /* =======================================================
+       30. M-PESA STK PUSH / PAYMENT STATUS POLLING
+       Browser polling displays backend status; it does not
+       independently mark an order as paid.
+    ======================================================== */
+    function paymentMessage(message, className) {
+      $("#payMsg").className = className || "error";
+      $("#payMsg").textContent = message;
+    }
+    $("#payGo").addEventListener("click", function () {
+      if (!payShoe) return;
+      var phone = $("#payPhone").value.trim();
+      var method = $("#payMethod").value;
+      var address = $("#payAddr").value.trim();
+      if (!phone) { paymentMessage("Enter the Safaricom number to receive the M-Pesa prompt."); return; }
+      if (method === "delivery" && !address) { paymentMessage("Enter your delivery address."); return; }
+
+      $("#payGo").disabled = true;
+      paymentMessage("Requesting your M-Pesa prompt…", "hint");
+      api("/api/pay", {
+        method: "POST",
+        body: { shoe_id: payShoe.id, phone: phone, method: method, address: address }
+      }).then(function (order) {
+        paymentMessage("Check your phone. Confirm the amount and enter your M-Pesa PIN on the official prompt.", "hint");
+        trackPayment(order.order_id, 0);
+      }).catch(function (error) {
+        paymentMessage(error.message, "error");
+        $("#payGo").disabled = false;
+      });
+    });
+
+    function trackPayment(orderId, attempt) {
+      clearTimeout(poll);
+      if (attempt > 40) {
+        paymentMessage("Payment status is still pending. If you were charged, keep your M-Pesa message and check My orders shortly.", "hint");
+        $("#payGo").disabled = false;
+        return;
+      }
+      poll = setTimeout(function () {
+        api("/api/orders/" + encodeURIComponent(orderId)).then(function (order) {
+          if (order.status === "paid") {
+            paymentMessage("Payment confirmed. Receipt: " + (order.receipt || "available in My orders") + ". Thank you!", "success");
+            loadShoes().then(renderShop).catch(function () {});
+            toast("Payment confirmed.");
+            $("#payGo").disabled = false;
+          } else if (order.status === "pending") {
+            trackPayment(orderId, attempt + 1);
+          } else {
+            paymentMessage(order.note || "Payment was not completed. You can close this window and try again.", "error");
+            $("#payGo").disabled = false;
+          }
+        }).catch(function () { trackPayment(orderId, attempt + 1); });
+      }, 3000);
+    }
+
+    /* =======================================================
+       31. CUSTOMER ORDER HISTORY
+    ======================================================== */
+    function statusBadge(status) {
+      var normalized = String(status || "pending").toLowerCase();
+      var className = normalized === "paid" ? "paid" : (normalized === "failed" || normalized === "cancelled" ? "failed" : "pending");
+      return '<span class="status ' + className + '">' + esc(status || "pending") + '</span>';
+    }
+    function loadOrders() {
+      api("/api/my-orders").then(function (data) {
+        var rows = Array.isArray(data) ? data : (data.orders || []);
+        $("#myOrders").innerHTML = '<thead><tr><th>Order</th><th>Shoe</th><th>Total</th><th>Payment</th><th>Fulfilment</th><th>Receipt</th><th>Date</th></tr></thead><tbody>' +
+          (rows.length ? rows.map(function (order) {
+            var fulfilment = order.status === "paid" ? (order.method === "pickup" ? "Pickup · " : "") + (order.stage || "new") : "—";
+            return '<tr><td>IH' + esc(order.id) + '</td><td>' + esc(order.shoe) + '</td><td>' + ksh(order.amount) + '</td><td>' + statusBadge(order.status) + '</td><td>' + esc(fulfilment) + '</td><td>' + esc(order.receipt || "—") + '</td><td>' + esc(order.created || "—") + '</td></tr>';
+          }).join("") : '<tr><td colspan="7">No orders yet. Your first purchase will appear here.</td></tr>') + '</tbody>';
+      }).catch(function (error) { $("#myOrders").innerHTML = '<tbody><tr><td>' + esc(error.message) + '</td></tr></tbody>'; });
+    }
+
+    /* =======================================================
+       32. ADMIN DASHBOARD / STOCK TABLE
+    ======================================================== */
+    function renderAdmin() {
+      fillTypes();
+      $("#stock").innerHTML = '<thead><tr><th>Shoe</th><th>Type</th><th>Size</th><th>Original</th><th>Offer</th><th>Price</th><th>Status</th><th>Actions</th></tr></thead><tbody>' +
+        (shoes.length ? shoes.map(function (shoe) {
+          var state = shoe.sold ? "Sold" : shoe.hidden ? "Hidden" : "Available";
+          return '<tr><td>' + esc(shoe.name) + '</td><td>' + esc(shoe.type) + '</td><td>' + esc(shoe.size) + '</td><td>' + ksh(shoe.price) + '</td><td>' + esc(shoe.offer) + '%</td><td>' + ksh(shoe.final) + '</td><td>' + state + '</td><td>' +
+            '<button class="btn outline small" data-edit="' + esc(shoe.id) + '">Edit</button> ' +
+            '<button class="btn outline small" data-hide="' + esc(shoe.id) + '">' + (shoe.hidden ? "Show" : "Hide") + '</button> ' +
+            '<button class="btn danger small" data-delete="' + esc(shoe.id) + '">Delete</button></td></tr>';
+        }).join("") : '<tr><td colspan="8">No shoes yet. Add your first pair.</td></tr>') + '</tbody>';
+
+      api("/api/admin/orders").then(function (data) {
+        var orders = data.orders || [];
+        var c2b = data.c2b || [];
+        var stats = data.stats || {};
+        $("#statRevenue").textContent = ksh(stats.revenue || 0);
+        $("#statPaid").textContent = String(stats.paid || 0);
+        $("#statPack").textContent = String(stats.to_pack || 0);
+
+        $("#orders").innerHTML = '<thead><tr><th>Order</th><th>Shoe</th><th>Customer</th><th>Phone</th><th>Amount</th><th>Status</th><th>Receipt</th><th>Fulfilment</th><th>Date</th></tr></thead><tbody>' +
+          (orders.length ? orders.map(function (order) {
+            var stageControl = order.status === "paid"
+              ? '<select class="filter-control" data-stage="' + esc(order.id) + '" aria-label="Fulfilment stage for order ' + esc(order.id) + '">' +
+                ORDER_STAGES.map(function (stage) { return '<option value="' + stage + '"' + (stage === order.stage ? " selected" : "") + '>' + stage + '</option>'; }).join("") + '</select><div class="hint">' +
+                (order.method === "pickup" ? "Pickup" : esc(order.address || "Delivery")) + '</div>'
+              : "—";
+            return '<tr><td>IH' + esc(order.id) + '</td><td>' + esc(order.shoe) + '</td><td>' + esc(order.customer) + '</td><td>' + esc(order.phone) + '</td><td>' + ksh(order.amount) + '</td><td>' + statusBadge(order.status) + '</td><td>' + esc(order.receipt || "—") + '</td><td>' + stageControl + '</td><td>' + esc(order.created || "—") + '</td></tr>';
+          }).join("") : '<tr><td colspan="9">No M-Pesa orders yet.</td></tr>') + '</tbody>';
+
+        $("#c2b").innerHTML = '<thead><tr><th>Receipt</th><th>Amount</th><th>Payer</th><th>Account reference</th><th>Date</th></tr></thead><tbody>' +
+          (c2b.length ? c2b.map(function (payment) {
+            return '<tr><td>' + esc(payment.trans_id) + '</td><td>' + ksh(payment.amount) + '</td><td>' + esc(payment.name) + '</td><td>' + esc(payment.bill_ref) + '</td><td>' + esc(payment.created || "—") + '</td></tr>';
+          }).join("") : '<tr><td colspan="5">No Till payment notifications yet.</td></tr>') + '</tbody>';
+        initReveal($("#vAdmin"));
+      }).catch(function (error) {
+        toast("Could not load admin orders: " + error.message);
+      });
+      initReveal($("#vAdmin"));
+    }
+
+    /* =======================================================
+       33. ADMIN STOCK ACTIONS — edit, hide and delete
+    ======================================================== */
+    $("#stock").addEventListener("click", function (event) {
+      var editButton = event.target.closest("[data-edit]");
+      var hideButton = event.target.closest("[data-hide]");
+      var deleteButton = event.target.closest("[data-delete]");
+
+      if (editButton) {
+        var item = shoes.find(function (shoe) { return String(shoe.id) === editButton.getAttribute("data-edit"); });
+        if (!item) return;
+        editId = item.id;
+        $("#sName").value = item.name || "";
+        $("#sType").value = item.type || types[0] || "";
+        $("#sSize").value = item.size || "";
+        $("#sCond").value = item.cond || "Good";
+        $("#sPrice").value = item.price || "";
+        $("#sOffer").value = item.offer || 0;
+        $("#sImg").value = "";
+        $("#fTitle").textContent = "Edit shoe";
+        $("#shoeSave").textContent = "Save changes";
+        $("#shoeCancel").hidden = false;
+        $("#shoeErr").textContent = "";
+        $("#shoeOk").textContent = "";
+        $("#shoeForm").scrollIntoView({ behavior: "smooth", block: "center" });
+        return;
+      }
+
+      if (hideButton) {
+        var hideId = hideButton.getAttribute("data-hide");
+        hideButton.disabled = true;
+        api("/api/shoes/" + encodeURIComponent(hideId) + "/hidden", { method: "POST" })
+          .then(function () { return loadShoes(); }).then(renderAdmin)
+          .catch(function (error) { toast(error.message); }).finally(function () { hideButton.disabled = false; });
+        return;
+      }
+
+      if (deleteButton) {
+        var deleteId = deleteButton.getAttribute("data-delete");
+        if (!window.confirm("Delete this shoe listing? This action cannot be undone.")) return;
+        deleteButton.disabled = true;
+        api("/api/shoes/" + encodeURIComponent(deleteId), { method: "DELETE" })
+          .then(function () { return loadShoes(); }).then(renderAdmin)
+          .then(function () { toast("Listing deleted."); })
+          .catch(function (error) { toast(error.message); }).finally(function () { deleteButton.disabled = false; });
+      }
+    });
+
+    function resetShoeForm() {
+      editId = null;
+      $("#shoeForm").reset();
+      $("#sOffer").value = 0;
+      $("#fTitle").textContent = "Add a shoe";
+      $("#shoeSave").textContent = "Add shoe";
+      $("#shoeCancel").hidden = true;
+      $("#shoeErr").textContent = "";
+      $("#shoeOk").textContent = "";
+    }
+    $("#shoeCancel").addEventListener("click", resetShoeForm);
+
+    /* =======================================================
+       34. IMAGE RESIZING / ADD OR UPDATE PRODUCT
+       Resizing reduces request payload size; backend should
+       still validate image data and enforce upload limits.
+    ======================================================== */
+    function readImage(file, callback) {
+      if (!file) { callback(""); return; }
+      if (!file.type || !file.type.startsWith("image/")) { callback(""); return; }
+      var reader = new FileReader();
+      reader.onload = function () {
+        var image = new Image();
+        image.onload = function () {
+          var scale = Math.min(1, 1000 / Math.max(image.width, image.height));
+          var canvas = document.createElement("canvas");
+          canvas.width = Math.max(1, Math.round(image.width * scale));
+          canvas.height = Math.max(1, Math.round(image.height * scale));
+          var context = canvas.getContext("2d");
+          context.drawImage(image, 0, 0, canvas.width, canvas.height);
+          callback(canvas.toDataURL("image/jpeg", .78));
+        };
+        image.onerror = function () { callback(""); };
+        image.src = reader.result;
+      };
+      reader.onerror = function () { callback(""); };
+      reader.readAsDataURL(file);
+    }
+
+    $("#shoeForm").addEventListener("submit", function (event) {
+      event.preventDefault();
+      var errorNode = $("#shoeErr");
+      errorNode.textContent = "";
+      $("#shoeOk").textContent = "";
+
+      var name = $("#sName").value.trim();
+      var size = Number($("#sSize").value);
+      var price = Number($("#sPrice").value);
+      var offer = Number($("#sOffer").value);
+      var type = $("#sNewType").value.trim() || $("#sType").value;
+      if (!name || !type || !Number.isFinite(size) || size < 15 || size > 50 ||
+          !Number.isFinite(price) || price <= 0 || !Number.isFinite(offer) || offer < 0 || offer > 90) {
+        errorNode.textContent = "Check the name, type, EU size, price and discount values.";
+        return;
+      }
+
+      $("#shoeSave").disabled = true;
+      readImage($("#sImg").files[0], function (imageData) {
+        var payload = {
+          name: name, type: type, size: size, cond: $("#sCond").value,
+          price: price, offer: offer, img: imageData
+        };
+        api(editId ? "/api/shoes/" + encodeURIComponent(editId) : "/api/shoes", {
+          method: editId ? "PUT" : "POST", body: payload
+        }).then(function () {
+          resetShoeForm();
+          $("#shoeOk").textContent = "Product saved successfully.";
+          return loadShoes();
+        }).then(function () {
+          renderAdmin();
+          toast("Inventory saved.");
+        }).catch(function (error) {
+          errorNode.textContent = error.message;
+        }).finally(function () {
+          $("#shoeSave").disabled = false;
+        });
+      });
+    });
+
+    /* =======================================================
+       35. ORDER FULFILMENT STAGE UPDATES
+    ======================================================== */
+    $("#orders").addEventListener("change", function (event) {
+      var select = event.target.closest("[data-stage]");
+      if (!select) return;
+      select.disabled = true;
+      api("/api/admin/orders/" + encodeURIComponent(select.getAttribute("data-stage")) + "/stage", {
+        method: "POST", body: { stage: select.value }
+      }).then(function () { toast("Order stage updated."); })
+        .catch(function (error) { toast(error.message); })
+        .finally(function () { select.disabled = false; });
+    });
+
+    /* =======================================================
+       36. THEME TOGGLE
+    ======================================================== */
+    $("#theme").addEventListener("click", function () {
+      var root = document.documentElement;
+      var current = root.getAttribute("data-theme") || "light";
+      var next = current === "dark" ? "light" : "dark";
+      root.setAttribute("data-theme", next);
+      $("#theme").textContent = next === "dark" ? "☼" : "◐";
+    });
+
+    /* =======================================================
+       37. WHATSAPP LINKS / REMOTE CONFIGURATION
+    ======================================================== */
+    function configureWhatsApp(number) {
+      var cleaned = String(number || "").replace(/\D/g, "");
+      if (cleaned) {
+        var url = "https://wa.me/" + cleaned;
+        $("#asideWhatsApp").href = url;
+        $("#asideWhatsApp").hidden = false;
+        $("#noWhatsApp").hidden = true;
+        $("#floatingWhatsApp").href = url;
+        $("#floatingWhatsApp").hidden = false;
+      } else {
+        $("#asideWhatsApp").hidden = true;
+        $("#noWhatsApp").hidden = false;
+        $("#floatingWhatsApp").hidden = true;
+      }
+    }
+
+    /* =======================================================
+       38. INITIALIZE APP
+       Keep API routes aligned with the Flask backend.
+    ======================================================== */
+    $("#year").textContent = new Date().getFullYear();
+    authMode(false);
+    initReveal(document);
+
+    api("/api/config").then(function (config) {
+      cfg = Object.assign(cfg, config || {});
+      configureWhatsApp(cfg.whatsapp);
+      if (document.getElementById("vShop").hidden === false) renderShop();
+    }).catch(function () { configureWhatsApp(""); });
+
+    api("/api/me").then(function (data) {
+      me = data.user || null;
+    }).catch(function () {
+      me = null;
+    }).then(function () {
+      go(me ? (me.role === "admin" ? "vAdmin" : "vShop") : "vShop");
+    });
+  })();
+  </script>
+</body>
+</html>
+
