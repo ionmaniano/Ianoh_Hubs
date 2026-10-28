@@ -7,3 +7,9 @@ __pycache__/
 instance/
 .pytest_cache/
 flask_debug.log
+
+# Local logs, tunnels, and backups
+flask-debug.log
+ngrok
+*.bak
+venv/

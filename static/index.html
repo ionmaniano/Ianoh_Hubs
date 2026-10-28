@@ -952,6 +952,90 @@ textarea {
   }
 }
 
+/* FIX: Footer brand causing mobile horizontal overflow */
+@media (max-width: 760px) {
+  #footerHome.brandmark {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    flex: 1 1 100%;
+    box-sizing: border-box;
+  }
+
+  .footer-inner {
+    min-width: 0;
+    max-width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .footer-inner > * {
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+}/* Footer copyright: prevent mobile overflow */
+@media (max-width: 760px) {
+  #footerHome.brandmark {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px;
+    overflow-wrap: anywhere;
+    word-break: normal;
+  }
+
+  #footerHome.brandmark > span {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  #footerHome #year {
+    display: inline-block;
+    width: auto;
+    min-width: 0;
+    flex-shrink: 1;
+  }
+}/* TABLET + MOBILE FOOTER WIDTH FIX */
+@media (max-width: 1024px) {
+  .footer-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    min-width: 0;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  #footerHome.brandmark {
+    display: flex;
+    flex: 1 1 100%;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-wrap: anywhere;
+  }
+
+  #footerHome.brandmark > span {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .footer-links > * {
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+}
   </style>
 </head>
 
