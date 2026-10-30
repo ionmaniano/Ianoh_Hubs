@@ -209,38 +209,72 @@ def mp_token():
 
 
 
+
 def stk_push(o):
     ts = datetime.now(
         timezone(timedelta(hours=3))
     ).strftime("%Y%m%d%H%M%S")
 
-    sc = E("MPESA_SHORTCODE", "")
-    pw = base64.b64encode(
-        (sc + E("MPESA_PASSKEY", "") + ts).encode()
-    ).decode()
+    shortcode = E("MPESA_SHORTCODE", "").strip()
+    passkey = E("MPESA_PASSKEY", "").strip()
+    till = E("MPESA_TILL", "").strip()
 
-    cb = E("MPESA_CALLBACK_URL", "")
+    transaction_type = E(
+        "MPESA_TRANSACTION_TYPE",
+        "CustomerPayBillOnline"
+    ).strip()
 
-    if E("MPESA_CALLBACK_TOKEN"):
-        cb += (
-            ("&" if "?" in cb else "?")
-            + "token="
-            + E("MPESA_CALLBACK_TOKEN")
+    if transaction_type not in (
+        "CustomerPayBillOnline",
+        "CustomerBuyGoodsOnline"
+    ):
+        raise RuntimeError("Invalid M-PESA transaction type")
+
+    if not shortcode or not passkey:
+        raise RuntimeError(
+            "MPESA_SHORTCODE or MPESA_PASSKEY is missing"
         )
 
+    if transaction_type == "CustomerBuyGoodsOnline":
+        if not till:
+            raise RuntimeError("MPESA_TILL is missing")
+        party_b = till
+    else:
+        party_b = shortcode
+
+    callback_url = E("MPESA_CALLBACK_URL", "").strip()
+
+    if not callback_url.startswith("https://"):
+        raise RuntimeError(
+            "MPESA_CALLBACK_URL must be a public HTTPS URL"
+        )
+
+    callback_token = E("MPESA_CALLBACK_TOKEN", "").strip()
+
+    if callback_token:
+        callback_url += (
+            ("&" if "?" in callback_url else "?")
+            + "token="
+            + callback_token
+        )
+
+    password = base64.b64encode(
+        (shortcode + passkey + ts).encode()
+    ).decode()
+
     body = {
-    "BusinessShortCode": sc,
-    "Password": pw,
-    "Timestamp": ts,
-    "TransactionType": "CustomerPayBillOnline",
-    "Amount": int(o.amount),
-    "PartyA": o.phone,
-    "PartyB": sc,
-    "PhoneNumber": o.phone,
-    "CallBackURL": cb,
-    "AccountReference": f"IH{o.id}",
-    "TransactionDesc": "Ianoh_hubs"
-}
+        "BusinessShortCode": shortcode,
+        "Password": password,
+        "Timestamp": ts,
+        "TransactionType": transaction_type,
+        "Amount": int(o.amount),
+        "PartyA": o.phone,
+        "PartyB": party_b,
+        "PhoneNumber": o.phone,
+        "CallBackURL": callback_url,
+        "AccountReference": f"IH{o.id}",
+        "TransactionDesc": "Ianoh_hubs"
+    }
 
     r = requests.post(
         mp_base() + "/mpesa/stkpush/v1/processrequest",
@@ -263,11 +297,11 @@ def stk_push(o):
             data
         )
         raise RuntimeError(
-            f"Daraja rejected STK Push "
-            f"(HTTP {r.status_code}): {data}"
+            f"Daraja rejected STK Push (HTTP {r.status_code})"
         )
 
     return data
+
 
 
 ACK = {"ResultCode": 0, "ResultDesc": "Accepted"}

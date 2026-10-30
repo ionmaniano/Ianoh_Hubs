@@ -13,3 +13,4 @@ flask-debug.log
 ngrok
 *.bak
 venv/
+*.backup

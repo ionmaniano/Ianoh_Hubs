@@ -12,7 +12,7 @@ services:
       - {key: SECRET_KEY, generateValue: true}
       - {key: MPESA_CALLBACK_TOKEN, generateValue: true}
       - {key: MPESA_ENV, value: sandbox}
-      - {key: MPESA_TRANSACTION_TYPE, value: CustomerBuyGoodsOnline}
+      - {key: MPESA_TRANSACTION_TYPE, value: CustomerPayBillOnline}
       - {key: MPESA_CONSUMER_KEY, sync: false}
       - {key: MPESA_CONSUMER_SECRET, sync: false}
       - {key: MPESA_SHORTCODE, sync: false}
