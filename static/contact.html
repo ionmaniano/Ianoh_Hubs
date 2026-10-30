@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <meta name="theme-color" content="#10232E">
+    <meta name="description" content="Contact Ianoh_hubs about pre-loved footwear, orders, delivery and customer support.">
+
+    <title>Contact Us | Ianoh_hubs</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/style.css">
+
+    <style>
+        /* =========================================
+           SHARED SITE COLOURS AND THEME
+        ========================================= */
+
+        :root {
+            --navy: #10232E;
+            --slate: #3D4D55;
+            --grey: #A79E9C;
+            --ivory: #D3C3B9;
+            --bronze: #B58863;
+            --black: #181818;
+            --on-brand: #D3C3B9;
+            --max-width: 1220px;
+
+            --contact-navy: #10232E;
+            --contact-bronze: #B58A5A;
+            --contact-cream: #F5F1EA;
+            --contact-muted: #858C90;
+
+            --ink: #181818;
+            --muted: #70777A;
+            --surface: #FFFFFF;
+            --line: rgba(61,77,85,.18);
+            --bg: #F5F1EA;
+        }
+
+        :root[data-theme="dark"] {
+            color-scheme: dark;
+
+            --contact-navy: #D3C3B9;
+            --contact-cream: #10232E;
+            --contact-muted: #A79E9C;
+
+            --ink: #D3C3B9;
+            --muted: #A79E9C;
+            --surface: #1B303B;
+            --line: rgba(211,195,185,.2);
+            --bg: #10232E;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--ink);
+            transition: background .25s ease, color .25s ease;
+        }
+
+        .contact-page,
+        .contact-page * {
+            box-sizing: border-box;
+        }
+
+        .contact-container {
+            width: min(1160px, calc(100% - 40px));
+            margin-inline: auto;
+        }
+
+        /* =========================================
+           SHARED NAVBAR
+           Same structure and behaviour as about.html
+        ========================================= */
+
+        .site-header {
+            position: sticky;
+            top: 10px;
+            z-index: 100;
+            width: min(var(--max-width, 1220px), calc(100% - 28px));
+            margin: 10px auto 0;
+            color: var(--on-brand, #D3C3B9);
+            background: rgba(16,35,46,.83);
+            border: 1px solid rgba(211,195,185,.24);
+            border-radius: 18px;
+            box-shadow: 0 12px 38px rgba(16,35,46,.19);
+            backdrop-filter: blur(22px) saturate(150%);
+            -webkit-backdrop-filter: blur(22px) saturate(150%);
+        }
+
+        .nav-inner {
+            min-height: 68px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 10px 16px;
+        }
+
+        .brandmark {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            margin-right: auto;
+            text-decoration: none;
+            min-width: max-content;
+            color: inherit;
+        }
+
+        .brand-icon {
+            display: grid;
+            place-items: center;
+            width: 42px;
+            height: 42px;
+            border-radius: 13px;
+            color: var(--navy, #10232E);
+            background: var(--ivory, #D3C3B9);
+            font-size: 1.2rem;
+        }
+
+        .site-header .logo {
+            font-family: "Bricolage Grotesque", sans-serif;
+            font-size: 1.22rem;
+            font-weight: 800;
+            line-height: 1;
+            letter-spacing: -.04em;
+            color: inherit;
+        }
+
+        .brand-sub {
+            display: block;
+            margin-top: 5px;
+            color: inherit;
+            font-size: .67rem;
+            letter-spacing: .11em;
+            text-transform: uppercase;
+            opacity: .7;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .nav-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid transparent;
+            border-radius: 11px;
+            padding: 10px 13px;
+            color: inherit;
+            background: transparent;
+            font-family: inherit;
+            font-size: .87rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background .25s ease, color .25s ease, transform .25s ease;
+        }
+
+        .nav-btn:hover,
+        .nav-btn.active {
+            background: var(--bronze, #B58863);
+            color: var(--black, #181818);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .site-header .who {
+            max-width: 150px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            font-size: .78rem;
+            opacity: .82;
+        }
+
+        .site-header .icon-btn {
+            display: inline-grid;
+            place-items: center;
+            width: 42px;
+            height: 42px;
+            border: 1px solid rgba(211,195,185,.28);
+            border-radius: 13px;
+            color: inherit;
+            background: rgba(255,255,255,.07);
+            cursor: pointer;
+            transition: transform .2s ease, background .2s ease;
+        }
+
+        .site-header .icon-btn:hover {
+            transform: translateY(-2px);
+            background: rgba(255,255,255,.15);
+        }
+
+        .site-header .menu-toggle {
+            display: none;
+        }
+
+        .site-header [hidden] {
+            display: none !important;
+        }
+
+        .site-header .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-height: 43px;
+            padding: 11px 17px;
+            border: 1px solid transparent;
+            border-radius: 12px;
+            background: var(--navy, #10232E);
+            color: var(--ivory, #D3C3B9);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: .87rem;
+        }
+
+        .site-header .btn.bronze {
+            background: var(--bronze, #B58863);
+            color: var(--black, #181818);
+        }
+
+        .site-header .btn.small {
+            min-height: 34px;
+            padding: 7px 10px;
+            border-radius: 9px;
+            font-size: .78rem;
+        }
+
+        @media (max-width: 760px) {
+            .site-header .nav-inner {
+                flex-wrap: wrap;
+            }
+
+            .site-header .menu-toggle {
+                display: inline-grid;
+            }
+
+            .site-header .nav-links {
+                display: none;
+                order: 4;
+                width: 100%;
+                flex-wrap: wrap;
+                padding-top: 8px;
+                border-top: 1px solid rgba(211,195,185,.15);
+            }
+
+            .site-header .nav-links.open {
+                display: flex;
+            }
+
+            .site-header .nav-actions {
+                margin-left: auto;
+            }
+
+            .site-header .who {
+                display: none;
+            }
+        }
+
+        @media (max-width: 430px) {
+            .site-header {
+                width: calc(100% - 16px);
+                top: 7px;
+                margin-top: 7px;
+            }
+
+            .site-header .nav-inner {
+                padding: 8px;
+                gap: 7px;
+            }
+
+            .site-header .brand-icon {
+                width: 36px;
+                height: 36px;
+            }
+
+            .site-header .logo {
+                font-size: 1.05rem;
+            }
+
+            .site-header .nav-btn {
+                padding: 9px 10px;
+                font-size: .8rem;
+            }
+
+            .site-header .nav-actions {
+                gap: 5px;
+            }
+
+            .site-header .icon-btn {
+                width: 37px;
+                height: 37px;
+            }
+        }
+
+        /* =========================================
+           CONTACT HERO
+        ========================================= */
+
+        .contact-hero {
+            position: relative;
+            width: calc(100% - 20px);
+            min-height: 390px;
+            margin: 0 auto 65px;
+            padding: 80px 25px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            isolation: isolate;
+            border: 1px solid rgba(211,195,185,.16);
+            border-radius: 42px;
+            background: #10232E;
+            color: #F5F1EA;
+            box-shadow: 0 24px 70px rgba(16,35,46,.18);
+        }
+
+        .contact-hero::before {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            width: 550px;
+            height: 550px;
+            right: -100px;
+            top: -220px;
+            border: 1px solid rgba(181,138,90,.28);
+            border-radius: 50%;
+        }
+
+        .contact-hero::after {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            width: 360px;
+            height: 360px;
+            right: 30px;
+            top: -110px;
+            border: 1px solid rgba(181,138,90,.18);
+            border-radius: 50%;
+        }
+
+        .contact-hero-content {
+            width: min(1160px, 100%);
+            margin-inline: auto;
+        }
+
+        .contact-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: #D5AE7D;
+            font-size: .76rem;
+            font-weight: 800;
+            letter-spacing: .17em;
+            text-transform: uppercase;
+        }
+
+        .contact-eyebrow::before {
+            content: "";
+            width: 27px;
+            height: 2px;
+            background: currentColor;
+        }
+
+        .contact-hero h1 {
+            max-width: 850px;
+            margin: 25px 0;
+            font-family: "Bricolage Grotesque", sans-serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 800;
+            line-height: 1.02;
+            letter-spacing: -.055em;
+        }
+
+        .contact-hero h1 span {
+            color: #D5AE7D;
+            font-style: italic;
+        }
+
+        .contact-hero p {
+            max-width: 560px;
+            color: rgba(245,241,234,.72);
+            font-size: 1.02rem;
+            line-height: 1.9;
+        }
+
+        /* =========================================
+           CONTACT CONTENT
+        ========================================= */
+
+        .contact-section {
+            padding: 0 0 100px;
+        }
+
+        .contact-heading {
+            max-width: 650px;
+            margin-bottom: 45px;
+        }
+
+        .contact-heading h2 {
+            margin: 17px 0;
+            color: var(--ink);
+            font-family: "Bricolage Grotesque", sans-serif;
+            font-size: clamp(2.2rem, 5vw, 3.8rem);
+            font-weight: 800;
+            line-height: 1.08;
+            letter-spacing: -.05em;
+        }
+
+        .contact-heading p {
+            color: var(--muted);
+            line-height: 1.8;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: .9fr 1.1fr;
+            gap: 25px;
+            align-items: stretch;
+        }
+
+        .contact-info {
+            padding: 38px;
+            overflow: hidden;
+            border-radius: 22px;
+            background: #10232E;
+            color: #F5F1EA;
+        }
+
+        .contact-info h3 {
+            margin: 0 0 13px;
+            font-family: "Bricolage Grotesque", sans-serif;
+            font-size: 1.8rem;
+            letter-spacing: -.035em;
+        }
+
+        .contact-info > p {
+            margin-bottom: 32px;
+            color: rgba(245,241,234,.68);
+            font-size: .92rem;
+            line-height: 1.8;
+        }
+
+        .contact-detail {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .contact-detail-icon {
+            flex: 0 0 43px;
+            width: 43px;
+            height: 43px;
+            display: grid;
+            place-items: center;
+            border-radius: 13px;
+            background: rgba(181,138,90,.17);
+            color: #D5AE7D;
+            font-size: 1.1rem;
+        }
+
+        .contact-detail small {
+            display: block;
+            margin-bottom: 6px;
+            color: #D5AE7D;
+            font-size: .72rem;
+            font-weight: 800;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+        }
+
+        .contact-detail a,
+        .contact-detail span {
+            color: #F5F1EA;
+            font-size: .94rem;
+            line-height: 1.7;
+            text-decoration: none;
+            overflow-wrap: anywhere;
+        }
+
+        .contact-detail a:hover {
+            color: #D5AE7D;
+        }
+
+        .contact-form-panel {
+            padding: 38px;
+            border: 1px solid var(--line);
+            border-radius: 22px;
+            background: var(--surface);
+            box-shadow: 0 15px 45px rgba(16,35,46,.06);
+        }
+
+        .contact-form-panel h3 {
+            margin: 0 0 10px;
+            color: var(--ink);
+            font-family: "Bricolage Grotesque", sans-serif;
+            font-size: 1.8rem;
+            letter-spacing: -.035em;
+        }
+
+        .contact-form-panel > p {
+            margin-bottom: 28px;
+            color: var(--muted);
+            font-size: .9rem;
+            line-height: 1.8;
+        }
+
+        .contact-field {
+            margin-bottom: 19px;
+        }
+
+        .contact-field label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--ink);
+            font-size: .83rem;
+            font-weight: 700;
+        }
+
+        .contact-field input,
+        .contact-field select,
+        .contact-field textarea {
+            display: block;
+            width: 100%;
+            min-height: 49px;
+            padding: 13px 15px;
+            border: 1px solid var(--line);
+            border-radius: 11px;
+            outline: none;
+            background: var(--bg);
+            color: var(--ink);
+            font: inherit;
+            font-size: .9rem;
+            transition: border-color .2s, box-shadow .2s;
+        }
+
+        .contact-field textarea {
+            min-height: 145px;
+            resize: vertical;
+        }
+
+        .contact-field input:focus,
+        .contact-field select:focus,
+        .contact-field textarea:focus {
+            border-color: var(--bronze);
+            box-shadow: 0 0 0 3px rgba(181,138,90,.13);
+        }
+
+        .contact-submit {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            min-height: 52px;
+            padding: 13px 20px;
+            border: 0;
+            border-radius: 11px;
+            background: var(--bronze);
+            color: #181818;
+            font: inherit;
+            font-size: .92rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: transform .2s, background .2s;
+        }
+
+        .contact-submit:hover {
+            transform: translateY(-2px);
+            background: #C69A72;
+        }
+
+        .contact-note {
+            margin-top: 15px;
+            color: var(--muted);
+            font-size: .77rem;
+            line-height: 1.7;
+        }
+
+        /* =========================================
+           SHARED ABOUT PAGE FOOTER
+        ========================================= */
+
+        .site-footer {
+            position: relative;
+            overflow: hidden;
+            padding: 70px 0 22px;
+            background: var(--contact-navy);
+            color: var(--contact-cream);
+        }
+
+        .site-footer::before {
+            content: "";
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            right: -150px;
+            top: -200px;
+            border: 1px solid rgba(181,138,90,.22);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .footer-main {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1.1fr;
+            gap: 35px;
+            padding-bottom: 45px;
+        }
+
+        .footer-logo {
+            display: inline-block;
+            color: var(--contact-cream);
+            font-family: "Bricolage Grotesque", sans-serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -.05em;
+            text-decoration: none;
+        }
+
+        .footer-logo span {
+            color: #D5AE7D;
+        }
+
+        .footer-brand p {
+            max-width: 300px;
+            margin: 16px 0 20px;
+            color: rgba(245,241,234,.65);
+            font-size: .9rem;
+            line-height: 1.9;
+        }
+
+        .footer-shop-link {
+            color: #D5AE7D;
+            font-size: .88rem;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .footer-column h3 {
+            margin: 5px 0 20px;
+            color: #D5AE7D;
+            font-family: "Bricolage Grotesque", sans-serif;
+            font-size: 1rem;
+        }
+
+        .footer-column a,
+        .footer-column p {
+            display: block;
+            margin: 0 0 13px;
+            color: rgba(245,241,234,.68);
+            font-size: .86rem;
+            line-height: 1.7;
+            text-decoration: none;
+        }
+
+        .footer-column a {
+            transition: color .25s, transform .25s;
+        }
+
+        .footer-column a:hover,
+        .footer-shop-link:hover {
+            color: #D5AE7D;
+            transform: translateX(3px);
+        }
+
+        .footer-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+            padding-top: 22px;
+            border-top: 1px solid rgba(245,241,234,.13);
+        }
+
+        .footer-bottom p,
+        .footer-bottom a {
+            margin: 0;
+            color: rgba(245,241,234,.55);
+            font-size: .79rem;
+            text-decoration: none;
+        }
+
+        .footer-bottom a:hover {
+            color: #D5AE7D;
+        }
+
+        /* =========================================
+           RESPONSIVE LAYOUT
+        ========================================= */
+
+        @media (max-width: 900px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-main {
+                grid-template-columns: 1fr 1fr;
+                gap: 35px 25px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .contact-hero {
+                width: calc(100% - 12px);
+                min-height: 340px;
+                margin-bottom: 45px;
+                padding: 65px 20px;
+                border-radius: 26px;
+            }
+
+            .contact-container {
+                width: calc(100% - 30px);
+            }
+
+            .contact-section {
+                padding-bottom: 70px;
+            }
+
+            .contact-info,
+            .contact-form-panel {
+                padding: 27px 22px;
+            }
+
+            .footer-main {
+                grid-template-columns: 1fr 1fr;
+                gap: 28px 17px;
+            }
+
+            .footer-brand {
+                grid-column: 1 / -1;
+            }
+
+            .footer-bottom {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .footer-main {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-brand {
+                grid-column: auto;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                transition-duration: .01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body class="contact-page">
+
+    <!-- =========================================
+         SHARED NAVBAR
+         Same structure as about.html
+    ========================================= -->
+
+    <header class="site-header">
+        <div class="nav-inner">
+
+            <a class="brandmark" href="/" id="brandHome" aria-label="Ianoh_hubs home">
+                <span class="brand-icon" aria-hidden="true">⌁</span>
+                <span>
+                    <span class="logo">Ianoh_hubs</span>
+                    <span class="brand-sub">Thrift shoes · second lives</span>
+                </span>
+            </a>
+
+            <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+                <a class="nav-btn" id="navShop" href="/" style="text-decoration:none">Shop</a>
+                <a class="nav-btn" id="navOrders" href="/#orders" hidden>My orders</a>
+                <a class="nav-btn" id="navAdmin" href="/#admin" hidden>Admin</a>
+                <a class="nav-btn" id="navPolicy" href="/#policies" style="text-decoration:none">Our policies</a>
+                <a class="nav-btn" id="navAbout" href="/about.html" style="text-decoration:none">About us</a>
+                <a class="nav-btn active" id="navContact" href="/contact.html" style="text-decoration:none" aria-current="page">Contact</a>
+            </nav>
+
+            <div class="nav-actions">
+                <span id="who" class="who"></span>
+
+                <button class="btn bronze small" id="navAuth" type="button">
+                    Log in
+                </button>
+
+                <button class="icon-btn" id="theme" type="button"
+                    aria-label="Toggle light and dark theme"
+                    title="Toggle light and dark theme">◐</button>
+
+                <button class="icon-btn menu-toggle" id="menuToggle" type="button"
+                    aria-label="Toggle navigation"
+                    aria-expanded="false">☰</button>
+            </div>
+
+        </div>
+    </header>
+
+
+    <main>
+
+        <!-- =========================================
+             CONTACT HERO
+        ========================================= -->
+
+        <section class="contact-hero">
+            <div class="contact-hero-content">
+
+                <span class="contact-eyebrow">We're here to help</span>
+
+                <h1>
+                    Let's talk<br>
+                    <span>good finds.</span>
+                </h1>
+
+                <p>
+                    Have a question about a pair, an order or delivery?
+                    We'd love to hear from you. Get in touch and
+                    let's make your shopping experience better.
+                </p>
+
+            </div>
+        </section>
+
+
+        <!-- =========================================
+             CONTACT DETAILS AND FORM
+        ========================================= -->
+
+        <section class="contact-section">
+            <div class="contact-container">
+
+                <div class="contact-heading">
+                    <span class="contact-eyebrow">Get in touch</span>
+
+                    <h2>
+                        We'd love to<br>
+                        hear from you.
+                    </h2>
+
+                    <p>
+                        Whether you need help choosing a pair, have a question
+                        about an order or simply want to say hello, reach out
+                        using the details below or send us a message.
+                    </p>
+                </div>
+
+
+                <div class="contact-grid">
+
+                    <!-- CONTACT INFORMATION -->
+
+                    <div class="contact-info">
+
+                        <h3>Contact information</h3>
+
+                        <p>
+                            Reach out to Ianoh_hubs using any of the
+                            contact details below.
+                        </p>
+
+                        <div class="contact-detail">
+                            <span class="contact-detail-icon" aria-hidden="true">☎</span>
+
+                            <div>
+                                <small>Phone</small>
+                                <a href="tel:+254710706735">+254 710 706 735</a>
+                            </div>
+                        </div>
+
+                        <div class="contact-detail">
+                            <span class="contact-detail-icon" aria-hidden="true">✉</span>
+
+                            <div>
+                                <small>Email</small>
+                                <a href="mailto:odiwuorian@gmail.com">odiwuorian@gmail.com</a>
+                            </div>
+                        </div>
+
+                        <div class="contact-detail">
+                            <span class="contact-detail-icon" aria-hidden="true">⌖</span>
+
+                            <div>
+                                <small>Customer support</small>
+                                <span>Questions about shoes, orders and delivery</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <!-- CONTACT FORM -->
+
+                    <div class="contact-form-panel">
+
+                        <h3>Send us a message</h3>
+
+                        <p>
+                            Fill in the details below. Your email application
+                            will open with your message ready to send.
+                        </p>
+
+                        <form id="contactForm">
+
+                            <div class="contact-field">
+                                <label for="contactName">Your name</label>
+                                <input
+                                    type="text"
+                                    id="contactName"
+                                    name="name"
+                                    placeholder="Enter your name"
+                                    autocomplete="name"
+                                    maxlength="100"
+                                    required>
+                            </div>
+
+                            <div class="contact-field">
+                                <label for="contactEmail">Email address</label>
+                                <input
+                                    type="email"
+                                    id="contactEmail"
+                                    name="email"
+                                    placeholder="you@example.com"
+                                    autocomplete="email"
+                                    maxlength="254"
+                                    required>
+                            </div>
+
+                            <div class="contact-field">
+                                <label for="contactTopic">What is your message about?</label>
+
+                                <select id="contactTopic" name="topic" required>
+                                    <option value="">Select a topic</option>
+                                    <option value="Shoe enquiry">Shoe enquiry</option>
+                                    <option value="Order support">Order support</option>
+                                    <option value="Delivery enquiry">Delivery enquiry</option>
+                                    <option value="Payment enquiry">Payment enquiry</option>
+                                    <option value="General enquiry">General enquiry</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+
+                            <div class="contact-field">
+                                <label for="contactMessage">Your message</label>
+
+                                <textarea
+                                    id="contactMessage"
+                                    name="message"
+                                    placeholder="How can we help you?"
+                                    maxlength="3000"
+                                    required></textarea>
+                            </div>
+
+                            <button class="contact-submit" type="submit">
+                                Prepare email <span aria-hidden="true">↗</span>
+                            </button>
+
+                            <p class="contact-note">
+                                Selecting this button opens your email application.
+                                Review the message there and press Send to contact us.
+                            </p>
+
+                        </form>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- =========================================
+         FOOTER
+         Same four-column design as about.html
+    ========================================= -->
+
+    <footer class="site-footer">
+
+        <div class="contact-container">
+
+            <div class="footer-main">
+
+                <div class="footer-brand">
+
+                    <a href="/" class="footer-logo">
+                        Ianoh_hubs<span>.</span>
+                    </a>
+
+                    <p>
+                        Good finds deserve another life.
+                        Discover quality pre-loved footwear,
+                        fair prices and a style worth sharing.
+                    </p>
+
+                    <a href="/" class="footer-shop-link">
+                        Explore the collection →
+                    </a>
+
+                </div>
+
+
+                <div class="footer-column">
+
+                    <h3>Explore</h3>
+
+                    <a href="/">Shop shoes</a>
+                    <a href="/about.html">About us</a>
+                    <a href="/#orders">My orders</a>
+
+                </div>
+
+
+                <div class="footer-column">
+
+                    <h3>Customer care</h3>
+
+                    <a href="/#policy">Terms &amp; conditions</a>
+                    <a href="/#policy">Privacy policy</a>
+                    <a href="/#policy">Refund policy</a>
+
+                </div>
+
+
+                <div class="footer-column">
+
+                    <h3>Our promise</h3>
+
+                    <p>Thoughtful shopping.</p>
+                    <p>Fair prices.</p>
+                    <p>A second life for every pair.</p>
+
+                </div>
+
+            </div>
+
+
+            <div class="footer-bottom">
+
+                <p>
+                    © <span id="year"></span> Ianoh_hubs.
+                    All rights reserved.
+                </p>
+
+                <a href="/">Back to shop ↑</a>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =========================================
+         SHARED JAVASCRIPT
+    ========================================= -->
+
+    <script src="/common.js"></script>
+
+    <script>
+        (function () {
+            "use strict";
+
+            /* Footer year */
+
+            var year = document.getElementById("year");
+
+            if (year) {
+                year.textContent = new Date().getFullYear();
+            }
+
+
+            /* Contact form */
+
+            var contactForm = document.getElementById("contactForm");
+
+            if (contactForm) {
+                contactForm.addEventListener("submit", function (event) {
+                    event.preventDefault();
+
+                    var name = document.getElementById("contactName").value.trim();
+                    var email = document.getElementById("contactEmail").value.trim();
+                    var topic = document.getElementById("contactTopic").value;
+                    var message = document.getElementById("contactMessage").value.trim();
+
+                    if (!name || !email || !topic || !message) {
+                        contactForm.reportValidity();
+                        return;
+                    }
+
+                    var subject = encodeURIComponent(
+                        "Ianoh_hubs enquiry: " + topic
+                    );
+
+                    var body = encodeURIComponent(
+                        "Name: " + name + "\n" +
+                        "Email: " + email + "\n" +
+                        "Topic: " + topic + "\n\n" +
+                        "Message:\n" + message
+                    );
+
+                    window.location.href =
+                        "mailto:odiwuorian@gmail.com?subject=" +
+                        subject +
+                        "&body=" +
+                        body;
+                });
+            }
+
+        })();
+    </script>
+
+</body>
+</html>

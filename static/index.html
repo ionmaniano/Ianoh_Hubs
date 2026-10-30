@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
+<script>
+(function(){try{var t=localStorage.getItem("ianoh-theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t);}catch(e){}})();
+</script>
 <head>
   <!-- Ianoh_hubs | Premium thrift footwear storefront -->
   <meta charset="utf-8">
@@ -1055,6 +1058,8 @@ textarea {
         <button class="nav-btn" id="navOrders" hidden>My orders</button>
         <button class="nav-btn" id="navAdmin" hidden>Admin</button>
         <button class="nav-btn" id="navPolicy">Our policies</button>
+        <a class="nav-btn" id="navAbout" href="/about.html" style="text-decoration:none">About us</a>
+        <a class="nav-btn" id="navContact" href="/contact.html">Contact</a>
       </nav>
 
       <div class="nav-actions">
@@ -1653,6 +1658,7 @@ function authMode(isSignup) {
           '<div class="price-row"><span class="price">' + ksh(shoe.final) + '</span>' +
           (Number(shoe.offer) > 0 ? '<span class="old-price">' + ksh(shoe.price) + '</span>' : '') + '</div>' +
           '<div class="product-actions">' +
+          '<a class="btn outline" href="/item.html?id=' + encodeURIComponent(shoe.id) + '">View details ↗</a>' +
           (!sold ? '<button class="btn bronze" data-buy="' + esc(shoe.id) + '">Pay with M-Pesa</button>' + whatsapp : '') +
           '</div></div></article>';
       }).join("");
@@ -1959,12 +1965,24 @@ function authMode(isSignup) {
     /* =======================================================
        36. THEME TOGGLE
     ======================================================== */
-    $("#theme").addEventListener("click", function () {
+    function applySiteTheme(theme) {
       var root = document.documentElement;
-      var current = root.getAttribute("data-theme") || "light";
-      var next = current === "dark" ? "light" : "dark";
+      var next = theme === "dark" ? "dark" : "light";
       root.setAttribute("data-theme", next);
-      $("#theme").textContent = next === "dark" ? "☼" : "◐";
+      var button = $("#theme");
+      if (button) {
+        button.textContent = next === "dark" ? "☼" : "◐";
+        button.setAttribute("aria-label", next === "dark" ? "Switch to light theme" : "Switch to dark theme");
+      }
+    }
+    applySiteTheme((function(){try{return localStorage.getItem("ianoh-theme") || document.documentElement.getAttribute("data-theme");}catch(e){return document.documentElement.getAttribute("data-theme");}})());
+    $("#theme").addEventListener("click", function () {
+      var next = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+      applySiteTheme(next);
+      try { localStorage.setItem("ianoh-theme", next); } catch (e) {}
+    });
+    window.addEventListener("storage", function(event) {
+      if (event.key === "ianoh-theme" && (event.newValue === "dark" || event.newValue === "light")) applySiteTheme(event.newValue);
     });
 
     /* =======================================================

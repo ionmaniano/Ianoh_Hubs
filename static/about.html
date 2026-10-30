@@ -1,0 +1,1745 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#10232E">
+  <meta name="description" content="Discover the story behind Ianoh_hubs. Quality pre-loved footwear, fair prices and giving every pair a second life.">
+
+  <title>About Us | Ianoh_hubs</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/style.css">
+
+  <style>
+    /* =========================================
+       IANOH_HUBS — ABOUT PAGE
+       Brand palette remains consistent site-wide
+    ========================================= */
+
+    :root {
+      --navy: #10232E;
+      --slate: #3D4D55;
+      --grey: #A79E9C;
+      --ivory: #D3C3B9;
+      --bronze: #B58863;
+      --black: #181818;
+      --on-brand: #D3C3B9;
+      --max-width: 1220px;
+
+      --about-navy: #10232E;
+      --about-bronze: #B58863;
+      --about-cream: #F5F1EA;
+      --about-white: #FFFFFF;
+
+      --page-bg: #F5F1EA;
+      --surface: #FFFFFF;
+      --ink: #181818;
+      --muted: #70777A;
+      --line: rgba(61,77,85,.18);
+      --shadow: 0 20px 65px rgba(16,35,46,.09);
+    }
+
+    :root[data-theme="dark"] {
+      color-scheme: dark;
+
+      --page-bg: #181818;
+      --surface: #1B303B;
+      --ink: #D3C3B9;
+      --muted: #A79E9C;
+      --line: rgba(211,195,185,.17);
+      --shadow: 0 20px 65px rgba(0,0,0,.25);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--page-bg);
+      color: var(--ink);
+      font-family: "DM Sans", sans-serif;
+      transition: background .25s ease, color .25s ease;
+    }
+
+    .about-page {
+      overflow: hidden;
+    }
+
+    .about-container {
+      width: min(1160px, calc(100% - 40px));
+      margin-inline: auto;
+    }
+
+    .about-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--about-bronze);
+      font-size: .76rem;
+      font-weight: 800;
+      letter-spacing: .17em;
+      text-transform: uppercase;
+    }
+
+    .about-eyebrow::before {
+      content: "";
+      width: 27px;
+      height: 2px;
+      background: currentColor;
+    }
+
+    .about-heading {
+      font-family: "Bricolage Grotesque", sans-serif;
+      font-weight: 800;
+      letter-spacing: -.055em;
+      line-height: 1.04;
+    }
+
+    .about-section {
+      padding-block: 100px;
+    }
+
+    /* =========================================
+       SHARED NAVIGATION — MATCHES INDEX
+    ========================================= */
+
+    .site-header {
+      position: sticky;
+      top: 10px;
+      z-index: 100;
+      width: min(var(--max-width), calc(100% - 28px));
+      margin: 10px auto 0;
+      color: var(--ivory);
+      background: rgba(16,35,46,.88);
+      border: 1px solid rgba(211,195,185,.24);
+      border-radius: 18px;
+      box-shadow: 0 12px 38px rgba(16,35,46,.19);
+      backdrop-filter: blur(22px) saturate(150%);
+      -webkit-backdrop-filter: blur(22px) saturate(150%);
+    }
+
+    .nav-inner {
+      min-height: 68px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 10px 16px;
+    }
+
+    .brandmark {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      margin-right: auto;
+      text-decoration: none;
+      min-width: max-content;
+      color: inherit;
+    }
+
+    .brand-icon {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 13px;
+      color: var(--navy);
+      background: var(--ivory);
+      font-size: 1.2rem;
+    }
+
+    .site-header .logo {
+      font-family: "Bricolage Grotesque", sans-serif;
+      font-size: 1.22rem;
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -.04em;
+      color: inherit;
+    }
+
+    .brand-sub {
+      display: block;
+      margin-top: 5px;
+      color: inherit;
+      font-size: .67rem;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+      opacity: .7;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .nav-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid transparent;
+      border-radius: 11px;
+      padding: 10px 13px;
+      color: inherit;
+      background: transparent;
+      font-family: inherit;
+      font-size: .87rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background .25s ease, color .25s ease;
+    }
+
+    .nav-btn:hover,
+    .nav-btn.active {
+      background: var(--bronze);
+      color: var(--black);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .site-header .who {
+      max-width: 150px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-size: .78rem;
+      opacity: .82;
+    }
+
+    .site-header .icon-btn {
+      display: inline-grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border: 1px solid rgba(211,195,185,.28);
+      border-radius: 13px;
+      color: inherit;
+      background: rgba(255,255,255,.07);
+      cursor: pointer;
+      transition: transform .2s ease, background .2s ease;
+    }
+
+    .site-header .icon-btn:hover {
+      transform: translateY(-2px);
+      background: rgba(255,255,255,.15);
+    }
+
+    .site-header .menu-toggle {
+      display: none;
+    }
+
+    .site-header [hidden] {
+      display: none !important;
+    }
+
+    .site-header .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 43px;
+      padding: 11px 17px;
+      border: 1px solid transparent;
+      border-radius: 12px;
+      background: var(--navy);
+      color: var(--ivory);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: .87rem;
+      cursor: pointer;
+    }
+
+    .site-header .btn.bronze {
+      background: var(--bronze);
+      color: var(--black);
+    }
+
+    .site-header .btn.small {
+      min-height: 34px;
+      padding: 7px 10px;
+      border-radius: 9px;
+      font-size: .78rem;
+    }
+
+    /* =========================================
+       HERO — NAVY IN BOTH THEMES
+    ========================================= */
+
+    .about-hero {
+      position: relative;
+      width: calc(100% - 40px);
+      margin: 25px auto 28px;
+      min-height: 570px;
+      display: flex;
+      align-items: center;
+      isolation: isolate;
+      overflow: hidden;
+      border: 1px solid rgba(211,195,185,.18);
+      border-radius: 34px;
+      background:
+        radial-gradient(circle at 82% 43%, rgba(181,136,99,.17), transparent 34%),
+        linear-gradient(115deg, #10232E 0%, #142D39 60%, #10232E 100%);
+      color: var(--ivory);
+      box-shadow: 0 24px 70px rgba(16,35,46,.18);
+    }
+
+    .about-hero::before {
+      content: "";
+      position: absolute;
+      width: 580px;
+      height: 580px;
+      right: -110px;
+      top: -210px;
+      border: 1px solid rgba(181,136,99,.25);
+      border-radius: 50%;
+      z-index: -1;
+    }
+
+    .about-hero::after {
+      content: "";
+      position: absolute;
+      width: 380px;
+      height: 380px;
+      right: 30px;
+      top: -110px;
+      border: 1px solid rgba(181,136,99,.17);
+      border-radius: 50%;
+      z-index: -1;
+    }
+
+    .hero-decoration {
+      position: absolute;
+      width: 280px;
+      height: 280px;
+      right: 9%;
+      bottom: -170px;
+      border: 1px solid rgba(181,136,99,.25);
+      border-radius: 50%;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      width: min(1160px, calc(100% - 40px));
+      margin: auto;
+      padding-block: 95px;
+    }
+
+    .hero-content .about-eyebrow {
+      color: var(--bronze);
+    }
+
+    .hero-title {
+      max-width: 850px;
+      margin: 27px 0;
+      color: var(--ivory);
+      font-size: clamp(3.1rem, 8vw, 6.8rem);
+    }
+
+    .hero-title span {
+      color: var(--bronze);
+      font-style: italic;
+    }
+
+    .hero-description {
+      max-width: 550px;
+      color: rgba(211,195,185,.76);
+      font-size: 1.04rem;
+      line-height: 1.9;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 32px;
+    }
+
+    .hero-button {
+      min-height: 50px;
+      padding: 0 23px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      background: var(--bronze);
+      color: var(--black);
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform .25s, background .25s;
+    }
+
+    .hero-button:hover {
+      background: #C49A72;
+      transform: translateY(-3px);
+    }
+
+    .hero-secondary {
+      color: var(--ivory);
+      text-decoration: none;
+      font-size: .9rem;
+      font-weight: 700;
+    }
+
+    .hero-secondary:hover {
+      color: var(--bronze);
+    }
+
+    .hero-side-note {
+      position: absolute;
+      right: 5%;
+      bottom: 55px;
+      color: rgba(211,195,185,.45);
+      font-size: .72rem;
+      letter-spacing: .2em;
+      writing-mode: vertical-rl;
+    }
+
+    /* =========================================
+       INTRODUCTION
+    ========================================= */
+
+    .about-intro {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 75px;
+      align-items: center;
+    }
+
+    .intro-heading {
+      margin: 20px 0;
+      color: var(--ink);
+      font-size: clamp(2.4rem, 5vw, 4.2rem);
+    }
+
+    .intro-heading span {
+      color: var(--bronze);
+    }
+
+    .intro-copy {
+      color: var(--muted);
+      font-size: .98rem;
+      line-height: 2;
+    }
+
+    .intro-copy p + p {
+      margin-top: 18px;
+    }
+
+    .intro-visual {
+      position: relative;
+      min-height: 420px;
+      display: grid;
+      place-items: center;
+    }
+
+    .intro-card {
+      position: relative;
+      width: min(100%, 450px);
+      min-height: 380px;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      overflow: hidden;
+      border: 1px solid rgba(181,136,99,.25);
+      border-radius: 25px;
+      background:
+        radial-gradient(circle at 80% 20%, rgba(181,136,99,.22), transparent 35%),
+        linear-gradient(145deg, #173342, #10232E);
+      color: var(--ivory);
+      box-shadow: var(--shadow);
+    }
+
+    .intro-card::before {
+      content: "I";
+      position: absolute;
+      right: 15px;
+      top: -75px;
+      color: rgba(211,195,185,.10);
+      font-family: "Bricolage Grotesque", sans-serif;
+      font-size: 24rem;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .intro-card-label {
+      position: relative;
+      color: var(--bronze);
+      font-size: .74rem;
+      font-weight: 800;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    .intro-card h3 {
+      position: relative;
+      max-width: 340px;
+      margin: 17px 0;
+      font-family: "Bricolage Grotesque", sans-serif;
+      font-size: clamp(2rem, 4vw, 3.1rem);
+      line-height: 1.1;
+      letter-spacing: -.04em;
+    }
+
+    .intro-card p {
+      position: relative;
+      color: rgba(211,195,185,.72);
+      line-height: 1.8;
+      font-size: .9rem;
+    }
+
+    /* =========================================
+       BRAND STATEMENT
+    ========================================= */
+
+    .brand-statement {
+      padding: 90px 20px;
+      text-align: center;
+      background: var(--surface);
+      border-block: 1px solid var(--line);
+    }
+
+    .brand-statement blockquote {
+      max-width: 900px;
+      margin: 25px auto;
+      color: var(--ink);
+      font-family: "Bricolage Grotesque", sans-serif;
+      font-size: clamp(2rem, 5vw, 4rem);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -.045em;
+    }
+
+    .brand-statement blockquote span {
+      color: var(--bronze);
+    }
+
+    .brand-statement p {
+      max-width: 550px;
+      margin: auto;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    /* =========================================
+       SHOPPING PROCESS
+    ========================================= */
+
+    .process-heading {
+      max-width: 650px;
+      margin-bottom: 45px;
+    }
+
+    .process-heading h2 {
+      margin: 17px 0;
+      color: var(--ink);
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+    }
+
+    .process-heading p {
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .process-card {
+      position: relative;
+      padding: 30px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      transition: transform .3s, border-color .3s;
+    }
+
+    .process-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--bronze);
+    }
+
+    .process-number {
+      display: block;
+      margin-bottom: 35px;
+      color: var(--bronze);
+      font-family: "Bricolage Grotesque", sans-serif;
+      font-size: 2.8rem;
+      font-weight: 800;
+    }
+
+    .process-card h3 {
+      margin-bottom: 12px;
+      color: var(--ink);
+      font-family: "Bricolage Grotesque", sans-serif;
+      font-size: 1.35rem;
+    }
+
+    .process-card p {
+      color: var(--muted);
+      font-size: .9rem;
+      line-height: 1.9;
+    }
+
+    /* =========================================
+       VALUES
+    ========================================= */
+
+    .values-section {
+      background: var(--navy);
+      color: var(--ivory);
+    }
+
+    .values-heading {
+      max-width: 680px;
+      margin-bottom: 45px;
+    }
+
+    .values-heading h2 {
+      margin: 18px 0;
+      color: var(--ivory);
+      font-size: clamp(2.3rem, 5vw, 4rem);
+    }
+
+    .values-heading p {
+      color: rgba(211,195,185,.68);
+      line-height: 1.8;
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+    }
+
+    .value-card {
+      padding: 27px 22px;
+      border: 1px solid rgba(181,136,99,.25);
+      border-radius: 17px;
+      background: rgba(255,255,255,.045);
+      backdrop-filter: blur(12px);
+      transition: background .3s, transform .3s;
+    }
+
+    .value-card:hover {
+      background: rgba(181,136,99,.13);
+      transform: translateY(-6px);
+    }
+
+    .value-symbol {
+      width: 45px;
+      height: 45px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 25px;
+      border-radius: 13px;
+      background: rgba(181,136,99,.17);
+      color: var(--bronze);
+      font-size: 1.25rem;
+    }
+
+    .value-card h3 {
+      margin-bottom: 10px;
+      color: var(--ivory);
+      font-family: "Bricolage Grotesque", sans-serif;
+      font-size: 1.13rem;
+    }
+
+    .value-card p {
+      color: rgba(211,195,185,.65);
+      font-size: .84rem;
+      line-height: 1.8;
+    }
+
+    /* =========================================
+       CONTACT CTA
+    ========================================= */
+
+    .about-contact {
+      position: relative;
+      padding: 85px 25px;
+    }
+
+    .contact-panel {
+      position: relative;
+      max-width: 950px;
+      margin: auto;
+      padding: 70px 30px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 25px;
+      background: var(--surface);
+      text-align: center;
+    }
+
+    .contact-panel::before {
+      content: "";
+      position: absolute;
+      width: 250px;
+      height: 250px;
+      top: -150px;
+      right: -50px;
+      border: 1px solid rgba(181,136,99,.3);
+      border-radius: 50%;
+    }
+
+    .contact-panel h2 {
+      position: relative;
+      max-width: 700px;
+      margin: 20px auto;
+      color: var(--ink);
+      font-family: "Bricolage Grotesque", sans-serif;
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      letter-spacing: -.05em;
+      line-height: 1.1;
+    }
+
+    .contact-panel p {
+      position: relative;
+      max-width: 520px;
+      margin: 0 auto 25px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .contact-button {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+      padding: 0 25px;
+      border-radius: 12px;
+      background: var(--bronze);
+      color: var(--black);
+      text-decoration: none;
+      font-weight: 700;
+      transition: transform .25s, background .25s;
+    }
+
+    .contact-button:hover {
+      background: #C49A72;
+      transform: translateY(-3px);
+    }
+
+    /* =========================================
+       FOOTER
+    ========================================= */
+
+    .site-footer {
+      position: relative;
+      overflow: hidden;
+      padding: 70px 0 22px;
+      background: var(--navy);
+      color: var(--ivory);
+    }
+
+    .site-footer::before {
+      content: "";
+      position: absolute;
+      width: 350px;
+      height: 350px;
+      right: -150px;
+      top: -200px;
+      border: 1px solid rgba(181,136,99,.22);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .footer-main {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1.1fr;
+      gap: 35px;
+      padding-bottom: 45px;
+    }
+
+    .footer-logo {
+      display: inline-block;
+      color: var(--ivory);
+      font-family: "Bricolage Grotesque", sans-serif;
+      font-size: 1.8rem;
+      font-weight: 800;
+      letter-spacing: -.05em;
+      text-decoration: none;
+    }
+
+    .footer-logo span {
+      color: var(--bronze);
+    }
+
+    .footer-brand p {
+      max-width: 300px;
+      margin: 16px 0 20px;
+      color: rgba(211,195,185,.65);
+      font-size: .9rem;
+      line-height: 1.9;
+    }
+
+    .footer-shop-link {
+      color: var(--bronze);
+      font-size: .88rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .footer-column h3 {
+      margin: 5px 0 20px;
+      color: var(--bronze);
+      font-family: "Bricolage Grotesque", sans-serif;
+      font-size: 1rem;
+    }
+
+    .footer-column a,
+    .footer-column p {
+      display: block;
+      margin: 0 0 13px;
+      color: rgba(211,195,185,.68);
+      font-size: .86rem;
+      line-height: 1.7;
+      text-decoration: none;
+    }
+
+    .footer-column a,
+    .footer-shop-link {
+      transition: color .25s, transform .25s;
+    }
+
+    .footer-column a:hover,
+    .footer-shop-link:hover {
+      color: var(--bronze);
+      transform: translateX(3px);
+    }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 15px;
+      padding-top: 22px;
+      border-top: 1px solid rgba(211,195,185,.15);
+    }
+
+    .footer-bottom p,
+    .footer-bottom a {
+      margin: 0;
+      color: rgba(211,195,185,.55);
+      font-size: .79rem;
+      text-decoration: none;
+    }
+
+    .footer-bottom a:hover {
+      color: var(--bronze);
+    }
+
+    /* =========================================
+       SCROLL REVEAL
+    ========================================= */
+
+    .about-reveal {
+      opacity: 0;
+      transform: translateY(25px);
+      transition: opacity .75s ease, transform .75s ease;
+    }
+
+    .about-reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .about-delay-1 { transition-delay: .12s; }
+    .about-delay-2 { transition-delay: .24s; }
+    .about-delay-3 { transition-delay: .36s; }
+
+    /* =========================================
+       RESPONSIVE
+    ========================================= */
+
+    @media (max-width: 900px) {
+      .about-intro {
+        gap: 35px;
+      }
+
+      .values-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .footer-main {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .hero-side-note {
+        display: none;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .site-header .nav-inner {
+        flex-wrap: wrap;
+      }
+
+      .site-header .menu-toggle {
+        display: inline-grid;
+      }
+
+      .site-header .nav-links {
+        display: none;
+        order: 4;
+        width: 100%;
+        flex-wrap: wrap;
+        padding-top: 8px;
+        border-top: 1px solid rgba(211,195,185,.15);
+      }
+
+      .site-header .nav-links.open {
+        display: flex;
+      }
+
+      .site-header .nav-actions {
+        margin-left: auto;
+      }
+
+      .site-header .who {
+        display: none;
+      }
+    }
+
+    @media (max-width: 650px) {
+      .about-section {
+        padding-block: 70px;
+      }
+
+      .about-hero {
+        width: calc(100% - 20px);
+        min-height: 540px;
+        margin-top: 18px;
+        border-radius: 26px;
+      }
+
+      .hero-content {
+        padding-block: 75px;
+      }
+
+      .hero-title {
+        font-size: clamp(3rem, 14vw, 5rem);
+      }
+
+      .about-intro {
+        grid-template-columns: 1fr;
+      }
+
+      .intro-visual {
+        min-height: 340px;
+      }
+
+      .intro-card {
+        min-height: 320px;
+        padding: 28px;
+      }
+
+      .process-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .process-card {
+        padding: 25px;
+      }
+
+      .process-number {
+        margin-bottom: 18px;
+      }
+
+      .brand-statement {
+        padding-block: 70px;
+      }
+
+      .contact-panel {
+        padding: 55px 23px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .about-container {
+        width: min(100% - 30px, 1160px);
+      }
+
+      .values-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-main {
+        grid-template-columns: 1fr 1fr;
+        gap: 28px 17px;
+      }
+
+      .footer-brand {
+        grid-column: 1 / -1;
+      }
+
+      .footer-bottom {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .hero-actions {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .site-header {
+        width: calc(100% - 16px);
+        top: 7px;
+        margin-top: 7px;
+      }
+
+      .site-header .nav-inner {
+        padding: 8px;
+        gap: 7px;
+      }
+
+      .site-header .brand-icon {
+        width: 36px;
+        height: 36px;
+      }
+
+      .site-header .logo {
+        font-size: 1.05rem;
+      }
+
+      .site-header .nav-btn {
+        padding: 9px 10px;
+        font-size: .8rem;
+      }
+
+      .site-header .nav-actions {
+        gap: 5px;
+      }
+
+      .site-header .icon-btn {
+        width: 37px;
+        height: 37px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+      }
+
+      .about-reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+
+/* =========================================================
+   IANOH_HUBS ABOUT PAGE — DARK GLASSMORPHISM REFINEMENT
+   Matches the dark-mode homepage palette and visual language.
+   Keeps the existing About page structure and layout.
+========================================================= */
+
+/* Dark theme palette */
+:root[data-theme="dark"] {
+    color-scheme: dark;
+
+    --about-navy: #D3C3B9;
+    --about-cream: #10232E;
+    --about-white: #1B303B;
+    --about-muted: #A79E9C;
+    --about-line: rgba(211, 195, 185, .18);
+    --about-glass: rgba(27, 48, 59, .68);
+    --about-shadow: 0 20px 65px rgba(0, 0, 0, .25);
+
+    --ink: #D3C3B9;
+    --muted: #A79E9C;
+    --surface: #1B303B;
+    --line: rgba(211, 195, 185, .16);
+    --bg: #10232E;
+}
+
+/* Main page */
+:root[data-theme="dark"] body {
+    background:
+        radial-gradient(
+            circle at 85% 5%,
+            rgba(181, 138, 90, .07),
+            transparent 28%
+        ),
+        #10232E;
+    color: #D3C3B9;
+}
+
+/* Navbar — retain the homepage glass appearance */
+:root[data-theme="dark"] .site-header {
+    background: rgba(16, 35, 46, .82);
+    border-color: rgba(211, 195, 185, .22);
+    box-shadow: 0 12px 38px rgba(0, 0, 0, .22);
+    backdrop-filter: blur(22px) saturate(150%);
+    -webkit-backdrop-filter: blur(22px) saturate(150%);
+}
+
+/* Hero — replace the flat cream surface with layered navy */
+:root[data-theme="dark"] .about-hero {
+    background:
+        radial-gradient(
+            circle at 78% 42%,
+            rgba(181, 138, 90, .13),
+            transparent 32%
+        ),
+        linear-gradient(
+            115deg,
+            #10232E 0%,
+            #162E3A 55%,
+            #1B303B 100%
+        );
+
+    color: #D3C3B9;
+    border: 1px solid rgba(211, 195, 185, .28);
+    box-shadow: 0 24px 70px rgba(0, 0, 0, .25);
+}
+
+/* Decorative hero rings */
+:root[data-theme="dark"] .about-hero::before,
+:root[data-theme="dark"] .about-hero::after,
+:root[data-theme="dark"] .hero-decoration {
+    border-color: rgba(181, 138, 90, .22);
+}
+
+/* Hero typography */
+:root[data-theme="dark"] .hero-title {
+    color: #D3C3B9;
+}
+
+:root[data-theme="dark"] .hero-title span {
+    color: #B58863;
+}
+
+:root[data-theme="dark"] .hero-description {
+    color: rgba(211, 195, 185, .76);
+}
+
+:root[data-theme="dark"] .hero-content .about-eyebrow {
+    color: #B58863;
+}
+
+:root[data-theme="dark"] .hero-side-note {
+    color: rgba(211, 195, 185, .42);
+}
+
+:root[data-theme="dark"] .hero-button {
+    background: #B58863;
+    color: #181818;
+}
+
+:root[data-theme="dark"] .hero-button:hover {
+    background: #C49A73;
+}
+
+:root[data-theme="dark"] .hero-secondary {
+    color: #D3C3B9;
+}
+
+/* General section typography */
+:root[data-theme="dark"] .about-heading {
+    color: #D3C3B9;
+}
+
+:root[data-theme="dark"] .intro-heading span {
+    color: #B58863;
+}
+
+:root[data-theme="dark"] .about-eyebrow {
+    color: #B58863;
+}
+
+:root[data-theme="dark"] .intro-copy,
+:root[data-theme="dark"] .process-heading p,
+:root[data-theme="dark"] .process-card p {
+    color: #A79E9C;
+}
+
+/* Introduction card — subtle glass */
+:root[data-theme="dark"] .intro-card {
+    background:
+        radial-gradient(
+            circle at 80% 20%,
+            rgba(181, 138, 90, .16),
+            transparent 38%
+        ),
+        linear-gradient(
+            145deg,
+            rgba(27, 48, 59, .94),
+            rgba(16, 35, 46, .96)
+        );
+
+    border: 1px solid rgba(211, 195, 185, .2);
+    box-shadow: 0 20px 55px rgba(0, 0, 0, .24);
+}
+
+:root[data-theme="dark"] .intro-card::before {
+    color: rgba(181, 138, 90, .09);
+}
+
+:root[data-theme="dark"] .intro-card-label {
+    color: #B58863;
+}
+
+/* Brand statement — dark glass surface */
+:root[data-theme="dark"] .brand-statement {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(27, 48, 59, .72),
+            rgba(16, 35, 46, .94)
+        );
+
+    border-top: 1px solid rgba(211, 195, 185, .12);
+    border-bottom: 1px solid rgba(211, 195, 185, .12);
+}
+
+:root[data-theme="dark"] .brand-statement blockquote {
+    color: #D3C3B9;
+}
+
+:root[data-theme="dark"] .brand-statement blockquote span {
+    color: #B58863;
+}
+
+:root[data-theme="dark"] .brand-statement p {
+    color: #A79E9C;
+}
+
+/* Process cards — translucent panels */
+:root[data-theme="dark"] .process-card {
+    background: rgba(27, 48, 59, .68);
+    border: 1px solid rgba(211, 195, 185, .16);
+    box-shadow: 0 14px 38px rgba(0, 0, 0, .13);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+}
+
+:root[data-theme="dark"] .process-card:hover {
+    background: rgba(37, 62, 74, .82);
+    border-color: rgba(181, 138, 90, .5);
+}
+
+:root[data-theme="dark"] .process-number {
+    color: #B58863;
+}
+
+:root[data-theme="dark"] .process-card h3 {
+    color: #D3C3B9;
+}
+
+/* Values section — retain a strong navy contrast */
+:root[data-theme="dark"] .values-section {
+    background:
+        radial-gradient(
+            circle at 90% 10%,
+            rgba(181, 138, 90, .08),
+            transparent 30%
+        ),
+        #10232E;
+
+    color: #D3C3B9;
+}
+
+:root[data-theme="dark"] .values-heading p {
+    color: #A79E9C;
+}
+
+:root[data-theme="dark"] .value-card {
+    background: rgba(255, 255, 255, .045);
+    border-color: rgba(211, 195, 185, .16);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+}
+
+:root[data-theme="dark"] .value-card:hover {
+    background: rgba(181, 138, 90, .11);
+    border-color: rgba(181, 138, 90, .42);
+}
+
+:root[data-theme="dark"] .value-symbol {
+    background: rgba(181, 138, 90, .15);
+    color: #B58863;
+}
+
+/* Contact panel — floating glass panel */
+:root[data-theme="dark"] .contact-panel {
+    background:
+        radial-gradient(
+            circle at 90% 10%,
+            rgba(181, 138, 90, .13),
+            transparent 35%
+        ),
+        rgba(27, 48, 59, .82);
+
+    border: 1px solid rgba(211, 195, 185, .2);
+    box-shadow: 0 20px 55px rgba(0, 0, 0, .18);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+
+:root[data-theme="dark"] .contact-panel h2 {
+    color: #D3C3B9;
+}
+
+:root[data-theme="dark"] .contact-panel p {
+    color: #A79E9C;
+}
+
+:root[data-theme="dark"] .contact-button {
+    background: #B58863;
+    color: #181818;
+}
+
+:root[data-theme="dark"] .contact-button:hover {
+    background: #C49A73;
+}
+
+/* Footer — match homepage navy */
+:root[data-theme="dark"] .site-footer {
+    background:
+        linear-gradient(
+            145deg,
+            #162E3A,
+            #10232E
+        );
+
+    color: #D3C3B9;
+    border-top: 1px solid rgba(211, 195, 185, .14);
+}
+
+:root[data-theme="dark"] .footer-logo,
+:root[data-theme="dark"] .footer-column a,
+:root[data-theme="dark"] .footer-column p {
+    color: #D3C3B9;
+}
+
+:root[data-theme="dark"] .footer-logo span,
+:root[data-theme="dark"] .footer-column h3,
+:root[data-theme="dark"] .footer-shop-link {
+    color: #B58863;
+}
+
+:root[data-theme="dark"] .footer-brand p {
+    color: #A79E9C;
+}
+
+:root[data-theme="dark"] .footer-bottom {
+    border-top-color: rgba(211, 195, 185, .14);
+}
+
+:root[data-theme="dark"] .footer-bottom p,
+:root[data-theme="dark"] .footer-bottom a {
+    color: rgba(211, 195, 185, .58);
+}
+
+/* Keep hover effects consistent */
+:root[data-theme="dark"] .footer-column a:hover,
+:root[data-theme="dark"] .footer-shop-link:hover,
+:root[data-theme="dark"] .footer-bottom a:hover {
+    color: #B58863;
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    :root[data-theme="dark"] *,
+    :root[data-theme="dark"] *::before,
+    :root[data-theme="dark"] *::after {
+        transition-duration: .01ms !important;
+        animation-duration: .01ms !important;
+    }
+}
+
+  </style>
+</head>
+
+<body>
+
+<header class="site-header">
+  <div class="nav-inner">
+    <a class="brandmark" href="/" id="brandHome" aria-label="Ianoh_hubs home">
+      <span class="brand-icon" aria-hidden="true">⌁</span>
+      <span>
+        <span class="logo">Ianoh_hubs</span>
+        <span class="brand-sub">Thrift shoes · second lives</span>
+      </span>
+    </a>
+
+    <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+      <a class="nav-btn" id="navShop" href="/">Shop</a>
+      <a class="nav-btn" id="navOrders" href="/#orders" hidden>My orders</a>
+      <a class="nav-btn" id="navAdmin" href="/#admin" hidden>Admin</a>
+      <a class="nav-btn" id="navPolicy" href="/#policies">Our policies</a>
+      <a class="nav-btn active" id="navAbout" href="/about.html" aria-current="page">About us</a>
+      <a class="nav-btn" id="navContact" href="/contact.html">Contact</a>
+    </nav>
+
+    <div class="nav-actions">
+      <span id="who" class="who"></span>
+      <button class="btn bronze small" id="navAuth" type="button">Log in</button>
+      <button class="icon-btn" id="theme" type="button" aria-label="Toggle light and dark theme" title="Toggle light and dark theme">◐</button>
+      <button class="icon-btn menu-toggle" id="menuToggle" type="button" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+    </div>
+  </div>
+</header>
+
+<main class="about-page">
+
+  <!-- HERO -->
+  <section class="about-hero">
+    <div class="hero-decoration"></div>
+
+    <div class="hero-content">
+      <span class="about-eyebrow">The story behind the brand</span>
+
+      <h1 class="about-heading hero-title">
+        Great style.<br>
+        <span>Second chances.</span>
+      </h1>
+
+      <p class="hero-description">
+        Welcome to Ianoh_hubs, where great footwear finds
+        new beginnings. We believe that looking good should
+        feel good, cost fairly and create less waste.
+      </p>
+
+      <div class="hero-actions">
+        <a href="/" class="hero-button">Explore our collection →</a>
+        <a href="#our-story" class="hero-secondary">Discover our story ↓</a>
+      </div>
+    </div>
+
+    <span class="hero-side-note">STYLE WITH PURPOSE · IANOH_HUBS</span>
+  </section>
+
+  <!-- OUR STORY -->
+  <section class="about-section" id="our-story">
+    <div class="about-container about-intro">
+
+      <div class="about-reveal">
+        <span class="about-eyebrow">Who we are</span>
+
+        <h2 class="about-heading intro-heading">
+          More than shoes.<br>
+          <span>A better way to shop.</span>
+        </h2>
+
+        <div class="intro-copy">
+          <p>
+            Ianoh_hubs was created around a simple idea:
+            great footwear deserves more than one story.
+          </p>
+
+          <p>
+            We bring together pre-loved shoes and people
+            looking for quality, value and individual style.
+            Every pair is an opportunity to discover
+            something special without always buying new.
+          </p>
+
+          <p>
+            Our goal is to make finding your next favourite
+            pair straightforward, enjoyable and affordable.
+          </p>
+        </div>
+      </div>
+
+      <div class="intro-visual about-reveal about-delay-2">
+        <div class="intro-card">
+          <span class="intro-card-label">The Ianoh philosophy</span>
+
+          <h3>Every pair has another story to tell.</h3>
+
+          <p>
+            Thoughtful choices. Timeless style.
+            A second life for footwear.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- BRAND STATEMENT -->
+  <section class="brand-statement">
+    <span class="about-eyebrow">What we believe</span>
+
+    <blockquote class="about-reveal">
+      Style isn't always about buying new.
+      It's about finding something
+      <span>worth wearing.</span>
+    </blockquote>
+
+    <p class="about-reveal about-delay-1">
+      We celebrate individuality, practical value and the
+      possibilities that come with giving quality items
+      another chance.
+    </p>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="about-section">
+    <div class="about-container">
+
+      <div class="process-heading about-reveal">
+        <span class="about-eyebrow">Simple shopping</span>
+
+        <h2 class="about-heading">
+          Finding your next pair is easy.
+        </h2>
+
+        <p>
+          We've made the shopping experience simple,
+          from discovering a pair to completing your order.
+        </p>
+      </div>
+
+      <div class="process-grid">
+
+        <article class="process-card about-reveal">
+          <span class="process-number">01</span>
+          <h3>Explore</h3>
+          <p>
+            Browse our available footwear collection.
+            Discover different styles, sizes, conditions
+            and prices.
+          </p>
+        </article>
+
+        <article class="process-card about-reveal about-delay-1">
+          <span class="process-number">02</span>
+          <h3>Choose your pair</h3>
+          <p>
+            Review the product details and select
+            the footwear that suits your needs and style.
+          </p>
+        </article>
+
+        <article class="process-card about-reveal about-delay-2">
+          <span class="process-number">03</span>
+          <h3>Make it yours</h3>
+          <p>
+            Follow the checkout process and complete
+            your payment using the available payment options.
+          </p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- OUR VALUES -->
+  <section class="about-section values-section">
+    <div class="about-container">
+
+      <div class="values-heading about-reveal">
+        <span class="about-eyebrow">What matters to us</span>
+
+        <h2 class="about-heading">
+          The values behind every step.
+        </h2>
+
+        <p>
+          Our approach is built around making pre-loved
+          footwear shopping a positive experience.
+        </p>
+      </div>
+
+      <div class="values-grid">
+
+        <article class="value-card about-reveal">
+          <div class="value-symbol">✦</div>
+          <h3>Quality finds</h3>
+          <p>
+            We focus on presenting footwear with clear
+            product details so customers can make informed
+            choices.
+          </p>
+        </article>
+
+        <article class="value-card about-reveal about-delay-1">
+          <div class="value-symbol">◇</div>
+          <h3>Fair value</h3>
+          <p>
+            We believe great style should be accessible
+            through practical and fair pricing.
+          </p>
+        </article>
+
+        <article class="value-card about-reveal about-delay-2">
+          <div class="value-symbol">↻</div>
+          <h3>Second life</h3>
+          <p>
+            Giving pre-loved footwear another opportunity
+            helps encourage more thoughtful consumption.
+          </p>
+        </article>
+
+        <article class="value-card about-reveal about-delay-3">
+          <div class="value-symbol">♡</div>
+          <h3>Customer care</h3>
+          <p>
+            We aim to make every interaction clear,
+            helpful and straightforward.
+          </p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT CTA -->
+  <section class="about-contact">
+    <div class="contact-panel about-reveal">
+
+      <span class="about-eyebrow">Let's connect</span>
+
+      <h2>
+        Your next favourite pair could be waiting.
+      </h2>
+
+      <p>
+        Explore our collection, discover something different
+        and give a great pair of shoes a new beginning.
+      </p>
+
+      <a href="/" class="contact-button">
+        Start exploring →
+      </a>
+
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="about-container">
+
+    <div class="footer-main">
+
+      <div class="footer-brand">
+        <a href="/" class="footer-logo">
+          Ianoh_hubs<span>.</span>
+        </a>
+
+        <p>
+          Good finds deserve another life.
+          Discover quality pre-loved footwear,
+          fair prices and a style worth sharing.
+        </p>
+
+        <a href="/" class="footer-shop-link">
+          Explore the collection →
+        </a>
+      </div>
+
+      <div class="footer-column">
+        <h3>Explore</h3>
+        <a href="/">Shop shoes</a>
+        <a href="/about.html">About us</a>
+        <a href="/#orders">My orders</a>
+      </div>
+
+      <div class="footer-column">
+        <h3>Customer care</h3>
+        <a href="/#policy">Terms &amp; conditions</a>
+        <a href="/#policy">Privacy policy</a>
+        <a href="/#policy">Refund policy</a>
+      </div>
+
+      <div class="footer-column">
+        <h3>Our promise</h3>
+        <p>Thoughtful shopping.</p>
+        <p>Fair prices.</p>
+        <p>A second life for every pair.</p>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>
+        © <span id="year"></span> Ianoh_hubs.
+        All rights reserved.
+      </p>
+
+      <a href="/">Back to shop ↑</a>
+    </div>
+
+  </div>
+</footer>
+
+<!-- SHARED SITE JAVASCRIPT -->
+<script src="/common.js"></script>
+
+<script>
+(function () {
+  "use strict";
+
+  // Footer year
+  const year = document.getElementById("year");
+
+  if (year) {
+    year.textContent = new Date().getFullYear();
+  }
+
+  // Scroll reveal
+  const revealElements = document.querySelectorAll(".about-reveal");
+
+  if (
+    !("IntersectionObserver" in window) ||
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  ) {
+    revealElements.forEach(element => {
+      element.classList.add("visible");
+    });
+    return;
+  }
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.12
+  });
+
+  revealElements.forEach(element => {
+    observer.observe(element);
+  });
+})();
+</script>
+
+</body>
+</html>

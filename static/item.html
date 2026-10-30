@@ -1,0 +1,1415 @@
+```html
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10232E">
+  <meta name="description" content="Discover product details and shop quality pre-loved footwear at Ianoh_hubs.">
+  <title>Shoe Details | Ianoh_hubs</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;600;700;800&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/style.css">
+
+  <style>
+    :root {
+      color-scheme: light;
+      --navy: #10232E;
+      --slate: #3D4D55;
+      --grey: #A79E9C;
+      --ivory: #D3C3B9;
+      --bronze: #B58863;
+      --bg: #F5F1EA;
+      --ink: #181818;
+      --muted: #667078;
+      --surface: rgba(255,255,255,.72);
+      --surface-solid: #fff;
+      --glass: rgba(255,255,255,.60);
+      --glass-strong: rgba(255,255,255,.84);
+      --glass-border: rgba(16,35,46,.12);
+      --line: rgba(16,35,46,.13);
+      --shadow: 0 18px 50px rgba(16,35,46,.12);
+      --shadow-hover: 0 24px 60px rgba(16,35,46,.18);
+      --about-navy: #10232E;
+      --about-cream: #F5F1EA;
+    }
+
+    :root[data-theme="dark"] {
+      color-scheme: dark;
+      --bg: #101B21;
+      --ink: #F1E8E1;
+      --muted: #B5AAA3;
+      --surface: rgba(31,48,57,.80);
+      --surface-solid: #1F3039;
+      --glass: rgba(31,48,57,.68);
+      --glass-strong: rgba(31,48,57,.91);
+      --glass-border: rgba(211,195,185,.19);
+      --line: rgba(211,195,185,.16);
+      --shadow: 0 18px 50px rgba(0,0,0,.27);
+      --shadow-hover: 0 24px 60px rgba(0,0,0,.38);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      min-height: 100%;
+      scroll-behavior: smooth;
+      background: var(--bg);
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(ellipse at 8% 14%, rgba(181,136,99,.15), transparent 35rem),
+        radial-gradient(ellipse at 95% 55%, rgba(61,77,85,.13), transparent 38rem),
+        var(--bg);
+      font-family: "DM Sans", sans-serif;
+      transition: background .3s ease, color .3s ease;
+    }
+
+    button, input, select {
+      font: inherit;
+    }
+
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* =================================
+       NAVIGATION
+    ================================= */
+
+    .site-header {
+      position: sticky;
+      top: 10px;
+      z-index: 1000;
+      width: min(1390px, calc(100% - 40px));
+      margin: 10px auto 0;
+      border: 1px solid rgba(211,195,185,.25);
+      border-radius: 21px;
+      background: rgba(16,35,46,.94);
+      box-shadow: 0 15px 45px rgba(16,35,46,.22);
+      color: #D3C3B9;
+      backdrop-filter: blur(24px) saturate(150%);
+      -webkit-backdrop-filter: blur(24px) saturate(150%);
+    }
+
+    .site-header,
+    .site-header * {
+      box-sizing: border-box;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      min-height: 82px;
+      padding: 12px 20px;
+    }
+
+    .brandmark {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: max-content;
+      margin-right: auto;
+      color: #D3C3B9;
+      text-decoration: none;
+    }
+
+    .brand-icon {
+      display: grid;
+      place-items: center;
+      width: 48px;
+      height: 48px;
+      flex-shrink: 0;
+      border-radius: 16px;
+      background: #D3C3B9;
+      color: #10232E;
+      font-size: 23px;
+    }
+
+    .brand-copy {
+      display: block;
+    }
+
+    .logo {
+      display: block;
+      color: #D3C3B9;
+      font-family: "Bricolage Grotesque", sans-serif;
+      font-size: 21px;
+      font-weight: 800;
+      letter-spacing: -.7px;
+      line-height: 1;
+    }
+
+    .brand-sub {
+      display: block;
+      margin-top: 6px;
+      color: #D3C3B9;
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      opacity: .72;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+
+    .nav-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 11px 13px;
+      border: 1px solid transparent;
+      border-radius: 11px;
+      background: transparent;
+      color: #D3C3B9;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: .22s ease;
+    }
+
+    .nav-btn:hover,
+    .nav-btn.active {
+      background: #B58863;
+      color: #181818;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .who {
+      max-width: 150px;
+      overflow: hidden;
+      color: #D3C3B9;
+      font-size: 12px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .site-header .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 10px 16px;
+      border: 0;
+      border-radius: 12px;
+      font-weight: 800;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .site-header .btn.bronze {
+      background: #B58863;
+      color: #181818;
+    }
+
+    .site-header .btn.small {
+      min-height: 40px;
+      padding: 9px 15px;
+    }
+
+    .icon-btn {
+      display: inline-grid;
+      place-items: center;
+      width: 43px;
+      height: 43px;
+      border: 1px solid rgba(211,195,185,.28);
+      border-radius: 13px;
+      background: rgba(255,255,255,.07);
+      color: #D3C3B9;
+      font-size: 19px;
+      cursor: pointer;
+      transition: .2s ease;
+    }
+
+    .icon-btn:hover {
+      background: rgba(255,255,255,.16);
+      transform: translateY(-2px);
+    }
+
+    .menu-toggle {
+      display: none;
+    }
+
+    .site-header [hidden] {
+      display: none !important;
+    }
+
+    /* =================================
+       PAGE LAYOUT
+    ================================= */
+
+    .shoe-page {
+      width: min(1220px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 30px 0 75px;
+    }
+
+    .shoe-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 36px;
+    }
+
+    .back-to-shop {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      padding: 9px 19px 9px 9px;
+      border: 1px solid var(--glass-border);
+      border-radius: 999px;
+      background: var(--glass);
+      color: var(--ink);
+      box-shadow: var(--shadow);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 800;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      transition: .25s ease;
+    }
+
+    .back-icon {
+      display: grid;
+      place-items: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--bronze);
+      color: #181818;
+      font-size: 21px;
+      transition: transform .25s ease;
+    }
+
+    .back-to-shop:hover {
+      transform: translateY(-3px);
+      border-color: var(--bronze);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .back-to-shop:hover .back-icon {
+      transform: translateX(-4px);
+    }
+
+    .shoe-breadcrumb {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 9px;
+      padding: 12px 17px;
+      border: 1px solid var(--glass-border);
+      border-radius: 15px;
+      background: var(--glass);
+      box-shadow: var(--shadow);
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.1px;
+      text-transform: uppercase;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    .crumb-brand {
+      color: var(--bronze);
+    }
+
+    .crumb-divider {
+      color: var(--bronze);
+      font-size: 17px;
+    }
+
+    .crumb-current {
+      color: var(--ink);
+    }
+
+    /* =================================
+       PRODUCT LAYOUT
+    ================================= */
+
+    .shoe-layout {
+      display: grid;
+      grid-template-columns: minmax(0,1.12fr) minmax(0,.88fr);
+      align-items: stretch;
+      gap: 30px;
+    }
+
+    .shoe-gallery {
+      position: relative;
+      display: grid;
+      place-items: center;
+      min-height: 520px;
+      padding: 20px;
+      overflow: hidden;
+      border: 1px solid var(--glass-border);
+      border-radius: 30px;
+      background: var(--glass);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    .shoe-gallery::before {
+      position: absolute;
+      top: -100px;
+      right: -90px;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      background: rgba(181,136,99,.10);
+      content: "";
+      pointer-events: none;
+    }
+
+    .shoe-image {
+      position: relative;
+      z-index: 1;
+      display: block;
+      width: 100%;
+      height: 100%;
+      max-height: 630px;
+      object-fit: contain;
+      border-radius: 19px;
+    }
+
+    .shoe-placeholder {
+      display: grid;
+      place-items: center;
+      width: 100%;
+      min-height: 380px;
+      color: var(--muted);
+    }
+
+    .shoe-placeholder svg {
+      width: min(70%,390px);
+      height: auto;
+    }
+
+    .shoe-information {
+      display: flex;
+      flex-direction: column;
+      padding: 36px;
+      border: 1px solid var(--glass-border);
+      border-radius: 30px;
+      background: var(--glass-strong);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+    }
+
+    .shoe-category {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      width: fit-content;
+      margin-bottom: 18px;
+      color: var(--bronze);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .shoe-category::before {
+      width: 25px;
+      height: 2px;
+      background: var(--bronze);
+      content: "";
+    }
+
+    .shoe-title {
+      margin: 0 0 17px;
+      color: var(--ink);
+      font-family: "Bricolage Grotesque", sans-serif;
+      font-size: clamp(34px,4vw,49px);
+      font-weight: 800;
+      line-height: 1.08;
+      overflow-wrap: anywhere;
+    }
+
+    .shoe-price {
+      margin: 0 0 15px;
+      color: var(--bronze);
+      font-family: "Bricolage Grotesque", sans-serif;
+      font-size: clamp(30px,3.5vw,41px);
+      font-weight: 800;
+    }
+
+    .old-price {
+      margin-left: 10px;
+      color: var(--muted);
+      font-family: "DM Sans", sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      text-decoration: line-through;
+    }
+
+    .availability {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 31px;
+      color: var(--ink);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .availability-dot {
+      width: 10px;
+      height: 10px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      background: #4A9C72;
+      box-shadow: 0 0 0 4px rgba(74,156,114,.12);
+    }
+
+    .availability.sold .availability-dot {
+      background: #C65D57;
+      box-shadow: 0 0 0 4px rgba(198,93,87,.12);
+    }
+
+    .details-heading {
+      margin: 0 0 19px;
+      color: var(--ink);
+      font-family: "Bricolage Grotesque", sans-serif;
+      font-size: 21px;
+      font-weight: 800;
+    }
+
+    .shoe-specs {
+      display: grid;
+      grid-template-columns: repeat(2,minmax(0,1fr));
+      gap: 13px;
+      margin-bottom: 30px;
+    }
+
+    .spec-card {
+      min-width: 0;
+      padding: 17px;
+      border: 1px solid var(--line);
+      border-radius: 17px;
+      background: var(--surface);
+      transition: .2s ease;
+    }
+
+    .spec-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--bronze);
+    }
+
+    .spec-label {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .spec-value {
+      display: block;
+      color: var(--ink);
+      font-size: 16px;
+      font-weight: 800;
+      overflow-wrap: anywhere;
+    }
+
+    /* =================================
+       PAYMENT BUTTON
+    ================================= */
+
+    .purchase-actions {
+      display: grid;
+      gap: 12px;
+      margin-top: auto;
+    }
+
+    .pay-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: 57px;
+      padding: 15px 20px;
+      border: 1px solid transparent;
+      border-radius: 15px;
+      background: var(--bronze);
+      color: #181818;
+      box-shadow: 0 10px 25px rgba(181,136,99,.22);
+      font-size: 15px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: .25s ease;
+    }
+
+    .pay-button:hover:not(:disabled) {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 32px rgba(181,136,99,.33);
+    }
+
+    .pay-button:active:not(:disabled) {
+      transform: translateY(0);
+    }
+
+    .pay-button:disabled {
+      opacity: .55;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    .checkout-note {
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    #checkoutError {
+      margin: 0;
+      padding: 12px 14px;
+      border: 1px solid rgba(198,93,87,.3);
+      border-radius: 12px;
+      background: rgba(198,93,87,.09);
+      color: #D66D67;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    /* =================================
+       PAGE STATES
+    ================================= */
+
+    .page-state {
+      width: min(650px,100%);
+      margin: 65px auto;
+      padding: 45px 30px;
+      border: 1px solid var(--glass-border);
+      border-radius: 28px;
+      background: var(--glass-strong);
+      box-shadow: var(--shadow);
+      text-align: center;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    .page-state h2 {
+      margin: 0 0 12px;
+      color: var(--ink);
+      font-family: "Bricolage Grotesque", sans-serif;
+      font-size: 28px;
+    }
+
+    .page-state p {
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .state-icon {
+      display: grid;
+      place-items: center;
+      width: 58px;
+      height: 58px;
+      margin: 0 auto 20px;
+      border-radius: 20px;
+      background: rgba(181,136,99,.17);
+      color: var(--bronze);
+      font-size: 26px;
+      font-weight: 800;
+    }
+
+    .state-back {
+      display: inline-flex;
+      margin-top: 15px;
+      padding: 13px 22px;
+      border-radius: 13px;
+      background: var(--bronze);
+      color: #181818;
+      font-weight: 800;
+      text-decoration: none;
+      transition: transform .2s ease;
+    }
+
+    .state-back:hover {
+      transform: translateY(-2px);
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    /* =================================
+       ABOUT PAGE FOOTER
+       Keep this footer in sync with about.html
+    ================================= */
+
+    .site-footer {
+      position: relative;
+      overflow: hidden;
+      padding: 70px 0 22px;
+      background: var(--about-navy, #10232E);
+      color: var(--about-cream, #F5F1EA);
+    }
+
+    .site-footer::before {
+      content: "";
+      position: absolute;
+      width: 350px;
+      height: 350px;
+      right: -150px;
+      top: -200px;
+      border: 1px solid rgba(181,138,90,.22);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .about-container {
+      width: min(1160px, calc(100% - 48px));
+      margin-inline: auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-main {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1.1fr;
+      gap: 35px;
+      padding-bottom: 45px;
+    }
+
+    .footer-logo {
+      display: inline-block;
+      color: var(--about-cream, #F5F1EA);
+      font-family: "Bricolage Grotesque", sans-serif;
+      font-size: 1.8rem;
+      font-weight: 800;
+      letter-spacing: -.05em;
+      text-decoration: none;
+    }
+
+    .footer-logo span {
+      color: #D5AE7D;
+    }
+
+    .footer-brand p {
+      max-width: 300px;
+      margin: 16px 0 20px;
+      color: rgba(245,241,234,.65);
+      font-size: .9rem;
+      line-height: 1.9;
+    }
+
+    .footer-shop-link {
+      color: #D5AE7D;
+      font-size: .88rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: color .25s, transform .25s;
+    }
+
+    .footer-column h3 {
+      margin: 5px 0 20px;
+      color: #D5AE7D;
+      font-family: "Bricolage Grotesque", sans-serif;
+      font-size: 1rem;
+    }
+
+    .footer-column a,
+    .footer-column p {
+      display: block;
+      margin: 0 0 13px;
+      color: rgba(245,241,234,.68);
+      font-size: .86rem;
+      line-height: 1.7;
+      text-decoration: none;
+    }
+
+    .footer-column a {
+      transition: color .25s, transform .25s;
+    }
+
+    .footer-column a:hover,
+    .footer-shop-link:hover {
+      color: #D5AE7D;
+      transform: translateX(3px);
+    }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 15px;
+      padding-top: 22px;
+      border-top: 1px solid rgba(245,241,234,.13);
+    }
+
+    .footer-bottom p,
+    .footer-bottom a {
+      margin: 0;
+      color: rgba(245,241,234,.55);
+      font-size: .79rem;
+      text-decoration: none;
+    }
+
+    .footer-bottom a:hover {
+      color: #D5AE7D;
+    }
+
+    /* =================================
+       RESPONSIVE
+    ================================= */
+
+    @media (max-width: 950px) {
+      .nav-inner {
+        flex-wrap: wrap;
+      }
+
+      .menu-toggle {
+        display: inline-grid;
+      }
+
+      .nav-links {
+        display: none;
+        order: 5;
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        padding-top: 12px;
+        border-top: 1px solid rgba(211,195,185,.17);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-btn {
+        justify-content: flex-start;
+        width: 100%;
+        padding: 12px 15px;
+      }
+
+      .who {
+        display: none;
+      }
+
+      .shoe-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .shoe-gallery {
+        min-height: 440px;
+      }
+
+      .shoe-image {
+        max-height: 540px;
+      }
+
+      .footer-main {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .site-header {
+        top: 7px;
+        width: calc(100% - 16px);
+        margin-top: 7px;
+        border-radius: 17px;
+      }
+
+      .nav-inner {
+        min-height: 65px;
+        gap: 8px;
+        padding: 9px;
+      }
+
+      .brand-icon {
+        width: 39px;
+        height: 39px;
+        border-radius: 13px;
+      }
+
+      .logo {
+        font-size: 18px;
+      }
+
+      .brand-sub {
+        font-size: 8px;
+        letter-spacing: 1px;
+      }
+
+      .nav-actions {
+        gap: 5px;
+      }
+
+      .icon-btn {
+        width: 37px;
+        height: 37px;
+      }
+
+      .site-header .btn.small {
+        min-height: 37px;
+        padding: 8px 10px;
+        font-size: 12px;
+      }
+
+      .shoe-page {
+        width: calc(100% - 26px);
+        padding-top: 22px;
+      }
+
+      .shoe-topbar {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 14px;
+        margin-bottom: 24px;
+      }
+
+      .shoe-breadcrumb {
+        font-size: 9px;
+        letter-spacing: .7px;
+      }
+
+      .shoe-layout {
+        gap: 17px;
+      }
+
+      .shoe-gallery {
+        min-height: 300px;
+        padding: 12px;
+        border-radius: 23px;
+      }
+
+      .shoe-image {
+        max-height: 390px;
+      }
+
+      .shoe-information {
+        padding: 24px;
+        border-radius: 23px;
+      }
+
+      .shoe-title {
+        font-size: 35px;
+      }
+
+      .shoe-specs {
+        gap: 10px;
+      }
+
+      .spec-card {
+        padding: 14px;
+      }
+
+      .spec-value {
+        font-size: 14px;
+      }
+
+      .about-container {
+        width: min(100% - 30px, 1160px);
+      }
+
+      .footer-main {
+        grid-template-columns: 1fr 1fr;
+        gap: 28px 17px;
+      }
+
+      .footer-brand {
+        grid-column: 1 / -1;
+      }
+
+      .footer-bottom {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .brand-sub {
+        letter-spacing: .5px;
+      }
+
+      .shoe-information {
+        padding: 19px;
+      }
+
+      .shoe-specs {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .nav-actions {
+        gap: 4px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- SITE NAVIGATION -->
+  <header class="site-header">
+    <div class="nav-inner">
+
+      <a class="brandmark" href="/" id="brandHome" aria-label="Ianoh_hubs home">
+        <span class="brand-icon" aria-hidden="true">⌁</span>
+        <span class="brand-copy">
+          <span class="logo">Ianoh_hubs</span>
+          <span class="brand-sub">Thrift shoes · second lives</span>
+        </span>
+      </a>
+
+      <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+        <a class="nav-btn" id="navShop" href="/">Shop</a>
+        <a class="nav-btn" id="navOrders" href="/#orders" hidden>My orders</a>
+        <a class="nav-btn" id="navAdmin" href="/#admin" hidden>Admin</a>
+        <a class="nav-btn" id="navPolicy" href="/#policies">Our policies</a>
+        <a class="nav-btn" id="navAbout" href="/about.html">About us</a>
+        <a class="nav-btn" id="navContact" href="/contact.html">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <span id="who" class="who"></span>
+
+        <a class="btn bronze small" id="navAuth" href="/#login">
+          Log in
+        </a>
+
+        <button class="icon-btn" id="theme" type="button"
+          aria-label="Toggle light and dark theme"
+          title="Toggle light and dark theme">◐</button>
+
+        <button class="icon-btn menu-toggle" id="menuToggle"
+          type="button" aria-label="Toggle navigation"
+          aria-expanded="false">☰</button>
+      </div>
+
+    </div>
+  </header>
+
+  <main class="shoe-page">
+
+    <!-- BACK BUTTON AND BREADCRUMB -->
+    <div class="shoe-topbar">
+
+      <a href="/" class="back-to-shop">
+        <span class="back-icon" aria-hidden="true">←</span>
+        <span>Back to shop</span>
+      </a>
+
+      <div class="shoe-breadcrumb" aria-label="Breadcrumb">
+        <span class="crumb-brand">IANOH_HUBS</span>
+        <span class="crumb-divider" aria-hidden="true">/</span>
+        <span class="crumb-current">THE COLLECTION</span>
+        <span class="crumb-divider" aria-hidden="true">/</span>
+        <span class="crumb-current">SHOE DETAILS</span>
+      </div>
+
+    </div>
+
+    <!-- LOADING -->
+    <section id="loadingState" class="page-state" aria-live="polite">
+      <div class="state-icon">⌁</div>
+      <h2>Finding your pair...</h2>
+      <p>Please wait while we load the shoe details.</p>
+    </section>
+
+    <!-- ERROR -->
+    <section id="errorState" class="page-state" hidden aria-live="polite">
+      <div class="state-icon">!</div>
+      <h2 id="errorTitle">Shoe not found</h2>
+      <p id="errorMessage">We couldn't find this shoe.</p>
+      <a href="/" class="state-back">Explore the shop</a>
+    </section>
+
+    <!-- PRODUCT -->
+    <section id="shoeContent" class="shoe-layout" hidden>
+
+      <div class="shoe-gallery">
+        <div class="shoe-placeholder" id="shoePlaceholder"></div>
+        <img class="shoe-image" id="shoeImage" alt="" hidden>
+      </div>
+
+      <article class="shoe-information">
+
+        <span class="shoe-category" id="shoeCategory">SHOES</span>
+
+        <h1 class="shoe-title" id="shoeName">Shoe name</h1>
+
+        <div class="shoe-price" id="shoePrice">KSh 0</div>
+
+        <div class="availability" id="availability">
+          <span class="availability-dot" aria-hidden="true"></span>
+          <span id="availabilityText">Available for purchase</span>
+        </div>
+
+        <h2 class="details-heading">Product details</h2>
+
+        <div class="shoe-specs">
+
+          <div class="spec-card">
+            <span class="spec-label">Size (EU)</span>
+            <strong class="spec-value" id="shoeSize">—</strong>
+          </div>
+
+          <div class="spec-card">
+            <span class="spec-label">Condition</span>
+            <strong class="spec-value" id="shoeCondition">—</strong>
+          </div>
+
+          <div class="spec-card">
+            <span class="spec-label">Category</span>
+            <strong class="spec-value" id="shoeType">—</strong>
+          </div>
+
+          <div class="spec-card">
+            <span class="spec-label">Availability</span>
+            <strong class="spec-value" id="shoeStock">—</strong>
+          </div>
+
+        </div>
+
+        <div class="purchase-actions">
+
+          <button type="button" class="pay-button" id="buyBtn" disabled>
+            Loading checkout...
+          </button>
+
+          <p class="checkout-note">
+            Secure checkout through M-Pesa. Never share your M-Pesa PIN.
+          </p>
+
+          <p id="checkoutError" role="alert" hidden></p>
+
+        </div>
+
+      </article>
+
+    </section>
+
+  </main>
+
+  <!-- =========================================
+       SHARED ABOUT PAGE FOOTER
+  ========================================== -->
+  <footer class="site-footer">
+    <div class="about-container">
+
+      <div class="footer-main">
+
+        <div class="footer-brand">
+          <a href="/" class="footer-logo">
+            Ianoh_hubs<span>.</span>
+          </a>
+
+          <p>
+            Good finds deserve another life.
+            Discover quality pre-loved footwear,
+            fair prices and a style worth sharing.
+          </p>
+
+          <a href="/" class="footer-shop-link">
+            Explore the collection →
+          </a>
+        </div>
+
+        <div class="footer-column">
+          <h3>Explore</h3>
+          <a href="/">Shop shoes</a>
+          <a href="/about.html">About us</a>
+          <a href="/#orders">My orders</a>
+        </div>
+
+        <div class="footer-column">
+          <h3>Customer care</h3>
+          <a href="/#policy">Terms &amp; conditions</a>
+          <a href="/#policy">Privacy policy</a>
+          <a href="/#policy">Refund policy</a>
+        </div>
+
+        <div class="footer-column">
+          <h3>Our promise</h3>
+          <p>Thoughtful shopping.</p>
+          <p>Fair prices.</p>
+          <p>A second life for every pair.</p>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p>
+          © <span id="year"></span> Ianoh_hubs.
+          All rights reserved.
+        </p>
+
+        <a href="/">Back to shop ↑</a>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- SHARED SITE LOGIC -->
+  <script src="/common.js"></script>
+
+  <script>
+    (function () {
+      "use strict";
+
+      const $ = (selector) => document.querySelector(selector);
+
+      const footerYear = $("#year");
+      if (footerYear) {
+        footerYear.textContent = new Date().getFullYear();
+      }
+
+      let shoe = null;
+      let loading = false;
+
+      const shoeId = new URLSearchParams(window.location.search).get("id");
+
+      function showError(title, message) {
+        $("#loadingState").hidden = true;
+        $("#shoeContent").hidden = true;
+        $("#errorState").hidden = false;
+        $("#errorTitle").textContent = title;
+        $("#errorMessage").textContent = message;
+      }
+
+      function showPlaceholder() {
+        $("#shoeImage").hidden = true;
+        $("#shoeImage").removeAttribute("src");
+        $("#shoePlaceholder").hidden = false;
+
+        if (window.IH && typeof IH.shoeSvg === "function") {
+          $("#shoePlaceholder").innerHTML = IH.shoeSvg();
+        } else {
+          $("#shoePlaceholder").textContent = "Shoe image unavailable";
+        }
+      }
+
+      function isSold(item) {
+        return item.sold === true ||
+          item.sold === 1 ||
+          item.sold === "true";
+      }
+
+      function renderShoe(item) {
+        shoe = { ...item };
+
+        const sold = isSold(item);
+        shoe.sold = sold;
+
+        const originalPrice = Number(item.price || 0);
+        const finalPrice = Number(item.final ?? item.price ?? 0);
+
+        shoe.final = finalPrice;
+
+        $("#shoeCategory").textContent = item.type || "Shoes";
+        $("#shoeName").textContent = item.name || "Pre-loved shoes";
+
+        const priceElement = $("#shoePrice");
+        priceElement.textContent =
+          window.IH && typeof IH.ksh === "function"
+            ? IH.ksh(finalPrice)
+            : "KSh " + finalPrice.toLocaleString("en-KE");
+
+        // Only display the old price when the current price is lower.
+        if (originalPrice > finalPrice && finalPrice > 0) {
+          const oldPrice = document.createElement("span");
+          oldPrice.className = "old-price";
+          oldPrice.textContent =
+            window.IH && typeof IH.ksh === "function"
+              ? IH.ksh(originalPrice)
+              : "KSh " + originalPrice.toLocaleString("en-KE");
+
+          priceElement.appendChild(oldPrice);
+        }
+
+        $("#shoeSize").textContent = item.size || "Not specified";
+        $("#shoeCondition").textContent = item.cond || "Not specified";
+        $("#shoeType").textContent = item.type || "Shoes";
+        $("#shoeStock").textContent = sold ? "Sold out" : "In stock";
+
+        $("#availability").classList.toggle("sold", sold);
+        $("#availabilityText").textContent = sold
+          ? "This pair has been sold"
+          : "Available for purchase";
+
+        const image = $("#shoeImage");
+
+        if (item.img) {
+          image.onload = () => {
+            image.hidden = false;
+            $("#shoePlaceholder").hidden = true;
+          };
+
+          image.onerror = showPlaceholder;
+          image.alt = (item.name || "Shoe") + " product photograph";
+          image.src = item.img;
+        } else {
+          showPlaceholder();
+        }
+
+        const buyButton = $("#buyBtn");
+
+        buyButton.disabled = sold;
+        buyButton.textContent = sold
+          ? "Sold out"
+          : "Pay with M-Pesa →";
+
+        $("#checkoutError").hidden = true;
+
+        $("#loadingState").hidden = true;
+        $("#errorState").hidden = true;
+        $("#shoeContent").hidden = false;
+      }
+
+      async function load() {
+        if (loading) return;
+        loading = true;
+
+        if (!shoeId) {
+          showError(
+            "No shoe selected",
+            "Please return to the shop and select a shoe to view its details."
+          );
+          loading = false;
+          return;
+        }
+
+        try {
+          const response = await IH.api("/api/shoes");
+
+          const shoes = Array.isArray(response)
+            ? response
+            : Array.isArray(response.shoes)
+              ? response.shoes
+              : [];
+
+          const found = shoes.find((item) =>
+            String(item.id) === String(shoeId)
+          );
+
+          if (!found) {
+            showError(
+              "Shoe not found",
+              "This shoe may have been removed or is no longer available."
+            );
+            return;
+          }
+
+          renderShoe(found);
+
+        } catch (error) {
+          console.error("Unable to load shoe:", error);
+
+          showError(
+            "Unable to load shoe",
+            error.message || "Please refresh the page and try again."
+          );
+        } finally {
+          loading = false;
+        }
+      }
+
+      /*
+       * SHARED M-PESA CHECKOUT
+       * Uses the same checkout function as the Shop page.
+       * Payment processing remains inside common.js.
+       */
+      $("#buyBtn").addEventListener("click", function () {
+        const errorBox = $("#checkoutError");
+
+        errorBox.hidden = true;
+        errorBox.textContent = "";
+
+        if (!shoe) {
+          errorBox.textContent =
+            "Shoe details are not ready yet. Please refresh the page.";
+          errorBox.hidden = false;
+          return;
+        }
+
+        if (shoe.sold) {
+          errorBox.textContent = "This shoe has already been sold.";
+          errorBox.hidden = false;
+          return;
+        }
+
+        if (
+          !window.IH ||
+          typeof IH.openPay !== "function"
+        ) {
+          errorBox.textContent =
+            "The checkout system could not load. Please refresh the page and try again.";
+          errorBox.hidden = false;
+          console.error("IH.openPay is unavailable. Check /common.js.");
+          return;
+        }
+
+        try {
+          IH.openPay(shoe, load);
+        } catch (error) {
+          console.error("Unable to open M-Pesa checkout:", error);
+
+          errorBox.textContent =
+            "Unable to open checkout: " +
+            (error.message || "Please try again.");
+
+          errorBox.hidden = false;
+        }
+      });
+
+      /*
+       * Wait for shared configuration and account information.
+       * Then load the selected shoe.
+       */
+      if (window.IH && IH.ready) {
+        IH.ready
+          .then(load)
+          .catch((error) => {
+            console.error("Site initialization failed:", error);
+
+            showError(
+              "Unable to initialize the shop",
+              "Please refresh the page and try again."
+            );
+          });
+      } else {
+        showError(
+          "Checkout system unavailable",
+          "The shared site script could not be loaded. Check that /common.js is available."
+        );
+      }
+
+    })();
+  </script>
+
+</body>
+</html>
+```
