@@ -148,16 +148,6 @@
             margin-inline: auto;
         }
 
-        /* Shared glass surface behaviour */
-
-        .contact-glass {
-            border: 1px solid var(--glass-border);
-            background: var(--glass);
-            box-shadow: var(--shadow);
-            backdrop-filter: blur(20px) saturate(155%);
-            -webkit-backdrop-filter: blur(20px) saturate(155%);
-        }
-
         /* =========================================
            NAVIGATION
         ========================================= */
@@ -360,7 +350,7 @@
         }
 
         /* =========================================
-           CONTACT HERO - GLASSMORPHISM
+           CONTACT HERO
         ========================================= */
 
         .contact-hero {
@@ -515,7 +505,7 @@
         }
 
         /* =========================================
-           CONTACT INFORMATION - DARK GLASS
+           CONTACT INFORMATION GLASS PANEL
         ========================================= */
 
         .contact-info {
@@ -645,7 +635,7 @@
         }
 
         /* =========================================
-           CONTACT FORM - LIGHT/DARK GLASS
+           CONTACT FORM GLASS PANEL
         ========================================= */
 
         .contact-form-panel {
@@ -755,19 +745,15 @@
                 background .2s ease;
         }
 
-        .contact-field select {
-            cursor: pointer;
+        .contact-field input::placeholder,
+        .contact-field textarea::placeholder {
+            color: var(--muted);
+            opacity: .8;
         }
 
         .contact-field textarea {
             min-height: 110px;
             resize: vertical;
-        }
-
-        .contact-field input::placeholder,
-        .contact-field textarea::placeholder {
-            color: var(--muted);
-            opacity: .8;
         }
 
         .contact-field input:focus,
@@ -779,6 +765,63 @@
                 0 0 0 4px rgba(181, 136, 99, .15),
                 inset 0 1px 2px rgba(16, 35, 46, .035);
         }
+
+        /* =========================================
+           SELECT TOPIC DROPDOWN
+           MATCHES LIGHT AND DARK THEMES
+        ========================================= */
+
+        .contact-field select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+
+            cursor: pointer;
+            color: var(--ink);
+
+            background-color: var(--glass-strong);
+
+            background-image:
+                linear-gradient(45deg, transparent 50%, var(--bronze) 50%),
+                linear-gradient(135deg, var(--bronze) 50%, transparent 50%);
+
+            background-position:
+                calc(100% - 18px) 19px,
+                calc(100% - 12px) 19px;
+
+            background-size: 6px 6px, 6px 6px;
+            background-repeat: no-repeat;
+
+            color-scheme: light;
+        }
+
+        .contact-field select option {
+            background-color: #F6F1EE;
+            color: #181818;
+        }
+
+        .contact-field select:invalid {
+            color: var(--muted);
+        }
+
+        :root[data-theme="dark"] .contact-field select {
+            color-scheme: dark;
+            background-color: #10232E;
+            color: #D3C3B9;
+        }
+
+        :root[data-theme="dark"] .contact-field select option {
+            background-color: #10232E;
+            color: #D3C3B9;
+        }
+
+        :root[data-theme="dark"] .contact-field select:invalid {
+            color: #A79E9C;
+        }
+
+        /* =========================================
+           SUBMIT BUTTON
+        ========================================= */
 
         .contact-submit {
             position: relative;
@@ -794,14 +837,9 @@
             border: 1px solid rgba(255, 255, 255, .27);
             border-radius: 12px;
 
-            background:
-                linear-gradient(
-                    135deg,
-                    #C49A76,
-                    #B58863
-                );
-
+            background: linear-gradient(135deg, #C49A76, #B58863);
             color: var(--black);
+
             font-size: .87rem;
             font-weight: 700;
 
@@ -835,7 +873,7 @@
         }
 
         /* =========================================
-           FOOTER - DARK GLASSMORPHISM
+           FOOTER GLASSMORPHISM
         ========================================= */
 
         .site-footer {
@@ -1398,7 +1436,7 @@
 
                                 <select id="contactTopic" name="topic" required>
 
-                                    <option value="">
+                                    <option value="" selected disabled>
                                         Select a topic
                                     </option>
 
