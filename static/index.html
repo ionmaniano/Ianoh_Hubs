@@ -1039,6 +1039,108 @@ textarea {
     box-sizing: border-box;
   }
 }
+/* =========================================================
+   FOOTER — MATCHED CONTENT, EXISTING SITE THEME
+========================================================= */
+
+.footer-main {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1.2fr 1fr;
+  gap: 35px;
+  padding: 35px 0;
+}
+
+.footer-brand {
+  min-width: 0;
+}
+
+.footer-brand .brandmark {
+  display: inline-flex;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.footer-description {
+  max-width: 290px;
+  margin: 18px 0 0;
+  color: var(--muted);
+  font-size: .84rem;
+  line-height: 1.8;
+}
+
+.footer-column {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 11px;
+}
+
+.footer-column h3 {
+  margin: 0 0 7px;
+  color: var(--ink);
+  font-size: .95rem;
+}
+
+.footer-column a,
+.footer-column button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--muted);
+  font: inherit;
+  font-size: .82rem;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color .2s ease;
+}
+
+.footer-column a:hover,
+.footer-column button:hover {
+  color: var(--bronze);
+}
+
+.footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 19px 0 5px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: .76rem;
+}
+
+@media (max-width: 760px) {
+  .footer-main {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px 18px;
+  }
+
+  .footer-brand {
+    grid-column: 1 / -1;
+  }
+
+  .footer-description {
+    max-width: 100%;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 430px) {
+  .footer-main {
+    gap: 25px 13px;
+  }
+
+  .footer-column a,
+  .footer-column button {
+    overflow-wrap: anywhere;
+  }
+}
   </style>
 </head>
 
@@ -1311,17 +1413,86 @@ textarea {
   <!-- =======================================================
        18. FOOTER AND FLOATING SHORTCUTS
   ======================================================== -->
+    <!-- =======================================================
+       18. FOOTER AND FLOATING SHORTCUTS
+  ======================================================== -->
   <footer class="site-footer">
-    <div class="wrap footer-inner">
-      <spa class="brandmark" href="#" id="footerHome" style="color:var(--ink)">
-        <span class="brand-icon" aria-hidden="true">⌁</span><span><span class="logo">Ianoh_hubs</span>
-        <span class="brand-sub" bol>Second lives, better finds</span></span>
-        <span class="brand-sub">Reach out, +254 710 706 735</span>
-       <span class="brand-sub">Email: odiwuorian@gmail.com</span>
-      <div class="footer-links"><button id="footerPolicy">Terms, delivery, refunds & privacy</button><a href="#collection" id="footerShop">Shop shoes</a></div>
-      <span>© <span id="year"></span> Ianoh_hubs</span>
+    <div class="wrap">
+
+      <div class="footer-main">
+
+        <!-- Brand -->
+        <div class="footer-brand">
+          <a class="brandmark" href="#" id="footerHome"
+             aria-label="Ianoh_hubs home">
+            <span class="brand-icon" aria-hidden="true">⌁</span>
+            <span>
+              <span class="logo">Ianoh_hubs</span>
+              <span class="brand-sub">Thrift shoes · second lives</span>
+            </span>
+          </a>
+
+          <p class="footer-description">
+            Good shoes deserve second lives. Discover carefully selected
+            pre-loved footwear at fair prices.
+          </p>
+        </div>
+
+        <!-- Explore -->
+        <div class="footer-column">
+          <h3>Explore</h3>
+          <a href="#collection" id="footerShop">Shop shoes</a>
+          <a href="/about.html">About us</a>
+          <a href="#collection">Our collection</a>
+        </div>
+
+        <!-- Customer care -->
+        <div class="footer-column">
+          <h3>Customer care</h3>
+          <a href="tel:+254710706735">+254 710 706 735</a>
+          <a href="mailto:odiwuorian@gmail.com">Email us</a>
+          <a href="https://wa.me/254710706735"
+             target="_blank" rel="noopener">WhatsApp support ↗</a>
+        </div>
+
+        <!-- Our promise -->
+        <div class="footer-column">
+          <h3>Our promise</h3>
+          <button type="button" id="footerPolicy">
+            Terms &amp; conditions
+          </button>
+          <button type="button" id="footerPolicy">
+            Delivery &amp; pickup
+          </button>
+          <button type="button" id="footerPolicy">
+            Returns &amp; refunds
+          </button>
+          <button type="button" id="footerPolicy">
+            Privacy
+          </button>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <span>
+          © <span id="year"></span> Ianoh_hubs. All rights reserved.
+        </span>
+        <span>Quality finds. Second lives.</span>
+      </div>
+
     </div>
   </footer>
+
+  <button class="floating-top" id="backTop"
+          aria-label="Scroll to top" title="Scroll to top">↑</button>
+
+  <a class="floating-chat" id="floatingWhatsApp"
+     href="#" target="_blank" rel="noopener"
+     aria-label="Chat on WhatsApp" hidden>WA</a>
+
+  <div class="toast" id="toast"
+       role="status" aria-live="polite"></div>
   <button class="floating-top" id="backTop" aria-label="Scroll to top" title="Scroll to top">↑</button>
   <a class="floating-chat" id="floatingWhatsApp" href="#" target="_blank" rel="noopener" aria-label="Chat on WhatsApp" hidden>WA</a>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>

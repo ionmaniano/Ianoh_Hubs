@@ -19,79 +19,175 @@
 
     <style>
         /* =========================================
-           SHARED SITE COLOURS AND THEME
+           IANOH_HUBS DESIGN TOKENS
         ========================================= */
 
         :root {
+            color-scheme: light;
+
             --navy: #10232E;
             --slate: #3D4D55;
             --grey: #A79E9C;
             --ivory: #D3C3B9;
             --bronze: #B58863;
             --black: #181818;
-            --on-brand: #D3C3B9;
+
+            --bg: hwb(20 97% 2%);
+            --surface: rgba(246, 241, 238, .76);
+            --surface-solid: #F6F1EE;
+            --ink: var(--black);
+            --muted: #586168;
+            --brand: var(--navy);
+            --on-brand: var(--ivory);
+            --line: rgba(61, 77, 85, .20);
+
+            --glass: rgba(246, 241, 238, .58);
+            --glass-strong: rgba(246, 241, 238, .82);
+            --glass-border: rgba(255, 255, 255, .66);
+
+            --shadow: 0 18px 50px rgba(16, 35, 46, .12);
+            --shadow-hover: 0 25px 60px rgba(16, 35, 46, .19);
+
+            --radius: 22px;
+            --radius-sm: 13px;
             --max-width: 1220px;
-
-            --contact-navy: #10232E;
-            --contact-bronze: #B58A5A;
-            --contact-cream: #F5F1EA;
-            --contact-muted: #858C90;
-
-            --ink: #181818;
-            --muted: #70777A;
-            --surface: #FFFFFF;
-            --line: rgba(61,77,85,.18);
-            --bg: #F5F1EA;
+            --ease: cubic-bezier(.2, .75, .25, 1);
         }
 
         :root[data-theme="dark"] {
             color-scheme: dark;
 
-            --contact-navy: #D3C3B9;
-            --contact-cream: #10232E;
-            --contact-muted: #A79E9C;
-
+            --bg: #181818;
+            --surface: rgba(16, 35, 46, .77);
+            --surface-solid: #10232E;
             --ink: #D3C3B9;
             --muted: #A79E9C;
-            --surface: #1B303B;
-            --line: rgba(211,195,185,.2);
-            --bg: #10232E;
-        }
+            --brand: #3D4D55;
+            --on-brand: #D3C3B9;
+            --line: rgba(211, 195, 185, .18);
 
-        body {
-            background: var(--bg);
-            color: var(--ink);
-            transition: background .25s ease, color .25s ease;
-        }
+            --glass: rgba(16, 35, 46, .58);
+            --glass-strong: rgba(16, 35, 46, .88);
+            --glass-border: rgba(211, 195, 185, .18);
 
-        .contact-page,
-        .contact-page * {
-            box-sizing: border-box;
-        }
-
-        .contact-container {
-            width: min(1160px, calc(100% - 40px));
-            margin-inline: auto;
+            --shadow: 0 18px 50px rgba(0, 0, 0, .23);
+            --shadow-hover: 0 25px 60px rgba(0, 0, 0, .34);
         }
 
         /* =========================================
-           SHARED NAVBAR
-           Same structure and behaviour as about.html
+           BASE
+        ========================================= */
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 100px;
+        }
+
+        body.contact-page {
+            min-height: 100vh;
+            margin: 0;
+            overflow-x: hidden;
+
+            background:
+                radial-gradient(
+                    ellipse at 5% 12%,
+                    rgba(181, 136, 99, .20),
+                    transparent 30rem
+                ),
+                radial-gradient(
+                    ellipse at 95% 38%,
+                    rgba(61, 77, 85, .16),
+                    transparent 34rem
+                ),
+                radial-gradient(
+                    ellipse at 50% 100%,
+                    rgba(181, 136, 99, .09),
+                    transparent 32rem
+                ),
+                var(--bg);
+
+            color: var(--ink);
+            font-family: "DM Sans", system-ui, sans-serif;
+            font-size: 15px;
+            line-height: 1.55;
+
+            transition: background .25s ease, color .25s ease;
+        }
+
+        .contact-page h1,
+        .contact-page h2,
+        .contact-page h3,
+        .contact-page h4 {
+            font-family: "Bricolage Grotesque", "DM Sans", sans-serif;
+        }
+
+        .contact-page button,
+        .contact-page input,
+        .contact-page select,
+        .contact-page textarea {
+            font: inherit;
+        }
+
+        .contact-page a {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .contact-page :focus-visible {
+            outline: 3px solid var(--bronze);
+            outline-offset: 3px;
+        }
+
+        .contact-container {
+            width: min(var(--max-width), calc(100% - 36px));
+            margin-inline: auto;
+        }
+
+        /* Shared glass surface behaviour */
+
+        .contact-glass {
+            border: 1px solid var(--glass-border);
+            background: var(--glass);
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(20px) saturate(155%);
+            -webkit-backdrop-filter: blur(20px) saturate(155%);
+        }
+
+        /* =========================================
+           NAVIGATION
         ========================================= */
 
         .site-header {
             position: sticky;
             top: 10px;
             z-index: 100;
-            width: min(var(--max-width, 1220px), calc(100% - 28px));
+
+            width: min(var(--max-width), calc(100% - 28px));
             margin: 10px auto 0;
-            color: var(--on-brand, #D3C3B9);
-            background: rgba(16,35,46,.83);
-            border: 1px solid rgba(211,195,185,.24);
+
+            color: var(--ivory);
+
+            background:
+                linear-gradient(
+                    120deg,
+                    rgba(16, 35, 46, .91),
+                    rgba(61, 77, 85, .79)
+                );
+
+            border: 1px solid rgba(211, 195, 185, .27);
             border-radius: 18px;
-            box-shadow: 0 12px 38px rgba(16,35,46,.19);
-            backdrop-filter: blur(22px) saturate(150%);
-            -webkit-backdrop-filter: blur(22px) saturate(150%);
+
+            box-shadow:
+                0 12px 38px rgba(16, 35, 46, .19),
+                inset 0 1px 0 rgba(255, 255, 255, .13);
+
+            backdrop-filter: blur(24px) saturate(160%);
+            -webkit-backdrop-filter: blur(24px) saturate(160%);
         }
 
         .nav-inner {
@@ -106,30 +202,36 @@
             display: flex;
             align-items: center;
             gap: 11px;
-            margin-right: auto;
-            text-decoration: none;
             min-width: max-content;
+            margin-right: auto;
+
             color: inherit;
+            text-decoration: none;
         }
 
         .brand-icon {
-            display: grid;
-            place-items: center;
             width: 42px;
             height: 42px;
+            display: grid;
+            place-items: center;
+
+            border: 1px solid rgba(16, 35, 46, .12);
             border-radius: 13px;
-            color: var(--navy, #10232E);
-            background: var(--ivory, #D3C3B9);
+
+            background: linear-gradient(145deg, #E2D4CB, #BFA99B);
+            color: var(--navy);
+
             font-size: 1.2rem;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, .65);
         }
 
         .site-header .logo {
+            color: inherit;
             font-family: "Bricolage Grotesque", sans-serif;
             font-size: 1.22rem;
             font-weight: 800;
             line-height: 1;
             letter-spacing: -.04em;
-            color: inherit;
         }
 
         .brand-sub {
@@ -152,23 +254,31 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
+
+            padding: 10px 13px;
+
             border: 1px solid transparent;
             border-radius: 11px;
-            padding: 10px 13px;
+
             color: inherit;
             background: transparent;
-            font-family: inherit;
+
             font-size: .87rem;
             font-weight: 600;
             text-decoration: none;
             cursor: pointer;
-            transition: background .25s ease, color .25s ease, transform .25s ease;
+
+            transition:
+                background .25s ease,
+                color .25s ease,
+                transform .25s ease;
         }
 
         .nav-btn:hover,
         .nav-btn.active {
-            background: var(--bronze, #B58863);
-            color: var(--black, #181818);
+            background: rgba(181, 136, 99, .92);
+            color: var(--black);
+            transform: translateY(-1px);
         }
 
         .nav-actions {
@@ -180,28 +290,33 @@
         .site-header .who {
             max-width: 150px;
             overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
             font-size: .78rem;
             opacity: .82;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
 
         .site-header .icon-btn {
-            display: inline-grid;
-            place-items: center;
             width: 42px;
             height: 42px;
-            border: 1px solid rgba(211,195,185,.28);
+            display: inline-grid;
+            place-items: center;
+
+            border: 1px solid rgba(211, 195, 185, .28);
             border-radius: 13px;
+
             color: inherit;
-            background: rgba(255,255,255,.07);
+            background: rgba(255, 255, 255, .08);
+
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, .09);
+
             cursor: pointer;
             transition: transform .2s ease, background .2s ease;
         }
 
         .site-header .icon-btn:hover {
             transform: translateY(-2px);
-            background: rgba(255,255,255,.15);
+            background: rgba(255, 255, 255, .16);
         }
 
         .site-header .menu-toggle {
@@ -213,24 +328,28 @@
         }
 
         .site-header .btn {
+            min-height: 43px;
+            padding: 11px 17px;
+
             display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
-            min-height: 43px;
-            padding: 11px 17px;
+
             border: 1px solid transparent;
             border-radius: 12px;
-            background: var(--navy, #10232E);
-            color: var(--ivory, #D3C3B9);
-            text-decoration: none;
-            font-weight: 700;
+
+            background: var(--navy);
+            color: var(--ivory);
+
             font-size: .87rem;
+            font-weight: 700;
+            text-decoration: none;
         }
 
         .site-header .btn.bronze {
-            background: var(--bronze, #B58863);
-            color: var(--black, #181818);
+            background: var(--bronze);
+            color: var(--black);
         }
 
         .site-header .btn.small {
@@ -238,6 +357,656 @@
             padding: 7px 10px;
             border-radius: 9px;
             font-size: .78rem;
+        }
+
+        /* =========================================
+           CONTACT HERO - GLASSMORPHISM
+        ========================================= */
+
+        .contact-hero {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+
+            width: min(var(--max-width), calc(100% - 36px));
+            min-height: 370px;
+
+            display: flex;
+            align-items: center;
+
+            margin: 22px auto 42px;
+            padding: clamp(28px, 5vw, 62px);
+
+            border: 1px solid rgba(255, 255, 255, .30);
+            border-radius: 28px;
+
+            background:
+                radial-gradient(
+                    circle at 85% 25%,
+                    rgba(181, 136, 99, .30),
+                    transparent 35%
+                ),
+                radial-gradient(
+                    circle at 10% 100%,
+                    rgba(61, 77, 85, .65),
+                    transparent 55%
+                ),
+                linear-gradient(
+                    115deg,
+                    rgba(16, 35, 46, .94),
+                    rgba(16, 35, 46, .76)
+                );
+
+            box-shadow:
+                0 25px 65px rgba(16, 35, 46, .20),
+                inset 0 1px 0 rgba(255, 255, 255, .18);
+
+            color: var(--ivory);
+
+            backdrop-filter: blur(22px) saturate(160%);
+            -webkit-backdrop-filter: blur(22px) saturate(160%);
+        }
+
+        .contact-hero::before,
+        .contact-hero::after {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            border: 1px solid rgba(211, 195, 185, .20);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .contact-hero::before {
+            width: 520px;
+            height: 520px;
+            right: -80px;
+            top: -250px;
+            box-shadow: 0 0 65px rgba(181, 136, 99, .09);
+        }
+
+        .contact-hero::after {
+            width: 360px;
+            height: 360px;
+            right: 0;
+            top: -170px;
+        }
+
+        .contact-hero-content {
+            width: min(760px, 100%);
+        }
+
+        .contact-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+
+            color: var(--bronze);
+            font-size: .73rem;
+            font-weight: 700;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+        }
+
+        .contact-eyebrow::before {
+            content: "";
+            width: 20px;
+            height: 1px;
+            background: currentColor;
+        }
+
+        .contact-hero .contact-eyebrow {
+            color: #D6A873;
+        }
+
+        .contact-hero h1 {
+            max-width: 650px;
+            margin: 15px 0 17px;
+
+            font-size: clamp(2.8rem, 6.5vw, 5.8rem);
+            font-weight: 800;
+            line-height: .98;
+            letter-spacing: -.065em;
+        }
+
+        .contact-hero h1 span {
+            color: #C99A70;
+            font-style: normal;
+        }
+
+        .contact-hero p {
+            max-width: 460px;
+            color: rgba(211, 195, 185, .86);
+            font-size: 1.02rem;
+            line-height: 1.8;
+        }
+
+        /* =========================================
+           CONTACT SECTION
+        ========================================= */
+
+        .contact-section {
+            padding: 25px 0 55px;
+        }
+
+        .contact-heading {
+            max-width: 650px;
+            margin-bottom: 25px;
+        }
+
+        .contact-heading h2 {
+            margin: 7px 0 14px;
+            color: var(--ink);
+            font-size: clamp(1.8rem, 3vw, 2.25rem);
+            line-height: 1.08;
+            letter-spacing: -.035em;
+        }
+
+        .contact-heading p {
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+            gap: 24px;
+            align-items: stretch;
+        }
+
+        /* =========================================
+           CONTACT INFORMATION - DARK GLASS
+        ========================================= */
+
+        .contact-info {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+
+            padding: clamp(22px, 3vw, 28px);
+
+            border: 1px solid rgba(211, 195, 185, .25);
+            border-radius: 20px;
+
+            background:
+                radial-gradient(
+                    circle at 95% 5%,
+                    rgba(181, 136, 99, .24),
+                    transparent 45%
+                ),
+                linear-gradient(
+                    140deg,
+                    rgba(16, 35, 46, .94),
+                    rgba(61, 77, 85, .82)
+                );
+
+            color: var(--ivory);
+
+            box-shadow:
+                var(--shadow),
+                inset 0 1px 0 rgba(255, 255, 255, .14);
+
+            backdrop-filter: blur(22px) saturate(155%);
+            -webkit-backdrop-filter: blur(22px) saturate(155%);
+        }
+
+        .contact-info::before {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            width: 220px;
+            height: 220px;
+            right: -100px;
+            bottom: -110px;
+            border: 1px solid rgba(211, 195, 185, .13);
+            border-radius: 50%;
+            box-shadow: 0 0 0 25px rgba(211, 195, 185, .025);
+        }
+
+        .contact-info h3 {
+            margin: 0 0 13px;
+            font-size: 1.4rem;
+            letter-spacing: -.035em;
+        }
+
+        .contact-info > p {
+            margin: 0 0 25px;
+            color: rgba(211, 195, 185, .76);
+            font-size: .9rem;
+            line-height: 1.7;
+        }
+
+        .contact-detail {
+            position: relative;
+
+            display: flex;
+            align-items: flex-start;
+            gap: 13px;
+
+            margin-top: 23px;
+            padding: 12px;
+
+            border: 1px solid rgba(211, 195, 185, .12);
+            border-radius: 14px;
+
+            background: rgba(255, 255, 255, .045);
+
+            transition:
+                background .25s ease,
+                border-color .25s ease,
+                transform .25s ease;
+        }
+
+        .contact-detail:hover {
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, .085);
+            border-color: rgba(211, 195, 185, .23);
+        }
+
+        .contact-detail-icon {
+            flex: 0 0 40px;
+
+            width: 40px;
+            height: 40px;
+
+            display: grid;
+            place-items: center;
+
+            border: 1px solid rgba(181, 136, 99, .25);
+            border-radius: 12px;
+
+            background: rgba(181, 136, 99, .17);
+            color: #D6A873;
+
+            font-size: 1.1rem;
+        }
+
+        .contact-detail small {
+            display: block;
+            margin-bottom: 5px;
+            color: #D6A873;
+            font-size: .72rem;
+            font-weight: 700;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+        }
+
+        .contact-detail a,
+        .contact-detail span {
+            color: var(--ivory);
+            font-size: .9rem;
+            line-height: 1.7;
+            text-decoration: none;
+            overflow-wrap: anywhere;
+        }
+
+        .contact-detail a:hover {
+            color: #D6A873;
+        }
+
+        /* =========================================
+           CONTACT FORM - LIGHT/DARK GLASS
+        ========================================= */
+
+        .contact-form-panel {
+            position: relative;
+            overflow: hidden;
+            min-width: 0;
+
+            padding: clamp(20px, 3vw, 28px);
+
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    var(--glass-strong),
+                    var(--glass)
+                );
+
+            box-shadow:
+                var(--shadow),
+                inset 0 1px 0 var(--glass-border);
+
+            backdrop-filter: blur(22px) saturate(160%);
+            -webkit-backdrop-filter: blur(22px) saturate(160%);
+        }
+
+        .contact-form-panel::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: radial-gradient(
+                circle,
+                rgba(181, 136, 99, .12),
+                transparent 70%
+            );
+            pointer-events: none;
+        }
+
+        .contact-form-panel h3 {
+            position: relative;
+            margin: 0 0 8px;
+            color: var(--ink);
+            font-size: 1.4rem;
+            letter-spacing: -.035em;
+        }
+
+        .contact-form-panel > p {
+            position: relative;
+            margin: 0 0 22px;
+            color: var(--muted);
+            font-size: .88rem;
+            line-height: 1.7;
+        }
+
+        .contact-field {
+            position: relative;
+            min-width: 0;
+            margin: 12px 0;
+        }
+
+        .contact-field label {
+            display: block;
+            margin-bottom: 6px;
+            color: var(--ink);
+            font-size: .83rem;
+            font-weight: 700;
+        }
+
+        .contact-field input,
+        .contact-field select,
+        .contact-field textarea {
+            display: block;
+            width: 100%;
+            min-width: 0;
+            min-height: 45px;
+
+            padding: 11px 13px;
+
+            border: 1px solid var(--line);
+            border-radius: 12px;
+
+            color: var(--ink);
+
+            background:
+                linear-gradient(
+                    145deg,
+                    var(--glass-strong),
+                    var(--glass)
+                );
+
+            box-shadow: inset 0 1px 2px rgba(16, 35, 46, .035);
+
+            font: inherit;
+            font-size: .9rem;
+
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+
+            transition:
+                border-color .2s ease,
+                box-shadow .2s ease,
+                background .2s ease;
+        }
+
+        .contact-field select {
+            cursor: pointer;
+        }
+
+        .contact-field textarea {
+            min-height: 110px;
+            resize: vertical;
+        }
+
+        .contact-field input::placeholder,
+        .contact-field textarea::placeholder {
+            color: var(--muted);
+            opacity: .8;
+        }
+
+        .contact-field input:focus,
+        .contact-field select:focus,
+        .contact-field textarea:focus {
+            outline: none;
+            border-color: var(--bronze);
+            box-shadow:
+                0 0 0 4px rgba(181, 136, 99, .15),
+                inset 0 1px 2px rgba(16, 35, 46, .035);
+        }
+
+        .contact-submit {
+            position: relative;
+            width: 100%;
+            min-height: 46px;
+            padding: 11px 17px;
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+
+            border: 1px solid rgba(255, 255, 255, .27);
+            border-radius: 12px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #C49A76,
+                    #B58863
+                );
+
+            color: var(--black);
+            font-size: .87rem;
+            font-weight: 700;
+
+            box-shadow:
+                0 8px 22px rgba(16, 35, 46, .12),
+                inset 0 1px 0 rgba(255, 255, 255, .35);
+
+            cursor: pointer;
+
+            transition:
+                transform .22s ease,
+                box-shadow .22s ease,
+                filter .22s ease;
+        }
+
+        .contact-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 28px rgba(16, 35, 46, .20);
+            filter: brightness(1.06);
+        }
+
+        .contact-submit:active {
+            transform: translateY(0);
+        }
+
+        .contact-note {
+            margin: 12px 0 0;
+            color: var(--muted);
+            font-size: .78rem;
+            line-height: 1.6;
+        }
+
+        /* =========================================
+           FOOTER - DARK GLASSMORPHISM
+        ========================================= */
+
+        .site-footer {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+
+            margin: 35px 14px 14px;
+            padding: 38px 0 25px;
+
+            border: 1px solid rgba(211, 195, 185, .22);
+            border-radius: 24px;
+
+            background:
+                radial-gradient(
+                    ellipse at 8% 0%,
+                    rgba(181, 136, 99, .23),
+                    transparent 38%
+                ),
+                radial-gradient(
+                    ellipse at 95% 100%,
+                    rgba(61, 77, 85, .48),
+                    transparent 45%
+                ),
+                linear-gradient(
+                    125deg,
+                    rgba(16, 35, 46, .96),
+                    rgba(16, 35, 46, .87)
+                );
+
+            color: var(--ivory);
+
+            box-shadow:
+                0 22px 55px rgba(16, 35, 46, .19),
+                inset 0 1px 0 rgba(255, 255, 255, .13);
+
+            backdrop-filter: blur(24px) saturate(155%);
+            -webkit-backdrop-filter: blur(24px) saturate(155%);
+        }
+
+        .site-footer::before,
+        .site-footer::after {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            border: 1px solid rgba(211, 195, 185, .10);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .site-footer::before {
+            width: 430px;
+            height: 430px;
+            top: -300px;
+            right: 8%;
+            box-shadow: 0 0 0 35px rgba(211, 195, 185, .025);
+        }
+
+        .site-footer::after {
+            width: 280px;
+            height: 280px;
+            bottom: -220px;
+            left: 10%;
+        }
+
+        .footer-main {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1.1fr;
+            gap: 25px;
+            padding-bottom: 28px;
+        }
+
+        .footer-logo {
+            display: inline-block;
+            color: var(--ivory);
+
+            font-family: "Bricolage Grotesque", sans-serif;
+            font-size: 1.35rem;
+            font-weight: 800;
+            letter-spacing: -.04em;
+            text-decoration: none;
+        }
+
+        .footer-logo span {
+            color: #D6A873;
+        }
+
+        .footer-brand p {
+            max-width: 300px;
+            margin: 12px 0;
+            color: rgba(211, 195, 185, .72);
+            font-size: .84rem;
+            line-height: 1.7;
+        }
+
+        .footer-shop-link {
+            color: #D6A873;
+            font-size: .84rem;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .footer-column {
+            padding: 12px;
+            border: 1px solid rgba(211, 195, 185, .10);
+            border-radius: 14px;
+            background: rgba(255, 255, 255, .035);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, .04);
+        }
+
+        .footer-column h3 {
+            margin: 4px 0 14px;
+            color: var(--ivory);
+            font-family: "Bricolage Grotesque", sans-serif;
+            font-size: .95rem;
+        }
+
+        .footer-column a,
+        .footer-column p {
+            display: block;
+            margin: 0 0 10px;
+            color: rgba(211, 195, 185, .70);
+            font-size: .82rem;
+            line-height: 1.6;
+            text-decoration: none;
+        }
+
+        .footer-column a,
+        .footer-shop-link,
+        .footer-bottom a {
+            transition: color .2s ease;
+        }
+
+        .footer-column a:hover,
+        .footer-shop-link:hover,
+        .footer-bottom a:hover {
+            color: #D6A873;
+        }
+
+        .footer-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 14px;
+
+            padding-top: 20px;
+            border-top: 1px solid rgba(211, 195, 185, .17);
+        }
+
+        .footer-bottom p,
+        .footer-bottom a {
+            margin: 0;
+            color: rgba(211, 195, 185, .70);
+            font-size: .78rem;
+            text-decoration: none;
+        }
+
+        /* =========================================
+           RESPONSIVE LAYOUT
+        ========================================= */
+
+        @media (max-width: 900px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-main {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 20px;
+            }
         }
 
         @media (max-width: 760px) {
@@ -255,7 +1024,7 @@
                 width: 100%;
                 flex-wrap: wrap;
                 padding-top: 8px;
-                border-top: 1px solid rgba(211,195,185,.15);
+                border-top: 1px solid rgba(211, 195, 185, .15);
             }
 
             .site-header .nav-links.open {
@@ -268,6 +1037,53 @@
 
             .site-header .who {
                 display: none;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .contact-container {
+                width: calc(100% - 28px);
+            }
+
+            .contact-hero {
+                width: calc(100% - 16px);
+                min-height: 340px;
+                margin-top: 14px;
+                margin-bottom: 30px;
+                padding: 38px 24px;
+                border-radius: 20px;
+            }
+
+            .contact-hero h1 {
+                font-size: clamp(2.65rem, 11vw, 4.3rem);
+            }
+
+            .contact-section {
+                padding-bottom: 45px;
+            }
+
+            .contact-info,
+            .contact-form-panel {
+                padding: 22px;
+            }
+
+            .footer-main {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 15px;
+            }
+
+            .footer-brand {
+                grid-column: 1 / -1;
+            }
+
+            .footer-bottom {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .site-footer {
+                margin-inline: 8px;
+                border-radius: 20px;
             }
         }
 
@@ -307,451 +1123,6 @@
             }
         }
 
-        /* =========================================
-           CONTACT HERO
-        ========================================= */
-
-        .contact-hero {
-            position: relative;
-            width: calc(100% - 20px);
-            min-height: 390px;
-            margin: 0 auto 65px;
-            padding: 80px 25px;
-            display: flex;
-            align-items: center;
-            overflow: hidden;
-            isolation: isolate;
-            border: 1px solid rgba(211,195,185,.16);
-            border-radius: 42px;
-            background: #10232E;
-            color: #F5F1EA;
-            box-shadow: 0 24px 70px rgba(16,35,46,.18);
-        }
-
-        .contact-hero::before {
-            content: "";
-            position: absolute;
-            z-index: -1;
-            width: 550px;
-            height: 550px;
-            right: -100px;
-            top: -220px;
-            border: 1px solid rgba(181,138,90,.28);
-            border-radius: 50%;
-        }
-
-        .contact-hero::after {
-            content: "";
-            position: absolute;
-            z-index: -1;
-            width: 360px;
-            height: 360px;
-            right: 30px;
-            top: -110px;
-            border: 1px solid rgba(181,138,90,.18);
-            border-radius: 50%;
-        }
-
-        .contact-hero-content {
-            width: min(1160px, 100%);
-            margin-inline: auto;
-        }
-
-        .contact-eyebrow {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            color: #D5AE7D;
-            font-size: .76rem;
-            font-weight: 800;
-            letter-spacing: .17em;
-            text-transform: uppercase;
-        }
-
-        .contact-eyebrow::before {
-            content: "";
-            width: 27px;
-            height: 2px;
-            background: currentColor;
-        }
-
-        .contact-hero h1 {
-            max-width: 850px;
-            margin: 25px 0;
-            font-family: "Bricolage Grotesque", sans-serif;
-            font-size: clamp(3rem, 8vw, 6rem);
-            font-weight: 800;
-            line-height: 1.02;
-            letter-spacing: -.055em;
-        }
-
-        .contact-hero h1 span {
-            color: #D5AE7D;
-            font-style: italic;
-        }
-
-        .contact-hero p {
-            max-width: 560px;
-            color: rgba(245,241,234,.72);
-            font-size: 1.02rem;
-            line-height: 1.9;
-        }
-
-        /* =========================================
-           CONTACT CONTENT
-        ========================================= */
-
-        .contact-section {
-            padding: 0 0 100px;
-        }
-
-        .contact-heading {
-            max-width: 650px;
-            margin-bottom: 45px;
-        }
-
-        .contact-heading h2 {
-            margin: 17px 0;
-            color: var(--ink);
-            font-family: "Bricolage Grotesque", sans-serif;
-            font-size: clamp(2.2rem, 5vw, 3.8rem);
-            font-weight: 800;
-            line-height: 1.08;
-            letter-spacing: -.05em;
-        }
-
-        .contact-heading p {
-            color: var(--muted);
-            line-height: 1.8;
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: .9fr 1.1fr;
-            gap: 25px;
-            align-items: stretch;
-        }
-
-        .contact-info {
-            padding: 38px;
-            overflow: hidden;
-            border-radius: 22px;
-            background: #10232E;
-            color: #F5F1EA;
-        }
-
-        .contact-info h3 {
-            margin: 0 0 13px;
-            font-family: "Bricolage Grotesque", sans-serif;
-            font-size: 1.8rem;
-            letter-spacing: -.035em;
-        }
-
-        .contact-info > p {
-            margin-bottom: 32px;
-            color: rgba(245,241,234,.68);
-            font-size: .92rem;
-            line-height: 1.8;
-        }
-
-        .contact-detail {
-            display: flex;
-            align-items: flex-start;
-            gap: 15px;
-            margin-top: 25px;
-        }
-
-        .contact-detail-icon {
-            flex: 0 0 43px;
-            width: 43px;
-            height: 43px;
-            display: grid;
-            place-items: center;
-            border-radius: 13px;
-            background: rgba(181,138,90,.17);
-            color: #D5AE7D;
-            font-size: 1.1rem;
-        }
-
-        .contact-detail small {
-            display: block;
-            margin-bottom: 6px;
-            color: #D5AE7D;
-            font-size: .72rem;
-            font-weight: 800;
-            letter-spacing: .12em;
-            text-transform: uppercase;
-        }
-
-        .contact-detail a,
-        .contact-detail span {
-            color: #F5F1EA;
-            font-size: .94rem;
-            line-height: 1.7;
-            text-decoration: none;
-            overflow-wrap: anywhere;
-        }
-
-        .contact-detail a:hover {
-            color: #D5AE7D;
-        }
-
-        .contact-form-panel {
-            padding: 38px;
-            border: 1px solid var(--line);
-            border-radius: 22px;
-            background: var(--surface);
-            box-shadow: 0 15px 45px rgba(16,35,46,.06);
-        }
-
-        .contact-form-panel h3 {
-            margin: 0 0 10px;
-            color: var(--ink);
-            font-family: "Bricolage Grotesque", sans-serif;
-            font-size: 1.8rem;
-            letter-spacing: -.035em;
-        }
-
-        .contact-form-panel > p {
-            margin-bottom: 28px;
-            color: var(--muted);
-            font-size: .9rem;
-            line-height: 1.8;
-        }
-
-        .contact-field {
-            margin-bottom: 19px;
-        }
-
-        .contact-field label {
-            display: block;
-            margin-bottom: 8px;
-            color: var(--ink);
-            font-size: .83rem;
-            font-weight: 700;
-        }
-
-        .contact-field input,
-        .contact-field select,
-        .contact-field textarea {
-            display: block;
-            width: 100%;
-            min-height: 49px;
-            padding: 13px 15px;
-            border: 1px solid var(--line);
-            border-radius: 11px;
-            outline: none;
-            background: var(--bg);
-            color: var(--ink);
-            font: inherit;
-            font-size: .9rem;
-            transition: border-color .2s, box-shadow .2s;
-        }
-
-        .contact-field textarea {
-            min-height: 145px;
-            resize: vertical;
-        }
-
-        .contact-field input:focus,
-        .contact-field select:focus,
-        .contact-field textarea:focus {
-            border-color: var(--bronze);
-            box-shadow: 0 0 0 3px rgba(181,138,90,.13);
-        }
-
-        .contact-submit {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            width: 100%;
-            min-height: 52px;
-            padding: 13px 20px;
-            border: 0;
-            border-radius: 11px;
-            background: var(--bronze);
-            color: #181818;
-            font: inherit;
-            font-size: .92rem;
-            font-weight: 800;
-            cursor: pointer;
-            transition: transform .2s, background .2s;
-        }
-
-        .contact-submit:hover {
-            transform: translateY(-2px);
-            background: #C69A72;
-        }
-
-        .contact-note {
-            margin-top: 15px;
-            color: var(--muted);
-            font-size: .77rem;
-            line-height: 1.7;
-        }
-
-        /* =========================================
-           SHARED ABOUT PAGE FOOTER
-        ========================================= */
-
-        .site-footer {
-            position: relative;
-            overflow: hidden;
-            padding: 70px 0 22px;
-            background: var(--contact-navy);
-            color: var(--contact-cream);
-        }
-
-        .site-footer::before {
-            content: "";
-            position: absolute;
-            width: 350px;
-            height: 350px;
-            right: -150px;
-            top: -200px;
-            border: 1px solid rgba(181,138,90,.22);
-            border-radius: 50%;
-            pointer-events: none;
-        }
-
-        .footer-main {
-            display: grid;
-            grid-template-columns: 1.5fr 1fr 1fr 1.1fr;
-            gap: 35px;
-            padding-bottom: 45px;
-        }
-
-        .footer-logo {
-            display: inline-block;
-            color: var(--contact-cream);
-            font-family: "Bricolage Grotesque", sans-serif;
-            font-size: 1.8rem;
-            font-weight: 800;
-            letter-spacing: -.05em;
-            text-decoration: none;
-        }
-
-        .footer-logo span {
-            color: #D5AE7D;
-        }
-
-        .footer-brand p {
-            max-width: 300px;
-            margin: 16px 0 20px;
-            color: rgba(245,241,234,.65);
-            font-size: .9rem;
-            line-height: 1.9;
-        }
-
-        .footer-shop-link {
-            color: #D5AE7D;
-            font-size: .88rem;
-            font-weight: 700;
-            text-decoration: none;
-        }
-
-        .footer-column h3 {
-            margin: 5px 0 20px;
-            color: #D5AE7D;
-            font-family: "Bricolage Grotesque", sans-serif;
-            font-size: 1rem;
-        }
-
-        .footer-column a,
-        .footer-column p {
-            display: block;
-            margin: 0 0 13px;
-            color: rgba(245,241,234,.68);
-            font-size: .86rem;
-            line-height: 1.7;
-            text-decoration: none;
-        }
-
-        .footer-column a {
-            transition: color .25s, transform .25s;
-        }
-
-        .footer-column a:hover,
-        .footer-shop-link:hover {
-            color: #D5AE7D;
-            transform: translateX(3px);
-        }
-
-        .footer-bottom {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 15px;
-            padding-top: 22px;
-            border-top: 1px solid rgba(245,241,234,.13);
-        }
-
-        .footer-bottom p,
-        .footer-bottom a {
-            margin: 0;
-            color: rgba(245,241,234,.55);
-            font-size: .79rem;
-            text-decoration: none;
-        }
-
-        .footer-bottom a:hover {
-            color: #D5AE7D;
-        }
-
-        /* =========================================
-           RESPONSIVE LAYOUT
-        ========================================= */
-
-        @media (max-width: 900px) {
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-main {
-                grid-template-columns: 1fr 1fr;
-                gap: 35px 25px;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .contact-hero {
-                width: calc(100% - 12px);
-                min-height: 340px;
-                margin-bottom: 45px;
-                padding: 65px 20px;
-                border-radius: 26px;
-            }
-
-            .contact-container {
-                width: calc(100% - 30px);
-            }
-
-            .contact-section {
-                padding-bottom: 70px;
-            }
-
-            .contact-info,
-            .contact-form-panel {
-                padding: 27px 22px;
-            }
-
-            .footer-main {
-                grid-template-columns: 1fr 1fr;
-                gap: 28px 17px;
-            }
-
-            .footer-brand {
-                grid-column: 1 / -1;
-            }
-
-            .footer-bottom {
-                align-items: flex-start;
-                flex-direction: column;
-            }
-        }
-
         @media (max-width: 380px) {
             .footer-main {
                 grid-template-columns: 1fr;
@@ -763,11 +1134,16 @@
         }
 
         @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
             *,
             *::before,
             *::after {
                 scroll-behavior: auto !important;
                 transition-duration: .01ms !important;
+                animation-duration: .01ms !important;
             }
         }
     </style>
@@ -775,16 +1151,14 @@
 
 <body class="contact-page">
 
-    <!-- =========================================
-         SHARED NAVBAR
-         Same structure as about.html
-    ========================================= -->
+    <!-- NAVIGATION -->
 
     <header class="site-header">
         <div class="nav-inner">
 
             <a class="brandmark" href="/" id="brandHome" aria-label="Ianoh_hubs home">
                 <span class="brand-icon" aria-hidden="true">⌁</span>
+
                 <span>
                     <span class="logo">Ianoh_hubs</span>
                     <span class="brand-sub">Thrift shoes · second lives</span>
@@ -792,44 +1166,79 @@
             </a>
 
             <nav class="nav-links" id="navLinks" aria-label="Main navigation">
-                <a class="nav-btn" id="navShop" href="/" style="text-decoration:none">Shop</a>
-                <a class="nav-btn" id="navOrders" href="/#orders" hidden>My orders</a>
-                <a class="nav-btn" id="navAdmin" href="/#admin" hidden>Admin</a>
-                <a class="nav-btn" id="navPolicy" href="/#policies" style="text-decoration:none">Our policies</a>
-                <a class="nav-btn" id="navAbout" href="/about.html" style="text-decoration:none">About us</a>
-                <a class="nav-btn active" id="navContact" href="/contact.html" style="text-decoration:none" aria-current="page">Contact</a>
+
+                <a class="nav-btn" id="navShop" href="/" style="text-decoration:none">
+                    Shop
+                </a>
+
+                <a class="nav-btn" id="navOrders" href="/#orders" hidden>
+                    My orders
+                </a>
+
+                <a class="nav-btn" id="navAdmin" href="/#admin" hidden>
+                    Admin
+                </a>
+
+                <a class="nav-btn" id="navPolicy" href="/#policies" style="text-decoration:none">
+                    Our policies
+                </a>
+
+                <a class="nav-btn" id="navAbout" href="/about.html" style="text-decoration:none">
+                    About us
+                </a>
+
+                <a
+                    class="nav-btn active"
+                    id="navContact"
+                    href="/contact.html"
+                    style="text-decoration:none"
+                    aria-current="page">
+                    Contact
+                </a>
+
             </nav>
 
             <div class="nav-actions">
+
                 <span id="who" class="who"></span>
 
                 <button class="btn bronze small" id="navAuth" type="button">
                     Log in
                 </button>
 
-                <button class="icon-btn" id="theme" type="button"
+                <button
+                    class="icon-btn"
+                    id="theme"
+                    type="button"
                     aria-label="Toggle light and dark theme"
-                    title="Toggle light and dark theme">◐</button>
+                    title="Toggle light and dark theme">
+                    ◐
+                </button>
 
-                <button class="icon-btn menu-toggle" id="menuToggle" type="button"
+                <button
+                    class="icon-btn menu-toggle"
+                    id="menuToggle"
+                    type="button"
                     aria-label="Toggle navigation"
-                    aria-expanded="false">☰</button>
-            </div>
+                    aria-expanded="false">
+                    ☰
+                </button>
 
+            </div>
         </div>
     </header>
 
-
     <main>
 
-        <!-- =========================================
-             CONTACT HERO
-        ========================================= -->
+        <!-- HERO -->
 
         <section class="contact-hero">
+
             <div class="contact-hero-content">
 
-                <span class="contact-eyebrow">We're here to help</span>
+                <span class="contact-eyebrow">
+                    We're here to help
+                </span>
 
                 <h1>
                     Let's talk<br>
@@ -843,18 +1252,20 @@
                 </p>
 
             </div>
+
         </section>
 
-
-        <!-- =========================================
-             CONTACT DETAILS AND FORM
-        ========================================= -->
+        <!-- CONTACT DETAILS AND FORM -->
 
         <section class="contact-section">
+
             <div class="contact-container">
 
                 <div class="contact-heading">
-                    <span class="contact-eyebrow">Get in touch</span>
+
+                    <span class="contact-eyebrow">
+                        Get in touch
+                    </span>
 
                     <h2>
                         We'd love to<br>
@@ -866,8 +1277,8 @@
                         about an order or simply want to say hello, reach out
                         using the details below or send us a message.
                     </p>
-                </div>
 
+                </div>
 
                 <div class="contact-grid">
 
@@ -883,34 +1294,54 @@
                         </p>
 
                         <div class="contact-detail">
-                            <span class="contact-detail-icon" aria-hidden="true">☎</span>
+
+                            <span class="contact-detail-icon" aria-hidden="true">
+                                ☎
+                            </span>
 
                             <div>
                                 <small>Phone</small>
-                                <a href="tel:+254710706735">+254 710 706 735</a>
+
+                                <a href="tel:+254710706735">
+                                    +254 710 706 735
+                                </a>
                             </div>
+
                         </div>
 
                         <div class="contact-detail">
-                            <span class="contact-detail-icon" aria-hidden="true">✉</span>
+
+                            <span class="contact-detail-icon" aria-hidden="true">
+                                ✉
+                            </span>
 
                             <div>
                                 <small>Email</small>
-                                <a href="mailto:odiwuorian@gmail.com">odiwuorian@gmail.com</a>
+
+                                <a href="mailto:odiwuorian@gmail.com">
+                                    odiwuorian@gmail.com
+                                </a>
                             </div>
+
                         </div>
 
                         <div class="contact-detail">
-                            <span class="contact-detail-icon" aria-hidden="true">⌖</span>
+
+                            <span class="contact-detail-icon" aria-hidden="true">
+                                ⌖
+                            </span>
 
                             <div>
                                 <small>Customer support</small>
-                                <span>Questions about shoes, orders and delivery</span>
+
+                                <span>
+                                    Questions about shoes, orders and delivery
+                                </span>
                             </div>
+
                         </div>
 
                     </div>
-
 
                     <!-- CONTACT FORM -->
 
@@ -926,7 +1357,11 @@
                         <form id="contactForm">
 
                             <div class="contact-field">
-                                <label for="contactName">Your name</label>
+
+                                <label for="contactName">
+                                    Your name
+                                </label>
+
                                 <input
                                     type="text"
                                     id="contactName"
@@ -935,10 +1370,15 @@
                                     autocomplete="name"
                                     maxlength="100"
                                     required>
+
                             </div>
 
                             <div class="contact-field">
-                                <label for="contactEmail">Email address</label>
+
+                                <label for="contactEmail">
+                                    Email address
+                                </label>
+
                                 <input
                                     type="email"
                                     id="contactEmail"
@@ -947,24 +1387,54 @@
                                     autocomplete="email"
                                     maxlength="254"
                                     required>
+
                             </div>
 
                             <div class="contact-field">
-                                <label for="contactTopic">What is your message about?</label>
+
+                                <label for="contactTopic">
+                                    What is your message about?
+                                </label>
 
                                 <select id="contactTopic" name="topic" required>
-                                    <option value="">Select a topic</option>
-                                    <option value="Shoe enquiry">Shoe enquiry</option>
-                                    <option value="Order support">Order support</option>
-                                    <option value="Delivery enquiry">Delivery enquiry</option>
-                                    <option value="Payment enquiry">Payment enquiry</option>
-                                    <option value="General enquiry">General enquiry</option>
-                                    <option value="Other">Other</option>
+
+                                    <option value="">
+                                        Select a topic
+                                    </option>
+
+                                    <option value="Shoe enquiry">
+                                        Shoe enquiry
+                                    </option>
+
+                                    <option value="Order support">
+                                        Order support
+                                    </option>
+
+                                    <option value="Delivery enquiry">
+                                        Delivery enquiry
+                                    </option>
+
+                                    <option value="Payment enquiry">
+                                        Payment enquiry
+                                    </option>
+
+                                    <option value="General enquiry">
+                                        General enquiry
+                                    </option>
+
+                                    <option value="Other">
+                                        Other
+                                    </option>
+
                                 </select>
+
                             </div>
 
                             <div class="contact-field">
-                                <label for="contactMessage">Your message</label>
+
+                                <label for="contactMessage">
+                                    Your message
+                                </label>
 
                                 <textarea
                                     id="contactMessage"
@@ -972,10 +1442,12 @@
                                     placeholder="How can we help you?"
                                     maxlength="3000"
                                     required></textarea>
+
                             </div>
 
                             <button class="contact-submit" type="submit">
-                                Prepare email <span aria-hidden="true">↗</span>
+                                Prepare email
+                                <span aria-hidden="true">↗</span>
                             </button>
 
                             <p class="contact-note">
@@ -988,16 +1460,14 @@
                     </div>
 
                 </div>
+
             </div>
+
         </section>
 
     </main>
 
-
-    <!-- =========================================
-         FOOTER
-         Same four-column design as about.html
-    ========================================= -->
+    <!-- FOOTER -->
 
     <footer class="site-footer">
 
@@ -1023,7 +1493,6 @@
 
                 </div>
 
-
                 <div class="footer-column">
 
                     <h3>Explore</h3>
@@ -1034,17 +1503,15 @@
 
                 </div>
 
-
                 <div class="footer-column">
 
                     <h3>Customer care</h3>
 
-                    <a href="/#policy">Terms &amp; conditions</a>
-                    <a href="/#policy">Privacy policy</a>
-                    <a href="/#policy">Refund policy</a>
+                    <a href="/#policies">Terms &amp; conditions</a>
+                    <a href="/#policies">Privacy policy</a>
+                    <a href="/#policies">Refund policy</a>
 
                 </div>
-
 
                 <div class="footer-column">
 
@@ -1058,7 +1525,6 @@
 
             </div>
 
-
             <div class="footer-bottom">
 
                 <p>
@@ -1066,7 +1532,9 @@
                     All rights reserved.
                 </p>
 
-                <a href="/">Back to shop ↑</a>
+                <a href="/">
+                    Back to shop ↑
+                </a>
 
             </div>
 
@@ -1074,10 +1542,7 @@
 
     </footer>
 
-
-    <!-- =========================================
-         SHARED JAVASCRIPT
-    ========================================= -->
+    <!-- SHARED JAVASCRIPT -->
 
     <script src="/common.js"></script>
 
@@ -1085,7 +1550,7 @@
         (function () {
             "use strict";
 
-            /* Footer year */
+            /* FOOTER YEAR */
 
             var year = document.getElementById("year");
 
@@ -1093,19 +1558,73 @@
                 year.textContent = new Date().getFullYear();
             }
 
+            /* MOBILE NAVIGATION */
 
-            /* Contact form */
+            var menuToggle = document.getElementById("menuToggle");
+            var navLinks = document.getElementById("navLinks");
+
+            if (menuToggle && navLinks) {
+
+                menuToggle.addEventListener("click", function () {
+
+                    var isOpen = navLinks.classList.toggle("open");
+
+                    menuToggle.setAttribute(
+                        "aria-expanded",
+                        String(isOpen)
+                    );
+
+                });
+
+                navLinks.querySelectorAll("a").forEach(function (link) {
+
+                    link.addEventListener("click", function () {
+
+                        navLinks.classList.remove("open");
+
+                        menuToggle.setAttribute(
+                            "aria-expanded",
+                            "false"
+                        );
+
+                    });
+
+                });
+
+            }
+
+            /* CONTACT FORM */
 
             var contactForm = document.getElementById("contactForm");
 
             if (contactForm) {
+
                 contactForm.addEventListener("submit", function (event) {
+
                     event.preventDefault();
 
-                    var name = document.getElementById("contactName").value.trim();
-                    var email = document.getElementById("contactEmail").value.trim();
-                    var topic = document.getElementById("contactTopic").value;
-                    var message = document.getElementById("contactMessage").value.trim();
+                    if (!contactForm.reportValidity()) {
+                        return;
+                    }
+
+                    var name = document
+                        .getElementById("contactName")
+                        .value
+                        .trim();
+
+                    var email = document
+                        .getElementById("contactEmail")
+                        .value
+                        .trim();
+
+                    var topic = document
+                        .getElementById("contactTopic")
+                        .value;
+
+                    var message = document
+                        .getElementById("contactMessage")
+                        .value
+                        .trim();
 
                     if (!name || !email || !topic || !message) {
                         contactForm.reportValidity();
@@ -1123,12 +1642,15 @@
                         "Message:\n" + message
                     );
 
-                    window.location.href =
-                        "mailto:odiwuorian@gmail.com?subject=" +
-                        subject +
-                        "&body=" +
-                        body;
+                    var mailto =
+                        "mailto:odiwuorian@gmail.com" +
+                        "?subject=" + subject +
+                        "&body=" + body;
+
+                    window.location.href = mailto;
+
                 });
+
             }
 
         })();
