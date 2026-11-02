@@ -967,6 +967,157 @@
         transition-duration: .01ms !important;
       }
     }
+
+/* =========================================
+   M-PESA CHECKOUT — MATCH INDEX.HTML
+========================================= */
+
+#pay {
+  width: min(440px, calc(100% - 28px));
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 25px;
+
+  border: 1px solid var(--glass-border, rgba(255,255,255,.66));
+  border-radius: 22px;
+
+  color: var(--ink, #181818);
+  background: var(--glass-strong, rgba(246,241,238,.92));
+
+  box-shadow: 0 30px 100px rgba(0,0,0,.3);
+
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+}
+
+#pay::backdrop {
+  background: rgba(10, 20, 26, .68);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+#pay h2 {
+  margin: 9px 0 12px;
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-size: 1.8rem;
+  letter-spacing: -.04em;
+}
+
+#pay .muted,
+#pay .hint {
+  color: var(--muted, #586168);
+  font-size: .83rem;
+  line-height: 1.65;
+}
+
+#pay .field {
+  min-width: 0;
+  margin: 15px 0;
+}
+
+#pay .field label {
+  display: block;
+  margin-bottom: 7px;
+  font-size: .83rem;
+  font-weight: 700;
+}
+
+#pay .field input,
+#pay .field select,
+#pay .field textarea {
+  display: block;
+  width: 100%;
+  min-height: 46px;
+  padding: 11px 13px;
+
+  border: 1px solid var(--line);
+  border-radius: 12px;
+
+  color: var(--ink);
+  background: var(--glass-strong);
+
+  font: inherit;
+  outline: none;
+
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+
+#pay .field textarea {
+  min-height: 88px;
+  resize: vertical;
+}
+
+#pay .field input:focus,
+#pay .field select:focus,
+#pay .field textarea:focus {
+  border-color: var(--bronze);
+  box-shadow: 0 0 0 4px rgba(181,136,99,.15);
+}
+
+#pay .dialog-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+#pay .dialog-actions .btn {
+  flex: 1 1 150px;
+  min-height: 45px;
+  padding: 11px 17px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid transparent;
+  border-radius: 12px;
+
+  font: 700 .87rem "DM Sans", sans-serif;
+  cursor: pointer;
+
+  transition: transform .22s ease, box-shadow .22s ease;
+}
+
+#pay .dialog-actions .btn.bronze {
+  color: #181818;
+  background: #B58863;
+}
+
+#pay .dialog-actions .btn.outline {
+  color: var(--ink);
+  background: transparent;
+  border-color: var(--line);
+}
+
+#pay .dialog-actions .btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(16,35,46,.15);
+}
+
+#pay .dialog-actions .btn:disabled {
+  opacity: .55;
+  cursor: not-allowed;
+}
+
+#pay .error {
+  color: #a34538;
+  font-size: .84rem;
+}
+
+@media (max-width: 480px) {
+  #pay {
+    padding: 21px;
+  }
+
+  #pay .dialog-actions {
+    flex-direction: column;
+  }
+
+  #pay .dialog-actions .btn {
+    width: 100%;
+  }
+}
   </style>
 </head>
 

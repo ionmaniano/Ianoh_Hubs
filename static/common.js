@@ -288,14 +288,15 @@
 
   function build() {
     dlg = document.createElement("dialog");
-dlg.id = "payDialog";
+    dlg.id = "pay";
 
     dlg.innerHTML =
-      '<h2>Pay with M-Pesa</h2>' +
-      '<p id="payInfo" class="meta"></p>' +
+      '<span class="eyebrow">Secure checkout</span>' +
+      '<h2 style="margin-top:9px">Pay with M-Pesa</h2>' +
+      '<p id="payInfo" class="muted"></p>' +
 
       '<div class="field">' +
-        '<label for="payMethod">Get your shoes</label>' +
+        '<label for="payMethod">How would you like to receive your shoes?</label>' +
         '<select id="payMethod">' +
           '<option value="pickup">Pickup (free)</option>' +
           '<option value="delivery">Delivery</option>' +
@@ -304,23 +305,20 @@ dlg.id = "payDialog";
 
       '<div class="field" id="payAddrF" hidden>' +
         '<label for="payAddr">Delivery address</label>' +
-        '<input id="payAddr" autocomplete="street-address" placeholder="Estate, street, town">' +
+        '<textarea id="payAddr" autocomplete="street-address" maxlength="300" placeholder="Estate, street, town and delivery directions"></textarea>' +
       '</div>' +
 
       '<div class="field">' +
         '<label for="payPhone">Safaricom number</label>' +
-        '<input id="payPhone" type="tel" inputmode="tel" placeholder="0712 345 678" autocomplete="tel">' +
+        '<input id="payPhone" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" placeholder="0712 345 678">' +
       '</div>' +
 
-      '<div id="payMsg" role="status" class="err"></div>' +
-
-      '<button class="btn tag" id="payGo" type="button">' +
-        'Send M-Pesa prompt' +
-      '</button> ' +
-
-      '<button class="btn alt" id="payClose" type="button" style="color:var(--ink)">' +
-        'Close' +
-      '</button>';
+      '<p class="hint">An M-Pesa prompt will be sent to your phone. Check the amount and enter your PIN only on the official M-Pesa prompt.</p>' +
+      '<p id="payMsg" class="error" role="status" aria-live="polite"></p>' +
+      '<div class="dialog-actions">' +
+        '<button class="btn bronze" id="payGo">Send M-Pesa prompt</button>' +
+        '<button class="btn outline" id="payClose" type="button">Close</button>' +
+      '</div>';
 
     document.body.appendChild(dlg);
 
