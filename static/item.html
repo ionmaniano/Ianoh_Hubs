@@ -12,7 +12,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;600;700;800&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="/style.css">
 
   <style>
     :root {
@@ -1454,27 +1453,19 @@
         }
 
         try {
-          const response = await IH.api("/api/shoes");
+        const found = await IH.api(
+  `/api/shoes/${encodeURIComponent(shoeId)}`
+);
 
-          const shoes = Array.isArray(response)
-            ? response
-            : Array.isArray(response.shoes)
-              ? response.shoes
-              : [];
+if (!found || String(found.id) !== String(shoeId)) {
+  showError(
+    "Shoe not found",
+    "This shoe may have been removed or is no longer available."
+  );
+  return;
+}
 
-          const found = shoes.find((item) =>
-            String(item.id) === String(shoeId)
-          );
-
-          if (!found) {
-            showError(
-              "Shoe not found",
-              "This shoe may have been removed or is no longer available."
-            );
-            return;
-          }
-
-          renderShoe(found);
+renderShoe(found);
 
         } catch (error) {
           console.error("Unable to load shoe:", error);

@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <script>
+  var shoeImagesCache = null;
+var shoeImagesRequest = null;
 (function(){try{var t=localStorage.getItem("ianoh-theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t);}catch(e){}})();
 </script>
 <head>
@@ -1739,6 +1741,60 @@ function authMode(isSignup) {
     });
     $("#backTop").addEventListener("click", function () { window.scrollTo({ top: 0, behavior: "smooth" }); });
 
+   /* =======================================================
+   BULK PRODUCT IMAGE CACHE
+======================================================== */
+var shoeImagesCache = null;
+var shoeImagesRequest = null;
+
+function loadShoeImages() {
+  if (shoeImagesCache) {
+    return Promise.resolve(shoeImagesCache);
+  }
+
+  if (!shoeImagesRequest) {
+    shoeImagesRequest = api("/api/shoe-images")
+      .then(function (images) {
+        shoeImagesCache = images || {};
+        return shoeImagesCache;
+      })
+      .catch(function (error) {
+        shoeImagesRequest = null;
+        throw error;
+      });
+  }
+
+  return shoeImagesRequest;
+}
+
+function applyShoeImages() {
+  loadShoeImages().then(function (images) {
+    document.querySelectorAll("#grid img[data-shoe-image]").forEach(function (image) {
+      var shoeId = image.getAttribute("data-shoe-image");
+      var imageData = images[String(shoeId)];
+
+      if (!imageData) return;
+
+      image.onload = function () {
+        image.hidden = false;
+
+        var fallback = image.nextElementSibling;
+        if (fallback) fallback.hidden = true;
+      };
+
+      image.onerror = function () {
+        image.hidden = true;
+      };
+
+      image.hidden = false;
+      image.loading = "eager";
+      image.src = imageData;
+    });
+  }).catch(function (error) {
+    console.warn("Product images could not be loaded:", error);
+  });
+}
+   
     /* =======================================================
        27. LOAD PRODUCTS / BUILD CATEGORY FILTERS
     ======================================================== */
@@ -1820,9 +1876,11 @@ function authMode(isSignup) {
 
       $("#grid").innerHTML = list.map(function (shoe) {
         var sold = Boolean(shoe.sold);
-        var photo = shoe.img
-          ? '<img loading="lazy" src="' + esc(shoe.img) + '" alt="' + esc(shoe.name) + '">'
-          : shoeSvg(shoe.type);
+        var photo = shoe.has_image
+      ? '<img loading="lazy" width="300" height="220" data-shoe-image="' +
+         esc(shoe.id) + '" alt="' + esc(shoe.name) + '">' +
+          shoeSvg(shoe.type)
+        : shoeSvg(shoe.type);
         var badge = sold
           ? '<span class="product-badge sold">Sold</span>'
           : Number(shoe.offer) > 0 ? '<span class="product-badge">' + esc(shoe.offer) + '% off</span>' : "";
@@ -1841,8 +1899,10 @@ function authMode(isSignup) {
           '<a class="btn outline" href="/item.html?id=' + encodeURIComponent(shoe.id) + '">View details ↗</a>' +
           (!sold ? '<button class="btn bronze" data-buy="' + esc(shoe.id) + '">Pay with M-Pesa</button>' + whatsapp : '') +
           '</div></div></article>';
-      }).join("");
-      initReveal($("#grid"));
+     }).join("");
+
+initReveal($("#grid"));
+applyShoeImages();
     }
 
     ["q", "fType", "fSize", "fSort"].forEach(function (id) {
@@ -2112,22 +2172,26 @@ function authMode(isSignup) {
           price: price, offer: offer, img: imageData
         };
         api(editId ? "/api/shoes/" + encodeURIComponent(editId) : "/api/shoes", {
-          method: editId ? "PUT" : "POST", body: payload
-        }).then(function () {
-          resetShoeForm();
-          $("#shoeOk").textContent = "Product saved successfully.";
-          return loadShoes();
-        }).then(function () {
-          renderAdmin();
-          toast("Inventory saved.");
-        }).catch(function (error) {
-          errorNode.textContent = error.message;
-        }).finally(function () {
-          $("#shoeSave").disabled = false;
-        });
+  method: editId ? "PUT" : "POST",
+  body: payload
+}).then(function () {
+  resetShoeForm();
+  $("#shoeOk").textContent = "Product saved successfully.";
+
+  shoeImagesCache = null;
+  shoeImagesRequest = null;
+
+  return loadShoes();
+}).then(function () {
+  renderAdmin();
+  toast("Inventory saved.");
+}).catch(function (error) {
+  errorNode.textContent = error.message;
+}).finally(function () {
+  $("#shoeSave").disabled = false;
+});
       });
     });
-
     /* =======================================================
        35. ORDER FULFILMENT STAGE UPDATES
     ======================================================== */
